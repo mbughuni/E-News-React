@@ -21,7 +21,7 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-left">
-        <img src="/images/A3.png" alt="Logo" className="logo" />
+        <img src="/assets/A3.png" alt="Logo" className="logo" />
       </div>
       <ul className="nav-list">
         <li className="nav-item">
