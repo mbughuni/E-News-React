@@ -1,0 +1,255 @@
+/* ProfileDetails.css
+body {
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .profile-container {
+    padding: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profile-header {
+    text-align: center;
+    background-color: #4b7bec;
+    color: white;
+    padding: 20px 0;
+    border-radius: 10px 10px 0 0;
+  }
+  
+  .profile-header h1 {
+    margin: 0;
+    font-size: 24px;
+  }
+  h3,h4{
+    color: black;
+  }
+  label{
+    color: black;
+  }
+  .profile-header h2 {
+    margin: 0;
+    font-size: 18px;
+  }
+  
+  .profile-description {
+    text-align: center;
+    margin: 20px 0;
+    color: #7f8c8d;
+  }
+  
+  .profile-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .profile-picture {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .profile-picture img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+  }
+  
+  .profile-picture h3 {
+    margin: 10px 0;
+  }
+  
+  .edit-button {
+    background-color: #4b7bec;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin: 20px 0;
+    border-radius: 5px;
+  }
+  
+  .profile-details, .login-details {
+    width: 100%;
+    max-width: 500px;
+    margin: 20px 0;
+  }
+  
+  .profile-field {
+    margin-bottom: 15px;
+  }
+  
+  .profile-field label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .profile-field input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .change-password {
+    color: #4b7bec;
+    text-decoration: none;
+  }
+  
+  .change-password:hover {
+    text-decoration: underline;
+  }
+   */
+
+  body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Main container - increased width */
+.profile-container {
+  width: 90%; /* Increased width */
+  max-width: 1200px; /* Increased max-width */
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Image section - increased width */
+.image-section {
+  text-align: center;
+  margin-bottom: 20px;
+  width: 100%; /* Full width of the container */
+}
+
+.image-section img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 3px solid #007bff;
+}
+
+.edit-button {
+  display: block;
+  margin: 10px auto 0;
+  padding: 5px 1px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.edit-button:hover {
+  background-color: #0056b3;
+}
+
+/* Details section - increased width */
+.details-section {
+  width: 100%; /* Full width of the container */
+  max-width: 1000px; /* Increased max-width */
+}
+
+/* Profile and login details - increased width */
+.profile-details, .login-details {
+  background-color: #f9f9f9;
+  padding: 20px; /* Increased padding */
+  border-radius: 8px;
+  margin-bottom: 20px;
+  width: 100%; /* Full width of the container */
+}
+
+.profile-details h3, .login-details h3 {
+  margin-bottom: 15px;
+  font-size: 18px;
+  color: #333;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 100%; /* Full width of the container */
+}
+
+.detail-item .label {
+  font-weight: bold;
+  color: #555;
+}
+
+.detail-item .value {
+  color: #333;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  width: 100%; /* Full width of the container */
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .profile-container {
+    width: 95%; /* Slightly reduced width for mobile */
+    padding: 15px;
+  }
+
+  .image-section img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .details-section {
+    padding: 0 10px;
+  }
+
+  .detail-item {
+    flex-direction: column;
+  }
+
+  .detail-item .label {
+    margin-bottom: 5px;
+  }
+
+  button {
+    width: 100%;
+    padding: 12px;
+  }
+}
