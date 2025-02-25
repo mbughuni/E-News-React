@@ -5,9 +5,11 @@ const Navbar = () => {
   const [activeLink, setActiveLink] = useState('Home');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // For hamburger menu toggle
 
   const handleLinkClick = (link) => {
     setActiveLink(link);
+    if (isMenuOpen) setIsMenuOpen(false); // Close menu when link is clicked
   };
 
   const toggleDropdown = () => {
@@ -18,12 +20,21 @@ const Navbar = () => {
     setIsSearchOpen(!isSearchOpen);
   };
 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <nav className="navbar">
       <div className="navbar-left">
         <img src="/assets/A3.png" alt="Logo" className="logo" />
       </div>
-      <ul className="nav-list">
+      <div className="hamburger-menu" onClick={toggleMenu}>
+        <div className="bar"></div>
+        <div className="bar"></div>
+        <div className="bar"></div>
+      </div>
+      <ul className={`nav-list ${isMenuOpen ? 'active' : ''}`}>
         <li className="nav-item">
           <a
             href="#home"
