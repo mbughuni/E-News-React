@@ -1,131 +1,182 @@
+import { useState } from "react";
 import '../styles/profile.css'; // Ensure the path is correct
-
-
-// const ProfileDetails = () => {
-//   return (
-//     <div className="profile-container">
-//       <header className="profile-header">
-//         <h1>About You</h1>
-//         <h2>Profile Details</h2>
-//       </header>
-//       <p className="profile-description">
-//         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquid, fuga quam saepe earum debitis sapiente.
-//       </p>
-//       <div className="profile-content">
-//         <div className="profile-picture">
-//           <img src="profile-pic-url" alt="Profile" />
-//           <h3>MD ASRAF ALI</h3>
-//         </div>
-//         <button className="edit-button">Edit</button>
-//         <div className="profile-details">
-//           <h4>Profile Details</h4>
-//           <div className="profile-field">
-//             <label>First Name</label>
-//             <input type="text" value="MD" readOnly />
-//           </div>
-//           <div className="profile-field">
-//             <label>Middle Name</label>
-//             <input type="text" value="ASRAF" readOnly />
-//           </div>
-//           <div className="profile-field">
-//             <label>Last Name</label>
-//             <input type="text" value="ALI" readOnly />
-//           </div>
-//           <div className="profile-field">
-//             <label>Email</label>
-//             <input type="email" value="mail692@pku.ac.in" readOnly />
-//           </div>
-//           <div className="profile-field">
-//             <label>Phone</label>
-//             <input type="text" value="7781826301" readOnly />
-//           </div>
-//           <div className="profile-field">
-//             <label>DOB</label>
-//             <input type="text" value="30-12-2002" readOnly />
-//           </div>
-//         </div>
-//         <div className="login-details">
-//           <h4>Login Details</h4>
-//           <div className="profile-field">
-//             <label>Email</label>
-//             <input type="email" value="mail692@pku.ac.in" readOnly />
-//           </div>
-//           <div className="profile-field">
-//             <label>Phone</label>
-//             <input type="text" value="7781826301" readOnly />
-//           </div>
-//           <div className="profile-field">
-//             <label>Password</label>
-//             <input type="password" value="************" readOnly />
-//           </div>
-//           <a href="#" className="change-password">Change Password?</a>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default ProfileDetails;
-
+import Navbar from "./navbar";
+import ProfileHeader from "./profileheader";
+import Footer from "./footer";
 
 const ProfileForm = () => {
-    return (
-     
-        <div className="profile-content">
-          <div className="image-section">
-            <img src="/assets/A3.png" alt="Profile" />
-            <button className="edit-button">Edit</button>
-          </div>
-  
-          <div className="details-section">
-            <div className="profile-details">
-              <h3>Profile Details</h3>
-              <div className="detail-item">
-                <span className="label">First Name</span>
-                <span className="value">MD ASRAF ALI</span>
-              </div>
-              <div className="detail-item">
-                <span className="label">Middle Name</span>
-                <span className="value">ASRAF</span>
-              </div>
-              <div className="detail-item">
-                <span className="label">Last Name</span>
-                <span className="value">DOR</span>
-              </div>
-              <div className="detail-item">
-                <span className="label">Email</span>
-                <span className="value">male978@vlu.ac.in</span>
-              </div>
-              <div className="detail-item">
-                <span className="label">Phone</span>
-                <span className="value">7781826301</span>
-              </div>
-              <div className="detail-item">
-                <span className="label">Date of Birth</span>
-                <span className="value">30-12-2002</span>
-              </div>
+  // State for edit mode
+  const [isEditing, setIsEditing] = useState(false);
+
+  // State for profile details
+  const [profile, setProfile] = useState({
+    firstName: "MD ASRAF ALI",
+    middleName: "ASRAF",
+    lastName: "DOR",
+    email: "male978@vlu.ac.in",
+    phone: "7781826301",
+    dob: "30-12-2002",
+  });
+
+  // Handle input changes
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setProfile({ ...profile, [name]: value });
+  };
+
+  // Handle save
+  const handleSave = () => {
+    setIsEditing(false);
+    // You can add logic here to save the updated profile data to an API or state management
+    console.log("Profile saved:", profile);
+  };
+
+  // Handle cancel
+  const handleCancel = () => {
+    setIsEditing(false);
+    // Reset the profile data to its original state (optional)
+    setProfile({
+      firstName: "MD ASRAF ALI",
+      middleName: "ASRAF",
+      lastName: "DOR",
+      email: "male978@vlu.ac.in",
+      phone: "7781826301",
+      dob: "30-12-2002",
+    });
+  };
+
+  return (
+    <div>
+      <Navbar />
+      <ProfileHeader />
+      <div className="main-content"> {/* Wrap main content in a div */}
+        <div className="profile-container" style={{ marginTop: '285px' }}> {/* Added margin-top */}
+          <div className="profile-content">
+            <div className="image-section">
+              <img src="/assets/A3.png" alt="Profile" />
+              <button className="edit-button" onClick={() => setIsEditing(true)}>
+                Edit
+              </button>
             </div>
-  
-            <div className="login-details">
-              <h3>Login Details</h3>
-              <div className="detail-item">
-                <span className="label">Email</span>
-                <span className="value">male978@vlu.ac.in</span>
+
+            <div className="details-container">
+              <div className="profile-details">
+                <h3>Profile Details</h3>
+                <div className="detail-item">
+                  <span className="label">First Name</span>
+                  {isEditing ? (
+                    <input
+                      type="text"
+                      name="firstName"
+                      value={profile.firstName}
+                      onChange={handleInputChange}
+                    />
+                  ) : (
+                    <span className="value">{profile.firstName}</span>
+                  )}
+                </div>
+                <div className="detail-item">
+                  <span className="label">Middle Name</span>
+                  {isEditing ? (
+                    <input
+                      type="text"
+                      name="middleName"
+                      value={profile.middleName}
+                      onChange={handleInputChange}
+                    />
+                  ) : (
+                    <span className="value">{profile.middleName}</span>
+                  )}
+                </div>
+                <div className="detail-item">
+                  <span className="label">Last Name</span>
+                  {isEditing ? (
+                    <input
+                      type="text"
+                      name="lastName"
+                      value={profile.lastName}
+                      onChange={handleInputChange}
+                    />
+                  ) : (
+                    <span className="value">{profile.lastName}</span>
+                  )}
+                </div>
+                <div className="detail-item">
+                  <span className="label">Email</span>
+                  {isEditing ? (
+                    <input
+                      type="email"
+                      name="email"
+                      value={profile.email}
+                      onChange={handleInputChange}
+                    />
+                  ) : (
+                    <span className="value">{profile.email}</span>
+                  )}
+                </div>
+                <div className="detail-item">
+                  <span className="label">Phone</span>
+                  {isEditing ? (
+                    <input
+                      type="text"
+                      name="phone"
+                      value={profile.phone}
+                      onChange={handleInputChange}
+                    />
+                  ) : (
+                    <span className="value">{profile.phone}</span>
+                  )}
+                </div>
+                <div className="detail-item">
+                  <span className="label">Date of Birth</span>
+                  {isEditing ? (
+                    <input
+                      type="text"
+                      name="dob"
+                      value={profile.dob}
+                      onChange={handleInputChange}
+                    />
+                  ) : (
+                    <span className="value">{profile.dob}</span>
+                  )}
+                </div>
+
+                {/* Save and Cancel buttons */}
+                {isEditing && (
+                  <div className="action-buttons">
+                    <button className="save-button" onClick={handleSave}>
+                      Save
+                    </button>
+                    <button className="cancel-button" onClick={handleCancel}>
+                      Cancel
+                    </button>
+                  </div>
+                )}
               </div>
-              <div className="detail-item">
-                <span className="label">Phone</span>
-                <span className="value">7781826301</span>
+
+              <div className="login-details">
+                <h3>Login Details</h3>
+                <div className="detail-item">
+                  <span className="label">Email</span>
+                  <span className="value">{profile.email}</span>
+                </div>
+                <div className="detail-item">
+                  <span className="label">Phone</span>
+                  <span className="value">{profile.phone}</span>
+                </div>
+                <div className="detail-item">
+                  <span className="label">Password</span>
+                  <span className="value">********</span>
+                </div>
+                <button type="button" className="changepassword">Change Password</button>
               </div>
-              <div className="detail-item">
-                <span className="label">Password</span>
-                <span className="value">********</span>
-              </div>
-              <button type="button">Change Password</button>
             </div>
           </div>
         </div>
-   
-    );
-  };
-  
-  export default ProfileForm;
+      </div>
+      <Footer /> {/* Footer added at the end */}
+    </div>
+  );
+};
+
+export default ProfileForm;
