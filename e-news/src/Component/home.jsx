@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import Navbar from "./navbar.jsx";
 import NewsSection from "./newssection.jsx";
 import NewsCardSection from "./newcard.jsx";
+import Footer from "./footer.jsx";
 
 import "./NewsSection.css"; 
 
@@ -98,8 +99,10 @@ const Home = () => {
         <NewsSection />
         <NewsCardSection /> {/* News Cards integrated here */}
       </div>
+      <Footer/>
     </div>
   );
+
 };
 
 export default Home;

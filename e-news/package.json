@@ -15,11 +15,8 @@
     "owl.carousel": "^2.3.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-<<<<<<< HEAD
     "react-icons": "^5.5.0"
-=======
-    "react-responsive-carousel": "^3.2.23"
->>>>>>> 48d48784a2a4b4fe2011b8b645799776d8297ebe
+  
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
