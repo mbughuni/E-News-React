@@ -1,0 +1,13 @@
+/* App.css */
+.slick-prev:before,
+.slick-next:before {
+  color: #333; /* Change arrow color */
+}
+
+.slick-dots li button:before {
+  color: #333; /* Change dot color */
+}
+
+.slick-dots li.slick-active button:before {
+  color: #333; /* Change active dot color */
+}

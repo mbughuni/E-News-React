@@ -5,15 +5,17 @@ import './index.css'
 // import Navbar from './Component/navbar'
 
 // import ProfileDetails from './Component/profile'
-import ProfileForm from './Component/profile'
+// import ProfileForm from './Component/profile'
 // import ProfileHeader from './Component/profileheader'
+import DemoCarousel from './Component/indexcoursel'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
 {/* <Navbar></Navbar> */}
 {/* <Footer></Footer> */}
-<ProfileForm></ProfileForm>
+{/* <ProfileForm></ProfileForm> */}
 {/* <ProfileHeader></ProfileHeader> */}
+<DemoCarousel />
   </StrictMode>,
 )
 
