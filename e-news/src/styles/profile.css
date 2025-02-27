@@ -1,0 +1,191 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Main container - centered and increased width */
+.profile-container {
+  width: 95%; /* Increased width */
+  max-width: 1400px; /* Increased max-width */
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Image section - centered */
+.image-section {
+  text-align: center;
+  margin-bottom: 20px;
+  width: 100%; /* Full width of the container */
+}
+
+.image-section img {
+  width: 200px; /* Increased image size */
+  height: 200px; /* Increased image size */
+  border-radius: 50%;
+  border: 3px solid #007bff;
+}
+
+.edit-button {
+  display: block;
+  margin: 10px auto 0;
+  padding: 10px 20px; /* Increased padding */
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px; /* Increased font size */
+}
+
+.edit-button:hover {
+  background-color: #0056b3;
+}
+
+/* Details container - flexbox layout */
+.details-container {
+  display: flex;
+  justify-content: space-between; /* Space between profile and login details */
+  width: 100%; /* Full width of the container */
+  max-width: 1200px; /* Increased max-width */
+  gap: 20px; /* Space between the two sections */
+}
+
+/* Profile and login details - increased width and background color */
+.profile-details, .login-details {
+  background-color: #f9f9f9;
+  padding: 30px; /* Increased padding */
+  border-radius: 8px;
+  width: 48%; /* Each section takes 48% of the container width */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for depth */
+}
+
+.profile-details h3, .login-details h3 {
+  margin-bottom: 20px; /* Increased margin */
+  font-size: 24px; /* Increased font size */
+  color: #333;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px; /* Increased margin */
+  padding: 15px; /* Increased padding */
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 100%; /* Full width of the container */
+  margin-right: 20px; /* Added margin-right to input container */
+}
+
+.detail-item .label {
+  font-weight: bold;
+  color: #555;
+  font-size: 18px; /* Increased font size */
+}
+
+.detail-item .value {
+  color: #333;
+  font-size: 18px; /* Increased font size */
+}
+
+.edit-button, .changepassword {
+  padding: 15px 30px; /* Increased padding */
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px; /* Increased font size */
+  width: 100%; /* Full width of the container */
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .profile-container {
+    width: 100%; /* Full width for mobile */
+    padding: 15px;
+  }
+
+  .image-section img {
+    width: 150px; /* Adjusted image size for mobile */
+    height: 150px; /* Adjusted image size for mobile */
+  }
+
+  .details-container {
+    flex-direction: column; /* Stack sections vertically on mobile */
+    gap: 10px; /* Reduced gap for mobile */
+  }
+
+  .profile-details, .login-details {
+    width: 100%; /* Full width for mobile */
+  }
+
+  .detail-item {
+    flex-direction: column;
+    margin-right: 0; /* Remove margin-right on mobile */
+  }
+
+  .detail-item .label {
+    margin-bottom: 5px;
+  }
+
+  button {
+    width: 100%;
+    padding: 12px;
+  }
+}
+/* Input fields in edit mode */
+
+/* Action buttons (Save and Cancel) */
+.action-buttons {
+  display: flex;
+  gap: 10px; /* Space between buttons */
+  margin-top: 20px;
+}
+
+.save-button,
+.cancel-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.save-button {
+  background-color: #28a745; /* Green for Save */
+  color: #fff;
+}
+
+.save-button:hover {
+  background-color: #218838;
+}
+
+.cancel-button {
+  background-color: #dc3545; /* Red for Cancel */
+  color: #fff;
+}
+
+.cancel-button:hover {
+  background-color: #c82333;
+}
