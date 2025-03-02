@@ -10,7 +10,7 @@ import Home from './Component/home.jsx';
 // import ProfileForm from './Component/profile';
 // import ProfileHeader from './Component/profileheader';
 // import DemoCarousel from './Component/indexcoursel';
-
+import ContactForm from './Component/contact.jsx';
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     {/* <Navbar /> */}
@@ -19,5 +19,6 @@ createRoot(document.getElementById('root')).render(
     {/* <ProfileForm /> */}
     {/* <ProfileHeader /> */}
     {/* <DemoCarousel /> */}
+    <ContactForm></ContactForm>
   </StrictMode>
 );
