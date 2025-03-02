@@ -4,21 +4,21 @@ import './index.css';
 
 // Uncomment and use the components as needed
 // import Navbar from './Component/navbar';
-import Home from './Component/home.jsx';
+// import Home from './Component/home.jsx';
 // import Footer from './Component/footer';
 // import ProfileDetails from './Component/profile';
 // import ProfileForm from './Component/profile';
 // import ProfileHeader from './Component/profileheader';
 // import DemoCarousel from './Component/indexcoursel';
-import ContactForm from './Component/contact.jsx';
+import ContactSection from './Component/contact';
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     {/* <Navbar /> */}
-    <Home />
+
     {/* <Footer /> */}
     {/* <ProfileForm /> */}
     {/* <ProfileHeader /> */}
     {/* <DemoCarousel /> */}
-    <ContactForm></ContactForm>
+  <ContactSection></ContactSection>
   </StrictMode>
 );
