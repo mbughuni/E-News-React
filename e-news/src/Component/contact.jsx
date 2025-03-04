@@ -2,7 +2,8 @@ import '../styles/contact.css'; // Import CSS for styling
 import Navbar from '../Component/navbar';
 import ContactHeader from './contactheader';
 import { FaMapMarkerAlt } from 'react-icons/fa'; // Import location icon
-import Footer from './footer';const ContactSection = () => {
+import Footer from './footer';
+const ContactSection = () => {
   return (
     <div>
 

@@ -11,7 +11,8 @@ import './index.css';
 // import ProfileHeader from './Component/profileheader';
 // import DemoCarousel from './Component/indexcoursel';
 // import ContactSection from './Component/contact';
-import ENews from './Component/about';
+// import ENews from './Component/about';
+import MainLayout from './Component/mainabout';
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     {/* <Navbar /> */}
@@ -21,6 +22,7 @@ createRoot(document.getElementById('root')).render(
     {/* <ProfileHeader /> */}
     {/* <DemoCarousel /> */}
   {/* <ContactSection></ContactSection> */}
-  <ENews></ENews>
+  {/* <ENews></ENews> */}
+  <MainLayout></MainLayout>
   </StrictMode>
 );
