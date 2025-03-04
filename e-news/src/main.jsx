@@ -10,7 +10,8 @@ import './index.css';
 // import ProfileForm from './Component/profile';
 // import ProfileHeader from './Component/profileheader';
 // import DemoCarousel from './Component/indexcoursel';
-import ContactSection from './Component/contact';
+// import ContactSection from './Component/contact';
+import ENews from './Component/about';
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     {/* <Navbar /> */}
@@ -19,6 +20,7 @@ createRoot(document.getElementById('root')).render(
     {/* <ProfileForm /> */}
     {/* <ProfileHeader /> */}
     {/* <DemoCarousel /> */}
-  <ContactSection></ContactSection>
+  {/* <ContactSection></ContactSection> */}
+  <ENews></ENews>
   </StrictMode>
 );
