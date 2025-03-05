@@ -9,6 +9,7 @@ const MainLayout = () => {
       <Navbar />
       <AboutHeader /> {/* Blue background with orange and white text */}
       <ENews />
+      <UserReviews />
       <Footer />
     </div>
   );

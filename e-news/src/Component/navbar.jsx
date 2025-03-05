@@ -37,7 +37,7 @@ const Navbar = () => {
       <ul className={`nav-list ${isMenuOpen ? 'active' : ''}`}>
         <li className="nav-item">
           <a
-            href="#home"
+            href="Home"
             className={activeLink === 'Home' ? 'active-link' : 'nav-link'}
             onClick={() => handleLinkClick('Home')}
           >
@@ -55,9 +55,9 @@ const Navbar = () => {
         </li>
         <li className="nav-item">
           <a
-            href="#about"
+            href="ENews"
             className={activeLink === 'About' ? 'active-link' : 'nav-link'}
-            onClick={() => handleLinkClick('About')}
+            onClick={() => handleLinkClick('ENews')}
           >
             About
           </a>
