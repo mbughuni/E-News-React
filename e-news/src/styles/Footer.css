@@ -1,58 +1,89 @@
-/* Footer.css */
+/* Footer Container */
 .footerrr-container {
-  background-color: black;
-  color: white;
-  padding: 40px;
+  background-color: #0D1B2A; /* Dark navy background */
+  color: #E0E1DD; /* Light text color */
+  padding: 50px 100px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  font-size: 14px;
-  margin-top: 200px; /* Adjust as needed */
+  gap: 40px;
+  font-size: 16px;
 }
 
+/* Section Headings */
 .footerrr-section h3 {
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  font-size: 20px;
+  position: relative;
 }
 
+/* Add underline under headings */
+.footerrr-section h3::after {
+  content: "";
+  width: 30px;
+  height: 2px;
+  background-color: #FF7F0E; /* Orange accent */
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+}
+
+/* Paragraph Styling */
+.footerrr-section p {
+  color: #B0B8C2;
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+/* Navigation Links */
 .footerrr-section ul {
   list-style: none;
   padding: 0;
 }
 
 .footerrr-section ul li {
-  margin-bottom: 5px;
+  margin-bottom: 8px;
+  color: #B0B8C2;
+  cursor: pointer;
+  transition: color 0.3s ease;
 }
 
+.footerrr-section ul li:hover {
+  color: #FF7F0E; /* Orange highlight */
+}
+
+/* Subscribe Box */
 .subscribeee-box {
   display: flex;
-  border: 1px solid gray;
-  border-radius: 8px;
+  border: 1px solid #FF7F0E;
+  border-radius: 5px;
   overflow: hidden;
+  max-width: 280px;
 }
 
 .emailll-input {
   flex: 1;
-  padding: 8px;
-  background-color: black;
+  padding: 12px;
+  background-color: #14213D; /* Darker input */
   color: white;
   border: none;
   outline: none;
 }
 
 .subscribeee-button {
-  background-color: white;
-  color: black;
-  padding: 8px 12px;
+  background-color: #FF7F0E; /* Orange */
+  color: white;
+  padding: 12px;
   border: none;
   cursor: pointer;
+  
 }
 
 .subscribeee-button:hover {
-  background-color: #ccc;
+  background-color: #D66A00;
 }
 
-/* Ensure the footer is always at the bottom */
+/* Ensures the footer remains at the bottom */
 html, body {
   height: 100%;
   margin: 0;
@@ -68,5 +99,5 @@ html, body {
 }
 
 .main-content {
-  flex: 1; /* Takes up remaining space */
+  flex: 1;
 }
