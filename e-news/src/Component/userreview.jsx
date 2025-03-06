@@ -71,6 +71,7 @@ const UserReviews = () => {
                 <div className="last-icon">
                   <i className="fas fa-quote-right"></i>
                 </div>
+                
               </div>
             </SwiperSlide>
           ))}
