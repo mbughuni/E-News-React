@@ -1,0 +1,30 @@
+.container-text {
+    background-color: #09262a; /* Blueish shade */
+    color: white; /* Text color for contrast */
+    text-align: center;
+    padding: 150px 0; /* Spacing inside the container */
+    font-size: 32px; /* Large text */
+    font-weight: bold;
+    margin-top: 100px; /* Ensures it's right below the navbar */
+    justify-content: center;
+    align-items: center;
+  }
+  
+.news-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px auto; /* Adjust spacing */
+    margin-top:150px;
+    width: 80%; /* Adjust width for better visibility */
+  }
+  
+  .write-news-section {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px auto; /* Provides space between news and write news sections */
+    width: 80%;
+  }
+  
