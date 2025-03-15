@@ -1,0 +1,63 @@
+/* General Layout */
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  
+  /* Navbar */
+  .navbar {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+     /* Adjust as needed */
+  }
+  
+  /* Carousel */
+  .carousel-section {
+    width: 100%;
+    margin-top: 80px; /* Adjust to avoid overlapping navbar */
+  }
+  
+  /* News Section */
+  .news-section {
+    width: 100%;
+    padding: 40px 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .content-wrapper {
+    max-width: 1200px;
+    width: 90%;
+  }
+  
+  /* More News */
+  .more-news {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+  }
+  
+  /* Reviews Section */
+  .reviews-section {
+    width: 100%;
+    background-color: #f9f9f9; /* Light background */
+    padding: 40px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Footer */
+  .footer {
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+  }
+  

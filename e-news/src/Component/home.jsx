@@ -1,4 +1,3 @@
-
 import Navbar from "./navbar.jsx";
 import NewsSection from "./newssection.jsx";
 import NewsCardSection from "./newcard.jsx";
@@ -8,25 +7,39 @@ import UserReviews from "./userreview.jsx";
 import Carousel from "./carousel.jsx";
 import ReviewForm from "./reviewform.jsx";
 
-import "./NewsSection.css"; 
+import "./Home.css"; // ✅ External CSS for better layout and responsiveness
 
 const Home = () => {
-  
   return (
-    <div className="relative w-full">
+    <div className="home-container">
+      {/* Navbar */}
       <Navbar />
 
       {/* Carousel Section */}
-     <Carousel></Carousel>
+      <section className="carousel-section">
+        <Carousel />
+      </section>
 
       {/* News Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <NewsSection />
-        <NewsCardSection />
-      </div>
-      <MoreNews />
-      <UserReviews />
-      <ReviewForm/>
+      <section className="news-section">
+        <div className="content-wrapper">
+          <NewsSection />
+          <NewsCardSection />
+        </div>
+      </section>
+
+      {/* More News Section */}
+      <section className="more-news">
+        <MoreNews />
+      </section>
+
+      {/* User Reviews Section */}
+      <section className="reviews-section">
+        <UserReviews />
+        <ReviewForm />
+      </section>
+
+      {/* Footer */}
       <Footer />
     </div>
   );

@@ -1,23 +1,21 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './Components/Navbar';
-import Home from './Component/home.jsx';
-import ENews from './Component/about';
-import MainLayout from './Component/mainabout';
-
-import ContactSection from './Component/contact';
-import ENews from './Components/About';
+import { Routes, Route } from "react-router-dom"; // ✅ No need for BrowserRouter here
+import Navbar from "./Component/navbar.jsx";
+import Home from "./Component/Home";
+import MainLayout from "./Component/MainAbout";
+import ContactSection from "./Component/Contact";
+import Newspage from "./Component/Newspage";
 
 function App() {
   return (
-    <Router>
+    <> {/* ✅ Remove <Router>, keep only Routes */}
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/news" element={<News />} />
+        <Route path="/news" element={<Newspage />} />
         <Route path="/about" element={<MainLayout />} />
         <Route path="/contact" element={<ContactSection />} />
       </Routes>
-    </Router>
+    </>
   );
 }
 
