@@ -1,14 +1,16 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { User } from "lucide-react"; // Import profile icon
 import "../styles/navbar.css";
 
 const Navbar = () => {
   const [activeLink, setActiveLink] = useState("Home");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleLinkClick = (link) => {
     setActiveLink(link);
-    setIsMenuOpen(false);
+    setIsMenuOpen(false); // Close menu on link click
   };
 
   return (
@@ -17,12 +19,7 @@ const Navbar = () => {
         <img src="/assets/A3.png" alt="Logo" className="logo" />
       </div>
 
-      <div className="hamburger-menu" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-        <div className="bar"></div>
-        <div className="bar"></div>
-        <div className="bar"></div>
-      </div>
-
+      {/* Navigation Links */}
       <ul className={`nav-list ${isMenuOpen ? "active" : ""}`}>
         <li className="nav-item">
           <Link to="/" className={activeLink === "Home" ? "active-link" : "nav-link"} onClick={() => handleLinkClick("Home")}>
@@ -45,6 +42,24 @@ const Navbar = () => {
           </Link>
         </li>
       </ul>
+
+      {/* Profile Icon with Dropdown */}
+      <div className="profile-container" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+        <User className="profile-icon" size={28} /> {/* Profile icon */}
+        <div className={`dropdown-menu ${isDropdownOpen ? "show" : ""}`}>
+          <Link to="/profile" className="dropdown-item">Profile</Link>
+          <Link to="/admin" className="dropdown-item">Admin</Link>
+          <Link to="/login" className="dropdown-item">Login</Link>
+          <Link to="/register" className="dropdown-item">Register</Link>
+        </div>
+      </div>
+
+      {/* Hamburger Menu */}
+      <div className="hamburger-menu" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+        <span className="bar"></span>
+        <span className="bar"></span>
+        <span className="bar"></span>
+      </div>
     </nav>
   );
 };
