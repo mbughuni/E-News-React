@@ -1,0 +1,66 @@
+.single-article-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  .article-content {
+    flex: 2;
+    padding-right: 20px;
+  }
+  
+  .article-image {
+    width: 100%;
+    border-radius: 8px;
+  }
+  
+  .article-meta {
+    display: flex;
+    gap: 10px;
+    font-size: 14px;
+    margin-top: 10px;
+    color: gray;
+  }
+  
+  .sidebar {
+    flex: 1;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    color: black;
+    margin-top:-10px;
+  }
+  
+  .sidebar h3 {
+    margin-bottom: 10px;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar ul li {
+    margin-bottom: 8px;
+  }
+  
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .tags span {
+    background: #eee;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+  .article-header{
+    margin-bottom:100px;
+    background-color: rgb(1, 27, 59);
+    color: black;
+  }
+  

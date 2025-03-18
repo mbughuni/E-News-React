@@ -5,9 +5,13 @@
     padding: 150px 0; /* Spacing inside the container */
     font-size: 32px; /* Large text */
     font-weight: bold;
-    margin-top: 100px; /* Ensures it's right below the navbar */
+    margin-top: 90px; /* Ensures it's right below the navbar */
     justify-content: center;
     align-items: center;
+  }
+  h2{
+    color:orange;
+    font-size:40px;
   }
   
 .news-section {

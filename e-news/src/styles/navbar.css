@@ -178,3 +178,7 @@ body {
     right: 10px;
   }
 }
+/* Show dropdown when hovering over profile-container */
+.profile-container:hover .dropdown-menu {
+  display: flex;
+}

@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { FaUser, FaCalendarAlt, FaThumbsUp, FaComment, FaShareAlt, FaBookOpen, FaSearch } from 'react-icons/fa';
+import { FaUser, FaCalendarAlt, FaSearch } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 import './newspagecard.css';
 
 const newsData = [
   {
     id: 1,
-    image: 'https://static01.nyt.com/images/2022/06/11/multimedia/11gun-protests-DC-04/11gun-protests-DC-04-videoSixteenByNine3000.jpg?year=2022&h=1689&w=3000&s=2ba4347e5884add0a5cb635039122860ddd5587991347a0fd92f1f5941daa0f1&k=ZQJBKqZ0VN&tw=1',
+    image: 'https://static01.nyt.com/images/2022/06/11/multimedia/11gun-protests-DC-04/11gun-protests-DC-04-videoSixteenByNine3000.jpg?year=2022&h=1689&w=3000',
     title: 'You will vainly look for fruit on it in autumn.',
     author: 'Admin',
     date: '2019-12-27',
@@ -13,7 +14,7 @@ const newsData = [
   },
   {
     id: 2,
-    image: 'https://static01.nyt.com/images/2022/06/11/multimedia/11gun-protests-DC-04/11gun-protests-DC-04-videoSixteenByNine3000.jpg?year=2022&h=1689&w=3000&s=2ba4347e5884add0a5cb635039122860ddd5587991347a0fd92f1f5941daa0f1&k=ZQJBKqZ0VN&tw=1',
+    image: 'https://static01.nyt.com/images/2022/06/11/multimedia/11gun-protests-DC-04/11gun-protests-DC-04-videoSixteenByNine3000.jpg?year=2022&h=1689&w=3000',
     title: "A man's worth has its season, like tomato.",
     author: 'Admin',
     date: '2019-12-27',
@@ -32,6 +33,7 @@ const newsData = [
 const Newspagecard = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterDate, setFilterDate] = useState('');
+  const navigate = useNavigate();
 
   const filteredNews = newsData.filter((news) => {
     return (
@@ -40,9 +42,12 @@ const Newspagecard = () => {
     );
   });
 
+  const handleCardClick = (id) => {
+    navigate(`/article/${id}`);
+  };
+
   return (
     <div className="news-card-container">
-      {/* Search and Filter Section */}
       <div className="search-filter-container">
         <div className="search-box">
           <FaSearch className="icon" />
@@ -61,20 +66,14 @@ const Newspagecard = () => {
             onChange={(e) => setFilterDate(e.target.value)}
           />
         </div>
-        <button className="filter-button">Search</button>
       </div>
 
-      <h2 className="news-card-heading">
-        <span className="highlight">Our</span> News
-      </h2>
-      <p className="news-card-description">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet beatae optio.
-      </p>
+      <h2 className="news-card-heading">Our News</h2>
 
       <div className="news-card-grid">
         {filteredNews.length > 0 ? (
           filteredNews.map((news) => (
-            <div key={news.id} className="news-card">
+            <div key={news.id} className="news-card" onClick={() => handleCardClick(news.id)}>
               <img src={news.image} alt={news.title} className="news-image" />
               <div className="news-content">
                 <h3 className="news-title">{news.title}</h3>
@@ -83,25 +82,6 @@ const Newspagecard = () => {
                   <span><FaCalendarAlt className="icon" /> {news.date}</span>
                 </div>
                 <p className="news-description">{news.description}</p>
-                
-                <div className="news-actions">
-                  <div className="action-item">
-                    <FaThumbsUp className="action-icon" />
-                    <span>Like</span>
-                  </div>
-                  <div className="action-item">
-                    <FaComment className="action-icon" />
-                    <span>Comment</span>
-                  </div>
-                  <div className="action-item">
-                    <FaShareAlt className="action-icon" />
-                    <span>Share</span>
-                  </div>
-                  <div className="action-item">
-                    <FaBookOpen className="action-icon" />
-                    <span>Read</span>
-                  </div>
-                </div>
               </div>
             </div>
           ))
