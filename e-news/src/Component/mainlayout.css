@@ -7,6 +7,7 @@
   
   .main-header, .main-footer {
     background-color: #f8f9fa;
+  
     
     
     
@@ -16,8 +17,11 @@
     padding: 2rem;
     margin-bottom:100px;
     font-size:13px;
-    margin-top:-10px;
+    margin-top:-100px;
     padding-top:-10px;
+  }
+  .main-about-header{
+    
   }
   
   @media (max-width: 768px) {

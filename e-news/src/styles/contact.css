@@ -18,7 +18,7 @@ body, html {
 
 .contact-header {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 .contact-header h1 {
@@ -30,18 +30,23 @@ body, html {
 .contact-header p {
   font-size: 1.1rem;
   color: #666;
+  margin-bottom:320px;
+  
 }
 
 /* Form and Contact Details Layout */
 .contact-content {
   display: flex;
   flex-wrap: wrap;
-  gap: 40px;
+  gap: 30px;
+  margin-top:200px;
+  padding-top:-200px;
+ 
 }
 
 .contact-form {
   flex: 1;
-  min-width: 300px;
+  
 }
 
 .contact-details {

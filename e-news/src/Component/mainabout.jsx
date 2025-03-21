@@ -1,7 +1,6 @@
 import Navbar from "../Component/navbar";
 import AboutHeader from "./aboutheader";
 import ENews from "./about";
-import Footer from "./footer";
 import './mainlayout.css';
 
 const MainLayout = () => {
@@ -19,9 +18,7 @@ const MainLayout = () => {
         <ENews />
       </section>
 
-      <footer className="main-footer">
-        <Footer />
-      </footer>
+     
     </div>
   );
 };

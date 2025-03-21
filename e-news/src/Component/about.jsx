@@ -9,7 +9,8 @@ const ENews = () => {
   ];
 
   return (
-<div className="min-h-screen bg-white flex items-center justify-center px-6 py-5">
+    <div className="main">
+<div className=" bg-white flex items-center justify-center px-6 py-5">
 <div className="rounded-lg overflow-hidden w-full max-w-6xl p-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           
@@ -60,6 +61,7 @@ const ENews = () => {
 
         </div>
       </div>
+    </div>
     </div>
   );
 };
