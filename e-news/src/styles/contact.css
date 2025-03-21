@@ -3,22 +3,17 @@ body, html {
   margin: 0;
   padding: 0;
   height: 100%;
-  background-color: #f9f9f9; /* Optional: Add a light background */
+  background-color: #f9f9f9;
 }
 
 .contact-section {
   max-width: 1200px;
-  width: 100%;
-  
+  width: 90%;
   font-family: Arial, sans-serif;
-  background-color: white; /* Optional: Add a white background */
-  border-radius: 8px; /* Optional: Add rounded corners */
-  margin-top: 400px;
-  align-content: center;
-  margin-left: 160px;
-  
-
- 
+  background-color: white;
+  border-radius: 8px;
+  margin: 80px auto; /* Adjust for responsiveness */
+  padding: 40px;
 }
 
 .contact-header {
@@ -47,7 +42,6 @@ body, html {
 .contact-form {
   flex: 1;
   min-width: 300px;
-  margin-left: 200px;
 }
 
 .contact-details {
@@ -93,12 +87,10 @@ body, html {
   cursor: pointer;
   margin-top: 20px;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .send-button:hover {
-  background-color: darkorange;
+  background-color: #e07b26;
 }
 
 /* Contact Details Styles */
@@ -118,20 +110,12 @@ body, html {
   line-height: 1.6;
 }
 
-/* New Section: Location Container */
+/* Location Container */
 .location-container {
-  width: 100vw; /* Full screen width */
-    max-width: 100%; 
-  background-color: #2E4661; /* Dark blue background */
+  width: 100%;
+  background-color: #2E4661;
   padding: 40px 0;
   text-align: center;
-  margin-top: 0px;
-}
-
-.location-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
 }
 
 .location-icon-text {
@@ -142,10 +126,8 @@ body, html {
 }
 
 .location-icon {
-  color: white;
-  font-size: 24px;
   color: darkorange;
-
+  font-size: 24px;
 }
 
 .location-text {
@@ -156,17 +138,14 @@ body, html {
 
 /* Map Section */
 .map-container {
-  width: 100vw; /* Full screen width */
-    max-width: 100%; 
-  margin-top: 0;
-  margin-bottom: 0;
+  width: 100%;
+  margin: 0;
 }
 
 .map-container iframe {
   width: 100%;
-  height: 2000px; /* Increase height */
+  height: 600px;
   border: none;
-  display: block;
 }
 
 /* Responsive Design */
@@ -206,6 +185,6 @@ body, html {
   }
 
   .map-container iframe {
-    height: 300px; /* Smaller map height for mobile */
+    height: 300px;
   }
-}
+} 

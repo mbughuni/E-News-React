@@ -46,6 +46,10 @@ const Newspagecard = () => {
     navigate(`/article/${id}`);
   };
 
+  const handleFilterReset = () => {
+    setFilterDate('');
+  };
+
   return (
     <div className="news-card-container">
       <div className="search-filter-container">
@@ -65,10 +69,16 @@ const Newspagecard = () => {
             value={filterDate}
             onChange={(e) => setFilterDate(e.target.value)}
           />
+          <button className="reset-button" onClick={handleFilterReset}>Reset</button>
         </div>
       </div>
 
-      <h2 className="news-card-heading">Our News</h2>
+      <h2 className="news-card-heading">
+        <span className="highlight">Our</span> News
+      </h2>
+      <p className="news-card-description">
+        Stay updated with the latest headlines and stories.
+      </p>
 
       <div className="news-card-grid">
         {filteredNews.length > 0 ? (
@@ -76,7 +86,6 @@ const Newspagecard = () => {
             <div key={news.id} className="news-card" onClick={() => handleCardClick(news.id)}>
               <img src={news.image} alt={news.title} className="news-image" />
               <div className="news-content">
-                <h3 className="news-title">{news.title}</h3>
                 <div className="news-meta">
                   <span><FaUser className="icon" /> {news.author}</span>
                   <span><FaCalendarAlt className="icon" /> {news.date}</span>

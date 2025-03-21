@@ -4,7 +4,7 @@ import './NewsCardSection.css';
 const newsData = [
   {
     id: 1,
-    image: 'https://static01.nyt.com/images/2022/06/11/multimedia/11gun-protests-DC-04/11gun-protests-DC-04-videoSixteenByNine3000.jpg?year=2022&h=1689&w=3000&s=2ba4347e5884add0a5cb635039122860ddd5587991347a0fd92f1f5941daa0f1&k=ZQJBKqZ0VN&tw=1',
+    image: 'https://static01.nyt.com/images/2022/06/11/multimedia/11gun-protests-DC-04/11gun-protests-DC-04-videoSixteenByNine3000.jpg',
     title: 'You will vainly look for fruit on it in autumn.',
     author: 'Admin',
     date: '27 December, 2019',
@@ -12,7 +12,7 @@ const newsData = [
   },
   {
     id: 2,
-    image: 'https://static01.nyt.com/images/2022/06/11/multimedia/11gun-protests-DC-04/11gun-protests-DC-04-videoSixteenByNine3000.jpg?year=2022&h=1689&w=3000&s=2ba4347e5884add0a5cb635039122860ddd5587991347a0fd92f1f5941daa0f1&k=ZQJBKqZ0VN&tw=1',
+    image: 'https://static01.nyt.com/images/2022/06/11/multimedia/11gun-protests-DC-04/11gun-protests-DC-04-videoSixteenByNine3000.jpg',
     title: "A man's worth has its season, like tomato.",
     author: 'Admin',
     date: '27 December, 2019',
@@ -35,7 +35,7 @@ const NewsCardSection = () => {
         <span className="highlight">Our</span> News
       </h2>
       <p className="news-card-description">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet beatae optio.
+        Stay updated with the latest headlines and stories.
       </p>
 
       <div className="news-card-grid">
@@ -43,33 +43,20 @@ const NewsCardSection = () => {
           <div key={news.id} className="news-card">
             <img src={news.image} alt={news.title} className="news-image" />
             <div className="news-content">
-              <h3 className="news-title">{news.title}</h3>
+              {/* <h3 className="news-title">{news.title}</h3> */}
               <div className="news-meta">
                 <span><FaUser className="icon" /> {news.author}</span>
                 <span><FaCalendarAlt className="icon" /> {news.date}</span>
               </div>
               <p className="news-description">{news.description}</p>
               
-              {/* Like, Comment, Share, Read Icons */}
               <div className="news-actions">
-                <div className="action-item">
-                  <FaThumbsUp className="action-icon" />
-                  <span>Like</span>
-                </div>
-                <div className="action-item">
-                  <FaComment className="action-icon" />
-                  <span>Comment</span>
-                </div>
-                <div className="action-item">
-                  <FaShareAlt className="action-icon" />
-                  <span>Share</span>
-                </div>
-                <div className="action-item">
-                  <FaBookOpen className="action-icon" />
-                  <span>Read</span>
-                </div>
+                {[FaThumbsUp, FaComment, FaShareAlt, FaBookOpen].map((Icon, index) => (
+                  <div key={index} className="action-item">
+                    <Icon className="action-icon" />
+                  </div>
+                ))}
               </div>
-              
             </div>
           </div>
         ))}

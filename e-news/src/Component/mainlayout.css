@@ -1,0 +1,28 @@
+
+.main-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .main-header, .main-footer {
+    background-color: #f8f9fa;
+    
+    
+    
+  }
+  
+  .main-about-header, .main-news {
+    padding: 2rem;
+    margin-bottom:100px;
+    font-size:13px;
+    margin-top:-10px;
+    padding-top:-10px;
+  }
+  
+  @media (max-width: 768px) {
+    .main-about-header, .main-news {
+      padding: 1rem;
+    }
+  }
+  

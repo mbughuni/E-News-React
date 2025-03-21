@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { FaUser, FaCalendarAlt } from 'react-icons/fa';
 import './singlearticle.css';
-import Footer from "./footer.jsx";
+// import Footer from "./footer.jsx";
 
 const newsData = [
   {
@@ -58,7 +58,7 @@ const SingleArticle = () => {
       </div>
 
       {/* Footer Section */}
-      <Footer/>
+      {/* <Footer/> */}
           </div>
   );
 };

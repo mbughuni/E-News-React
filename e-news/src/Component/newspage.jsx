@@ -1,6 +1,6 @@
 import Navbar from "./navbar.jsx";
 import Newspagecard from "./newspagecard.jsx";
-import Footer from "./footer.jsx";
+// import Footer from "./footer.jsx";
 import WriteNews from "./writenews.jsx";
 import './newspage.css'; // Create a separate CSS file for this page
 
@@ -22,7 +22,7 @@ const Newspage = () => {
         <WriteNews />
       </div>
 
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

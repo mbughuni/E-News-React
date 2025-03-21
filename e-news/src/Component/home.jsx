@@ -1,7 +1,7 @@
 import Navbar from "./navbar.jsx";
 import NewsSection from "./newssection.jsx";
-import NewsCardSection from "./newcard.jsx";
-import Footer from "./footer.jsx";
+import Newspagecard from "./newspagecard.jsx";
+// import Footer from "./footer.jsx";
 import MoreNews from "./morenews.jsx";
 import UserReviews from "./userreview.jsx";
 import Carousel from "./carousel.jsx";
@@ -24,7 +24,7 @@ const Home = () => {
       <section className="news-section">
         <div className="content-wrapper">
           <NewsSection />
-          <NewsCardSection />
+          <Newspagecard />
         </div>
       </section>
 
@@ -40,7 +40,7 @@ const Home = () => {
       </section>
 
       {/* Footer */}
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

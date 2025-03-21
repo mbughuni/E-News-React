@@ -34,6 +34,7 @@
   .news-image-container {
     position: relative;
     max-width: 400px;
+    margin-right:160px;
   }
   
   .news-image {
@@ -68,6 +69,8 @@
   .news-details {
     max-width: 450px;
     text-align: left;
+    margin-left:450px;
+    margin-top:-230px;
   }
   
   .news-details h2 {

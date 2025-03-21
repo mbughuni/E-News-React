@@ -1,18 +1,21 @@
 .profileheader-container {
     width: 100%;
-    height: 200px;
+    height: 250px;
     background-color: #2E4661; /* Blue background */
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 110px;
+    padding-top:-100px;
+    margin-bottom:100px;
+   
+    
 }
 
 .about-text {
     color: #f28c28; /* Orange color */
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 600;
 }
 

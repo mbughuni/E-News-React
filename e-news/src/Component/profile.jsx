@@ -2,7 +2,7 @@ import { useState } from "react";
 import '../styles/profile.css'; // Ensure the path is correct
 import Navbar from "./navbar";
 import ProfileHeader from "./profileheader";
-import Footer from "./footer";
+// import Footer from "./footer";
 
 const ProfileForm = () => {
   // State for edit mode
@@ -174,7 +174,7 @@ const ProfileForm = () => {
           </div>
         </div>
       </div>
-      <Footer /> {/* Footer added at the end */}
+      {/* <Footer /> Footer added at the end */}
     </div>
   );
 };

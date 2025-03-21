@@ -1,11 +1,14 @@
+/* General Styles */
 .news-container {
-  width: 100vw; /* Ensures full page width */
-  max-width: 100%; /* Prevents overflow */
-  margin: 0 auto;
-  padding: 1.5rem;
-  background-color: white;
+  width: 100vw;
+  max-width: 100%;
+  background-color: rgba(255, 255, 255, 0.064);
   color: black;
   box-sizing: border-box;
+  margin-top: -150px; /* Adjusted to move higher */
+  right:20%;
+  
+ 
 }
 
 .main-heading {
@@ -15,6 +18,8 @@
   color: #2d3748;
   margin-bottom: 2rem;
   font-size: 1.8rem;
+  margin-top:-110px;
+
 }
 
 .heading-icon {
@@ -22,24 +27,27 @@
   color: orange;
 }
 
+/* Features Section */
 .features-grid {
   display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: space-evenly;
+  gap: 1.5rem;
+  justify-content: space-between;
+  width:100%;
+  
+  
 }
 
 .feature-item {
   display: flex;
   align-items: center;
-  gap: 0.8rem;
-  padding: 1rem;
+  gap: 1rem;
+  width: 700px; /* Increased size */
+  height: 250px; /* More rectangular */
   background-color: #f7fafc;
-  border-radius: 0.5rem;
+  border-radius:10px 10px 10px;
   transition: transform 0.2s;
-  flex: 1 1 calc(30% - 1rem);
-  min-width: 250px;
-  max-width: 350px;
+  box-sizing: border-box;
+  
 }
 
 .feature-item:hover {
@@ -47,34 +55,34 @@
 }
 
 .feature-icon {
-  font-size: 1.3rem; /* Smaller icon for better alignment */
+  font-size: 2rem; /* Adjusted for bigger size */
   color: orange;
-  min-width: 35px;
+  min-width: 50px;
 }
 
+/* Update Section */
 .update-section {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  padding: 1rem;
+  gap: 1.5rem;
+  padding: 1.5rem;
   background-color: orange;
-  border-radius: 0.5rem;
+  border-radius: 1rem;
   color: white;
   justify-content: space-between;
 }
 
 .update-icon {
-  font-size: 1.3rem; /* Reduced icon size */
+  font-size: 1.5rem;
 }
 
 .update-text {
   margin: 0;
-  font-size: 1rem;
+  font-size: 1.2rem;
   flex-grow: 1;
 }
 
-
-
+/* Responsive Design */
 @media (max-width: 1024px) {
   .features-grid {
     flex-wrap: wrap;
@@ -82,7 +90,8 @@
   }
 
   .feature-item {
-    flex: 1 1 calc(45% - 1rem);
+    flex: 1 1 calc(45% - 1.5rem);
+    max-width: calc(45% - 1.5rem);
   }
 }
 
@@ -93,10 +102,11 @@
 
   .feature-item {
     flex: 1 1 100%;
+    max-width: 100%;
   }
 
   .update-section {
     flex-direction: column;
     text-align: center;
   }
-}
+} 
