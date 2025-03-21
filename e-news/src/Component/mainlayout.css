@@ -20,8 +20,13 @@
     margin-top:-100px;
     padding-top:-10px;
   }
-  .main-about-header{
-    
+  .reviews-section {
+    width: 100%;
+    background-color: #f9f9f9;
+    padding: 40px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   
   @media (max-width: 768px) {

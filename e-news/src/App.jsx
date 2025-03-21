@@ -7,6 +7,8 @@ import Newspage from "./Component/Newspage";
 import SingleArticle from "./Component/singlearticle";
 import Footer from "./Component/footer.jsx";
 import ProfileForm from "./Component/profile.jsx";
+import Login from "./Component/login.jsx";
+import Register from "./Component/register.jsx";
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
           <Route path="/contact" element={<ContactSection />} />
           <Route path="/article/:id" element={<SingleArticle />} />
           <Route path="/profile" element={<ProfileForm/>} />
+          <Route path="/login" element={<Login/>} />
+          <Route path="/register" element={<Register/>} />
         </Routes>
       </div>
       <Footer />
