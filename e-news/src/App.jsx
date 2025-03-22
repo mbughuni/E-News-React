@@ -9,6 +9,7 @@ import Footer from "./Component/footer.jsx";
 import ProfileForm from "./Component/profile.jsx";
 import Login from "./Component/login.jsx";
 import Register from "./Component/register.jsx";
+import AdminDashboard from "./Component/admindashboard.jsx";
 
 function App() {
   return (
@@ -24,6 +25,9 @@ function App() {
           <Route path="/profile" element={<ProfileForm/>} />
           <Route path="/login" element={<Login/>} />
           <Route path="/register" element={<Register/>} />
+          <Route path="/admin" element={<AdminDashboard/>} />
+          
+
         </Routes>
       </div>
       <Footer />

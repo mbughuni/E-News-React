@@ -1,0 +1,97 @@
+/* Reset margin and padding for all elements */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Adjust Dashboard to prevent overlap & support zoom */
+.dashboard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Allows content to expand on zoom */
+  width: 100vw;
+  background-color: #f8f9fa;
+  padding-top: 100px; /* Push content down below navbar */
+}
+
+/* Center the .added-news section */
+.added-news {
+  width: 90%;
+  max-width: 1200px;
+  padding: 40px;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh; /* More height for centering */
+  text-align: center; /* Center the text */
+}
+
+
+
+/* Rest of your CSS remains the same */
+.added-news h1 {
+  color: #df750c;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+table th,
+table td {
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+table th {
+  background-color: #f9f9f9;
+  color: #e67600;
+}
+
+table td {
+  background-color: #fff;
+  color: #333;
+}
+
+.edit-button {
+  background-color: #0f77f5;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.delete-button {
+  background-color: #f50f0f;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.go-back-button {
+  background-color: transparent;
+  color: #df750c;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: 16px;
+  text-decoration: underline;
+}
+
+.go-back-button:hover {
+  color: #b35900;
+}
