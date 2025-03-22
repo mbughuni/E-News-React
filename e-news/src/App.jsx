@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from "react-router-dom"; 
+import { Routes, Route, Navigate, useLocation } from "react-router-dom"; 
 import Navbar from "./Component/navbar.jsx";
 import Home from "./Component/home.jsx";
 import MainLayout from "./Component/mainabout.jsx";
@@ -12,24 +12,28 @@ import Register from "./Component/register.jsx";
 import AdminRoutes from "./Component/adminroutes";
 
 function App() {
+  const location = useLocation();
+  const hideNavbarFooter = location.pathname === "/login" || location.pathname === "/register";
+
   return (
     <div className="app-container">
-      {/* Ensure Home page appears first */}
+      {!hideNavbarFooter && <Navbar />}
+
       <Routes>
-        <Route path="/" element={<Home />} /> {/* Default route */}
+        <Route path="/" element={<Home />} /> 
         <Route path="/home" element={<Home />} />
         <Route path="/news" element={<Newspage />} />
         <Route path="/about" element={<MainLayout />} />
         <Route path="/contact" element={<ContactSection />} />
         <Route path="/article/:id" element={<SingleArticle />} />
         <Route path="/profile" element={<ProfileForm />} />
+        <Route path="/admin/*" element={<AdminRoutes />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/admin/*" element={<AdminRoutes />} />
-        <Route path="*" element={<Navigate to="/" />} /> {/* Redirect unknown routes */}
+        <Route path="*" element={<Navigate to="/" />} /> 
       </Routes>
-      <Navbar /> 
-      <Footer />
+
+      {!hideNavbarFooter && <Footer />}
     </div>
   );
 }

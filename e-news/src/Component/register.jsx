@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./register.css"; // Import CSS
 
 const Register = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: "",
     middleName: "",
@@ -59,7 +60,7 @@ const Register = () => {
           </div>
         </div>
 
-        {/* Email Row (Full Width) */}
+        {/* Email Row */}
         <div className="full-width">
           <label>Email Address</label>
           <input type="email" name="email" onChange={handleChange} required />
@@ -104,9 +105,9 @@ const Register = () => {
         <button type="submit" className="register-btn">Register</button>
       </form>
 
-      {/* Go Back Link */}
+      {/* Updated Go Back Button */}
       <div className="go-back">
-        <Link to="/">GO BACK</Link>
+        <button onClick={() => navigate("/home")} className="go-back-btn">GO BACK</button>
       </div>
     </div>  
   );

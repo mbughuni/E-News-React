@@ -1,60 +1,47 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import "./login.css"; // Importing CSS
+import { useNavigate } from "react-router-dom";
+import "./login.css"; // Import CSS
 
 const Login = () => {
-  const [user, setUser] = useState({ email: "", password: "" });
   const navigate = useNavigate();
+  const [credentials, setCredentials] = useState({
+    email: "",
+    password: "",
+  });
 
   const handleChange = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setCredentials({ ...credentials, [name]: value });
   };
 
-  const handleLogin = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Logging in:", user);
-    
-    // Simulating login and redirect to home
-    setTimeout(() => {
-      navigate("/"); // Redirect to home page after login
-    }, 500); 
+    console.log("Logging in with:", credentials);
   };
 
   return (
-    <div className="login-container">
-      <div className="login-box">
-        <h2>Login to Your Account</h2>
-        <form onSubmit={handleLogin}>
-          <div className="input-group">
-            <label>Email Address:</label>
-            <input
-              type="email"
-              name="email"
-              placeholder="Enter your email"
-              value={user.email}
-              onChange={handleChange}
-              required
-            />
+    <div className="auth-container">
+      <div className="form-container">
+        <h2>LOGIN PAGE</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="Enter your email" onChange={handleChange} required />
           </div>
-          <div className="input-group">
-            <label>Password:</label>
-            <input
-              type="password"
-              name="password"
-              placeholder="Enter your password"
-              value={user.password}
-              onChange={handleChange}
-              required
-            />
+          <div className="form-group">
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Enter your password" onChange={handleChange} required />
           </div>
-
-          <div className="options">
-            <Link to="/forgot-password" className="forgot-link">Forgot Password?</Link>
-            <Link to="/register" className="register-link">Don&apos;t Have an Account?</Link>
-          </div>
-
-          <button type="submit" className="login-btn">Login</button>
+          <button type="submit" className="btn">Login</button>
+          <p className="switch-link">
+            Not registered? <button onClick={() => navigate("/register")} className="link-btn">Create an account</button>
+          </p>
         </form>
+
+        {/* Updated Go Back Button */}
+        <div className="go-back">
+          <button onClick={() => navigate("/home")} className="go-back-btn">GO BACK</button>
+        </div>
       </div>
     </div>
   );
