@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { User } from "lucide-react";
 import "../styles/navbar.css";
@@ -13,6 +13,17 @@ const Navbar = () => {
     setIsMenuOpen(false);
   };
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const closeDropdown = (e) => {
+      if (!e.target.closest(".profile-section")) {
+        setIsDropdownOpen(false);
+      }
+    };
+    document.addEventListener("click", closeDropdown);
+    return () => document.removeEventListener("click", closeDropdown);
+  }, []);
+
   return (
     <nav className="navbar">
       <div className="navbar-left">
@@ -22,7 +33,11 @@ const Navbar = () => {
       <ul className={`nav-list ${isMenuOpen ? "active" : ""}`}>
         {['Home', 'News', 'About', 'Contact'].map((link) => (
           <li key={link} className="nav-item">
-            <Link to={`/${link}`} className={activeLink === link ? "active-link" : "nav-link"} onClick={() => handleLinkClick(link)}>
+            <Link 
+              to={`/${link}`} 
+              className={activeLink === link ? "active-link" : "nav-link"} 
+              onClick={() => handleLinkClick(link)}
+            >
               {link}
             </Link>
           </li>
@@ -31,19 +46,27 @@ const Navbar = () => {
 
       {/* Profile Section */}
       <div className="profile-section">
-        <User className="profile-icon" size={28} onClick={() => setIsDropdownOpen(!isDropdownOpen)} />
-        {isDropdownOpen && (
-          <div className="dropdown-menu">
-            <Link to="/profile" className="dropdown-item">Profile</Link>
-            <Link to="/admin" className="dropdown-item">Admin</Link>
-            <Link to="/login" className="dropdown-item">Login</Link>
-            <Link to="/register" className="dropdown-item">Register</Link>
-          </div>
-        )}
+        <User 
+          className="profile-icon" 
+          size={28} 
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsDropdownOpen(!isDropdownOpen);
+          }} 
+        />
+        <div className={`dropdown-menu ${isDropdownOpen ? "show" : ""}`}>
+          <Link to="/profile" className="dropdown-item">Profile</Link>
+          <Link to="/admin" className="dropdown-item">Admin</Link>
+          <Link to="/login" className="dropdown-item">Login</Link>
+          <Link to="/register" className="dropdown-item">Register</Link>
+        </div>
       </div>
 
       {/* Hamburger Menu */}
-      <div className="hamburger-menu" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+      <div 
+        className="hamburger-menu" 
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+      >
         <span className="bar"></span>
         <span className="bar"></span>
         <span className="bar"></span>

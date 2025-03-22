@@ -1,4 +1,4 @@
-import Navbar from "./navbar.jsx";
+// import Navbar from "./navbar.jsx";
 import NewsSection from "./newssection.jsx";
 import Newspagecard from "./newspagecard.jsx";
 // import Footer from "./footer.jsx";
@@ -12,8 +12,7 @@ import "./Home.css"; // ✅ External CSS for better layout and responsiveness
 const Home = () => {
   return (
     <div className="home-container">
-      {/* Navbar */}
-      <Navbar />
+    
 
       {/* Carousel Section */}
       <section className="carousel-section">
