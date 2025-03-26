@@ -98,7 +98,9 @@ const AdminSettings = () => {
         </div>
       </div>
 
-      <button className="save-button">Save Settings</button>
+      <button className="save-button" onClick={() => alert("Settings Saved!")}>
+  Save Settings
+</button>
     </div>
   );
 };
