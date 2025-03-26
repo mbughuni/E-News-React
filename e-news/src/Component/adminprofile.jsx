@@ -5,7 +5,7 @@ const AdminProfile = () => {
   const [adminData, setAdminData] = useState({
     name: "John Doe",
     email: "admin@enews.com",
-    role: "Administrator",
+    role: "Administrator", // Default role
     bio: "Managing the E-News platform and ensuring quality content.",
     profileImage: "",
     newPassword: "",
@@ -47,10 +47,16 @@ const AdminProfile = () => {
           <input type="text" name="name" value={adminData.name} onChange={handleChange} />
 
           <label>Email</label>
-          <input type="email" name="email" value={adminData.email} onChange={handleChange} disabled />
+          <input type="email" name="email" value={adminData.email} disabled />
 
           <label>Role</label>
-          <input type="text" name="role" value={adminData.role} disabled />
+          <select name="role" value={adminData.role} onChange={handleChange}>
+          <option value="Administrator">Administrator</option>
+          <option value="Editor">Editor</option>
+          <option value="Reporter">Reporter</option>
+          <option value="Moderator">Moderator</option>
+          </select>
+
 
           <label>Bio</label>
           <textarea name="bio" value={adminData.bio} onChange={handleChange}></textarea>
