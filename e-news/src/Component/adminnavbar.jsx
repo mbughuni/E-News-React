@@ -1,25 +1,25 @@
-import { useState, useEffect, useRef } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faSearch, faBars } from "@fortawesome/free-solid-svg-icons";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { User, Menu } from "lucide-react";
 import "./adminnavbar.css";
 
 const AdminNavbar = () => {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const dropdownRef = useRef(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const location = useLocation();
+
+  // Check if current page is admin panel
+  const isAdmin = location.pathname.startsWith("/admin");
 
   // Close dropdown when clicking outside
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+    const closeDropdown = (e) => {
+      if (!e.target.closest(".profile-section")) {
         setIsDropdownOpen(false);
       }
     };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener("click", closeDropdown);
+    return () => document.removeEventListener("click", closeDropdown);
   }, []);
 
   return (
@@ -28,13 +28,8 @@ const AdminNavbar = () => {
         <img src="/assets/A3.png" alt="Logo" className="logo" />
       </div>
 
-      {/* Hamburger menu for mobile */}
-      <div className="hamburger-menu" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-        <FontAwesomeIcon icon={faBars} className="icon" />
-      </div>
-
-      {/* Navigation Links - Visible only on Admin Pages */}
-      {location.pathname.startsWith("/admin") && (
+      {/* Navigation Links (Only for Admin) */}
+      {isAdmin && (
         <ul className={`nav-links ${isMenuOpen ? "active" : ""}`}>
           <li><Link to="/admin">Dashboard</Link></li>
           <li><Link to="/admin/news">News</Link></li>
@@ -43,22 +38,29 @@ const AdminNavbar = () => {
         </ul>
       )}
 
-      {/* Right Section - Search & Profile */}
+      {/* Right Section (Profile) */}
       <div className="navbar-right">
-        <FontAwesomeIcon icon={faSearch} className="search-icon" />
-
-        {/* Profile Dropdown */}
-        <div className="profile-container" ref={dropdownRef}>
-          <FontAwesomeIcon
-            icon={faUser}
-            className="profile-icon"
-            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-          />
-          <div className={`dropdown-menu ${isDropdownOpen ? "show" : ""}`}>
-            <Link to="/admin/profile" className="dropdown-item">Profile</Link>
-            <Link to="/admin/settings" className="dropdown-item">Settings</Link>
-            <Link to="/logout" className="dropdown-item">Logout</Link>
+        {isAdmin && (
+          <div className="profile-section">
+            <User
+              className="profile-icon"
+              size={28}
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsDropdownOpen(!isDropdownOpen);
+              }}
+            />
+            <div className={`dropdown-menu ${isDropdownOpen ? "show" : ""}`}>
+              <Link to="/admin/profile" className="dropdown-item">Profile</Link>
+              <Link to="/admin/settings" className="dropdown-item">Settings</Link>
+              <Link to="/logout" className="dropdown-item">Logout</Link>
+            </div>
           </div>
+        )}
+
+        {/* Hamburger Menu */}
+        <div className="hamburger-menu" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <Menu size={28} />
         </div>
       </div>
     </nav>
