@@ -20,7 +20,7 @@ html, body {
   z-index: 1000;
 }
 
-/* Left Section - Logo */
+/* Logo */
 .logo {
   height: 50px;
 }
@@ -45,22 +45,15 @@ html, body {
   color: orange;
 }
 
-/* Right Section - Icons */
+/* Right Section */
 .navbar-right {
   display: flex;
   align-items: center;
   gap: 20px;
 }
 
-/* Search Icon */
-.search-icon {
-  font-size: 22px;
-  cursor: pointer;
-  color: white;
-}
-
-/* Profile Container */
-.profile-container {
+/* Profile Section */
+.profile-section {
   position: relative;
   cursor: pointer;
 }
@@ -80,16 +73,21 @@ html, body {
   background: #333;
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  display: none;
+  display: flex;
   flex-direction: column;
   min-width: 150px;
   z-index: 1000;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
 }
 
 /* Show dropdown when active */
 .dropdown-menu.show {
-  display: flex;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
 /* Dropdown Items */
@@ -108,7 +106,6 @@ html, body {
 /* Mobile View */
 .hamburger-menu {
   display: none;
-  flex-direction: column;
   cursor: pointer;
 }
 
