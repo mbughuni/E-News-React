@@ -7,6 +7,8 @@ import AvailableUsers from "./AvailableUsers";
 import AddNews from "./AddNews";
 import AvailableNews from "./AvailableNews";
 import AddUsers from "./AddUsers";
+import AdminSettings from "./adminsettings";
+import AdminProfile from "./adminprofile";
 
 const AdminRoutes = () => {
   return (
@@ -19,6 +21,10 @@ const AdminRoutes = () => {
         <Route path="add-news" element={<AddNews />} />
         <Route path="available-news" element={<AvailableNews />} />
         <Route path="add-user" element={<AddUsers />} />
+        <Route path="settings" element={<AdminSettings />} />
+        <Route path="profile" element={<AdminProfile />} /> {/* Link Profile Page */}
+
+
       </Route>
     </Routes>
   );

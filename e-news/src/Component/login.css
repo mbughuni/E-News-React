@@ -1,156 +1,99 @@
-
-/* General Styles */
-body {
-  font-family: 'Arial', sans-serif;
-  background: #f8f8f8;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-}
-
-/* Login Container */
+/* Overall container */
 .login-container {
   display: flex;
-  justify-content: center;
+  height: 100px;
+  flex-direction: column;
   align-items: center;
-  width: 100%;
-  height: 100vh;
+  justify-content: center;
+  min-height: 90vh; /* Ensuring minimum height */
+  background-color: #a29a9a;
+  font-family: Arial, sans-serif;
 }
 
-/* Login Box */
-.login-box {
-  background: #fff;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  width: 350px;
-}
-
-h2 {
+/* Title */
+.login-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #1a1a1a;
   margin-bottom: 20px;
-  color: #333;
-  font-size: 22px;
+  padding-top: 50px;
 }
 
-/* Input Group */
-.input-group {
+/* Form */
+.login-form {
   display: flex;
   flex-direction: column;
-  text-align: left;
-  margin-bottom: 15px;
+  width: 400px; /* Increased width */
 }
 
-.input-group label {
-  font-weight: bold;
+.login-form label {
+  font-size: 14px;
+  color: #333;
   margin-bottom: 5px;
 }
 
-.input-group input {
+/* Input Fields */
+.login-input {
   width: 100%;
   padding: 12px;
-  border: 1px solid #ccc;
+  margin-bottom: 15px;
+  border: none;
   border-radius: 5px;
-  font-size: 16px;
+  background-color: #e6e6e6;
 }
 
-/* Options (Forgot Password & Register) */
-.options {
+/* Forgot Password & Register Links */
+.login-links {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* Keep both in one line */
   font-size: 14px;
-  margin-top: 10px;
+  width: 100%; /* Ensure full width */
+  margin-bottom: 20px;
 }
 
-.forgot-link, .register-link {
-  color: #d35400;
-  text-decoration: none;
+.link-btn {
+  background: none;
+  border: none;
+  color: #333;
   font-weight: bold;
+  cursor: pointer;
 }
 
-.forgot-link:hover, .register-link:hover {
-  text-decoration: underline;
+.link-btn:hover {
+  color: #ff6600;
 }
 
 /* Login Button */
-.login-btn {
+.login-button {
   width: 100%;
   padding: 12px;
-  background: #c44a26; /* Updated to match image */
-  border: none;
+  font-size: 16px;
+  font-weight: bold;
   color: white;
+  background-color: #d15920;
+  border: none;
   border-radius: 25px;
   cursor: pointer;
-  font-size: 16px;
+}
+
+.login-button:hover {
+  background-color: #b84717;
+}
+
+/* Go Back Button */
+.go-back {
   margin-top: 15px;
-  transition: 0.3s;
 }
 
-.login-btn:hover {
-  background: #a63b1d; /* Slightly darker shade on hover */
+.go-back-btn {
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
 }
 
-.auth-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #f4f4f4;
-  }
-  
-  .form-container {
-    background: white;
-    padding: 10px;
-    margin: 40px 0;
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    width: 350px;
-  }
-  
-  h2 {
-    text-align: center;
-    color: #333;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  label {
-    font-size: 14px;
-    font-weight: bold;
-  }
-  
-  input {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .btn {
-    width: 100%;
-    padding: 10px;
-    background-color: orange;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .btn:hover {
-    background-color: orange;
-  }
-  
-  .switch-link {
-    text-align: center;
-    margin-top: 10px;
-  }
-  
-  .switch-link a {
-    color: orange;
-    text-decoration: none;
-  }
+.go-back-btn:hover {
+  background-color: #555;
+}

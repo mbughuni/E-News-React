@@ -20,28 +20,40 @@ const Login = () => {
   };
 
   return (
-    <div className="auth-container">
-      <div className="form-container">
-        <h2>LOGIN PAGE</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label>Email</label>
-            <input type="email" name="email" placeholder="Enter your email" onChange={handleChange} required />
-          </div>
-          <div className="form-group">
-            <label>Password</label>
-            <input type="password" name="password" placeholder="Enter your password" onChange={handleChange} required />
-          </div>
-          <button type="submit" className="btn">Login</button>
-          <p className="switch-link">
-            Not registered? <button onClick={() => navigate("/register")} className="link-btn">Create an account</button>
-          </p>
-        </form>
+    <div className="login-container">
+      <h2 className="login-title">Login to Your Account</h2>
 
-        {/* Updated Go Back Button */}
-        <div className="go-back">
-          <button onClick={() => navigate("/home")} className="go-back-btn">GO BACK</button>
+      <form className="login-form" onSubmit={handleSubmit}>
+        <label>Email Address:</label>
+        <input 
+          type="email" 
+          name="email" 
+          placeholder="Enter your email" 
+          className="login-input" 
+          onChange={handleChange} 
+          required 
+        />
+
+        <label>Password:</label>
+        <input 
+          type="password" 
+          name="password" 
+          placeholder="Enter your password" 
+          className="login-input" 
+          onChange={handleChange} 
+          required 
+        />
+
+        <div className="login-links">
+          <button onClick={() => navigate("/forgot-password")} className="link-btn">Forgot Password?</button>
+          <button onClick={() => navigate("/register")} className="link-btn">Don&apos;t Have an Account?</button>
         </div>
+
+        <button type="submit" className="login-button">Login</button>
+      </form>
+
+      <div className="go-back">
+        <button onClick={() => navigate("/home")} className="go-back-btn">GO BACK</button>
       </div>
     </div>
   );
