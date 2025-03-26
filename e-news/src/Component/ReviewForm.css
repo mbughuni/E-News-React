@@ -1,88 +1,77 @@
-.review-container {
-    width: 50%;
-    margin: 50px auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-  }
-  
-  h2 {
-    font-size: 24px;
-    color: #333;
-  }
-  
-  .highlight {
-    color: orange;
-  }
-  
-  form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  label {
-    font-weight: bold;
-    margin: 10px 0 5px;
-    text-align: left;
-  }
-  
-  textarea,
-  input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
-  
-  .input-group {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .input-field {
-    width: 32%;
-    text-align: left;
-    background-color: white;
-  }
-  
-  input[type="file"] {
-    padding: 3px;
-  }
-  
-  button {
-    padding: 10px;
-    background-color: orange;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  button:hover {
-    background: darkorange;
-  }
-  textarea,
-input {
+.form-review-page-container {
+  width: 50%;
+  margin: 50px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+h2 {
+  font-size: 24px;
+  color: #333;
+}
+
+.highlight {
+  color: orange;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: bold;
+  margin: 10px 0 5px;
+  text-align: left;
+}
+
+.review-textarea,
+
+.name-input,
+.profession-input,
+.file-input {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
   border: 1px solid #ddd;
   border-radius: 5px;
-  background-color: white; /* Ensures background is white */
-  color: black; /* Ensures text is visible */
+  background-color: white;
+  color: black;
+}
+
+.input-group {
+  display: flex;
+  justify-content: space-between;
 }
 
 .input-field {
-  width: 32%;
+  width: 100%;
   text-align: left;
-  background-color: white; /* Ensures background is white */
+  background-color: white;
 }
 
-textarea {
-  background-color: white !important; /* Overrides any inherited styles */
+.file-field .file-input {
+  padding: 3px;
+}
+
+.submit-button {
+  padding: 10px;
+  background-color: orange;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.submit-button:hover {
+  background: darkorange;
+}
+
+.review-textarea {
+  background-color: white !important;
   color: black;
 }

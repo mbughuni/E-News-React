@@ -20,10 +20,13 @@ const Home = () => {
       </section>
 
       {/* News Section */}
-      <section className="news-section">
+      <section className="home-news-section">
         <div className="content-wrapper">
           <NewsSection />
-          <Newspagecard />
+          
+        </div>
+        <div className="newspagecard-home">
+        <Newspagecard />
         </div>
       </section>
 

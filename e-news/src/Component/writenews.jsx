@@ -3,7 +3,7 @@ import "./writenews.css";
 
 const WriteNews = () => {
   return (
-    <div className="news-container">
+    <div className="write-news-container">
       <h2 className="news-heading">
         <span className="highlight">Write Your</span> News
       </h2>

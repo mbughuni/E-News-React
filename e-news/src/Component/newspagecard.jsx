@@ -51,10 +51,10 @@ const Newspagecard = () => {
   };
 
   return (
-    <div className="news-card-container">
-      <div className="search-filter-container">
-        <div className="search-box">
-          <FaSearch className="icon" />
+    <div className="home-news-card-container">
+      <div className="home-news-search-filter-container">
+        <div className="home-news-search-box">
+          <FaSearch className="home-news-icon" />
           <input
             type="text"
             placeholder="Search news..."
@@ -62,40 +62,42 @@ const Newspagecard = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
-        <div className="date-filter">
-          <FaCalendarAlt className="icon" />
+        <div className="home-news-date-filter">
+          <FaCalendarAlt className="home-news-icon" />
           <input
             type="date"
             value={filterDate}
             onChange={(e) => setFilterDate(e.target.value)}
           />
-          <button className="reset-button" onClick={handleFilterReset}>Reset</button>
+          <button className="home-news-reset-button" onClick={handleFilterReset}>Reset</button>
         </div>
       </div>
 
-      <h2 className="news-card-heading">
-        <span className="highlight">Our</span> News
-      </h2>
-      <p className="news-card-description">
-        Stay updated with the latest headlines and stories.
-      </p>
+      <div className="home-news-card-title">
+        <h2 className="home-news-card-heading">
+          <span className="home-news-highlight">Our</span> News
+        </h2>
+        <p className="home-news-card-description">
+          Stay updated with the latest headlines and stories.
+        </p>
+      </div>
 
-      <div className="news-card-grid">
+      <div className="home-news-card-grid">
         {filteredNews.length > 0 ? (
           filteredNews.map((news) => (
-            <div key={news.id} className="news-card" onClick={() => handleCardClick(news.id)}>
-              <img src={news.image} alt={news.title} className="news-image" />
-              <div className="news-content">
-                <div className="news-meta">
-                  <span><FaUser className="icon" /> {news.author}</span>
-                  <span><FaCalendarAlt className="icon" /> {news.date}</span>
+            <div key={news.id} className="home-news-card" onClick={() => handleCardClick(news.id)}>
+              <img src={news.image} alt={news.title} className="home-news-image" />
+              <div className="home-news-content">
+                <div className="home-news-meta">
+                  <span><FaUser className="home-news-icon" /> {news.author}</span>
+                  <span><FaCalendarAlt className="home-news-icon" /> {news.date}</span>
                 </div>
-                <p className="news-description">{news.description}</p>
+                <p className="home-news-description">{news.description}</p>
               </div>
             </div>
           ))
         ) : (
-          <p className="no-news">No news found</p>
+          <p className="home-news-no-news">No news found</p>
         )}
       </div>
     </div>
