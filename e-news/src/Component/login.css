@@ -1,10 +1,22 @@
 /* Overall container */
 .login-container {
+  margin-top: 35%;
   display: flex;
+<<<<<<< HEAD
+  height: 30px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh; /* Ensuring minimum height */
+  border: 1px solid rgb(150, 140, 140); /* Added transparent border */
+=======
   justify-content: center;
   align-items: center;
   min-height: 100vh; /* Full screen height */
+>>>>>>> 7b8c3aa5ce94145e48d21913071a439093278807
   font-family: Arial, sans-serif;
+  padding: 15px;
+  border-radius: 10px;
 }
 
 /* Centered Login Box */
@@ -121,6 +133,9 @@
 
 .go-back-btn:hover {
   background-color: #555;
+<<<<<<< HEAD
+}
+=======
 }
 
 /* Responsive Design */
@@ -147,3 +162,4 @@
     display: none;
   }
 }
+>>>>>>> 7b8c3aa5ce94145e48d21913071a439093278807
