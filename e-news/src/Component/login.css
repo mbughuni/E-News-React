@@ -2,37 +2,53 @@
 .login-container {
   margin-top: 35%;
   display: flex;
+<<<<<<< HEAD
   height: 30px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 70vh; /* Ensuring minimum height */
   border: 1px solid rgb(150, 140, 140); /* Added transparent border */
+=======
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Full screen height */
+>>>>>>> 7b8c3aa5ce94145e48d21913071a439093278807
   font-family: Arial, sans-serif;
   padding: 15px;
   border-radius: 10px;
 }
 
+/* Centered Login Box */
+.login-box {
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 400px;
+}
+
 /* Title */
 .login-title {
-  font-size: 24px;
+  font-size: 26px;
   font-weight: bold;
   color: #1a1a1a;
   margin-bottom: 20px;
-  padding-top: 50px;
 }
 
 /* Form */
 .login-form {
   display: flex;
   flex-direction: column;
-  width: 400px; /* Increased width */
 }
 
 .login-form label {
   font-size: 14px;
   color: #333;
   margin-bottom: 5px;
+  text-align: left;
+  font-weight: 600;
 }
 
 /* Input Fields */
@@ -40,30 +56,46 @@
   width: 100%;
   padding: 12px;
   margin-bottom: 15px;
-  border: none;
-  border-radius: 5px;
-  background-color: #e6e6e6;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #f8f8f8;
+  font-size: 14px;
+  transition: all 0.3s ease-in-out;
+}
+
+.login-input:focus {
+  border-color: #d15920;
+  background-color: #fff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(209, 89, 32, 0.5);
 }
 
 /* Forgot Password & Register Links */
 .login-links {
   display: flex;
-  justify-content: space-between; /* Keep both in one line */
+  justify-content: center;
+  align-items: center;
   font-size: 14px;
-  width: 100%; /* Ensure full width */
   margin-bottom: 20px;
 }
 
-.link-btn {
-  background: none;
-  border: none;
+/* Individual Links */
+.link-text {
   color: #333;
   font-weight: bold;
   cursor: pointer;
+  transition: color 0.3s ease-in-out;
 }
 
-.link-btn:hover {
+.link-text:hover {
   color: #ff6600;
+}
+
+/* Divider */
+.divider {
+  margin: 0 12px;
+  color: #999;
+  font-weight: bold;
 }
 
 /* Login Button */
@@ -77,13 +109,14 @@
   border: none;
   border-radius: 25px;
   cursor: pointer;
+  transition: background 0.3s ease-in-out;
 }
 
 .login-button:hover {
   background-color: #b84717;
 }
 
-/* Go Back Button */
+/* Go Back Section */
 .go-back {
   margin-top: 15px;
 }
@@ -95,8 +128,38 @@
   border: none;
   border-radius: 20px;
   cursor: pointer;
+  transition: background 0.3s ease-in-out;
 }
 
 .go-back-btn:hover {
   background-color: #555;
+<<<<<<< HEAD
 }
+=======
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .login-box {
+    width: 90%;
+    padding: 30px;
+  }
+
+  .login-title {
+    font-size: 22px;
+  }
+
+  .login-input {
+    font-size: 13px;
+  }
+
+  .login-links {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .divider {
+    display: none;
+  }
+}
+>>>>>>> 7b8c3aa5ce94145e48d21913071a439093278807

@@ -10,6 +10,7 @@ import ProfileForm from "./Component/profile.jsx";
 import Login from "./Component/login.jsx";
 import Register from "./Component/register.jsx";
 import AdminRoutes from "./Component/adminroutes";
+import ForgotPassword from "./Component/forgotpassword"; // Import the Forgot Password page
 
 function App() {
   const location = useLocation();
@@ -31,6 +32,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="*" element={<Navigate to="/" />} /> 
+        <Route path="/forgot-password" element={<ForgotPassword />} /> 
+
       </Routes>
 
       {!hideNavbarFooter && <Footer />}
