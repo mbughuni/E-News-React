@@ -4,34 +4,18 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-<<<<<<< HEAD
-
-=======
-  height: 100vh;
-  margin: 0;
-  background: none; /* Removed background color */
->>>>>>> 7b8c3aa5ce94145e48d21913071a439093278807
 }
 
 /* Registration Container */
 .register-container {
   margin-top: 20%;
   width: 500px; /* Medium size for the form */
-<<<<<<< HEAD
-=======
-  padding: 30px; /* Adjust padding for a balanced look */
->>>>>>> 7b8c3aa5ce94145e48d21913071a439093278807
   border-radius: 10px;
   text-align: center;
-<<<<<<< HEAD
 
   border: 1px solid rgb(118, 114, 114);
   padding: 20px;
   margin-bottom: 10%;
-=======
-  margin: 0 auto; /* Center the container horizontally */
-  background: white; /* Ensure the entire portion is in one container */
->>>>>>> 7b8c3aa5ce94145e48d21913071a439093278807
 }
 
 /* Title */
@@ -156,11 +140,7 @@ input:focus, select:focus {
   display: flex;
   flex-direction: column;
   align-items: center;
-<<<<<<< HEAD
   min-height: 70vh;
-=======
-  min-height: 100vh;
->>>>>>> 7b8c3aa5ce94145e48d21913071a439093278807
   margin-top: 150px;
 }
 
