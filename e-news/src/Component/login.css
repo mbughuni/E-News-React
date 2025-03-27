@@ -1,10 +1,13 @@
 /* Overall container */
 .login-container {
+  margin-top: 15%;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh; /* Full screen height */
   font-family: Arial, sans-serif;
+
+  border-radius: 10px;
 }
 
 /* Centered Login Box */
@@ -121,29 +124,4 @@
 
 .go-back-btn:hover {
   background-color: #555;
-}
-
-/* Responsive Design */
-@media (max-width: 480px) {
-  .login-box {
-    width: 90%;
-    padding: 30px;
-  }
-
-  .login-title {
-    font-size: 22px;
-  }
-
-  .login-input {
-    font-size: 13px;
-  }
-
-  .login-links {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .divider {
-    display: none;
-  }
 }

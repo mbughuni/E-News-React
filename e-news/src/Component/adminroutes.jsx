@@ -9,6 +9,7 @@ import AvailableNews from "./AvailableNews";
 import AddUsers from "./AddUsers";
 import AdminSettings from "./adminsettings";
 import AdminProfile from "./adminprofile";
+import TotalUsers from "./totalusers";
 
 const AdminRoutes = () => {
   return (
@@ -23,6 +24,7 @@ const AdminRoutes = () => {
         <Route path="add-user" element={<AddUsers />} />
         <Route path="settings" element={<AdminSettings />} />
         <Route path="profile" element={<AdminProfile />} /> {/* Link Profile Page */}
+        <Route path="users" element={<TotalUsers />} />
 
 
       </Route>

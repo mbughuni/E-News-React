@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./register.css"; // Import CSS
+import Navbar from "./navbar";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -29,6 +30,8 @@ const Register = () => {
   };
 
   return (
+    <div>
+      <Navbar></Navbar>
     <div className="register-container">
       <h2>REGISTRATION PAGE</h2>
       <form className="register-form" onSubmit={handleSubmit}>
@@ -110,6 +113,7 @@ const Register = () => {
         <button onClick={() => navigate("/home")} className="go-back-btn">GO BACK</button>
       </div>
     </div>  
+    </div>
   );
 };
 
