@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./login.css"; // Import CSS
+import Navbar from "./navbar";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -20,6 +21,8 @@ const Login = () => {
   };
 
   return (
+    <div>
+      <Navbar></Navbar>
     <div className="login-container">
       <h2 className="login-title">Login to Your Account</h2>
 
@@ -55,6 +58,7 @@ const Login = () => {
       <div className="go-back">
         <button onClick={() => navigate("/home")} className="go-back-btn">GO BACK</button>
       </div>
+    </div>
     </div>
   );
 };

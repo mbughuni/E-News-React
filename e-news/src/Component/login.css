@@ -1,13 +1,16 @@
 /* Overall container */
 .login-container {
+  margin-top: 35%;
   display: flex;
-  height: 100px;
+  height: 30px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 90vh; /* Ensuring minimum height */
-  background-color: #a29a9a;
+  min-height: 70vh; /* Ensuring minimum height */
+  border: 1px solid rgb(150, 140, 140); /* Added transparent border */
   font-family: Arial, sans-serif;
+  padding: 15px;
+  border-radius: 10px;
 }
 
 /* Title */
