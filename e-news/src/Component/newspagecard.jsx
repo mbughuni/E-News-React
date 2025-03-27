@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FaUser, FaCalendarAlt, FaSearch } from 'react-icons/fa';
+import { FaUser, FaCalendarAlt, FaSearch, FaThumbsUp, FaShareAlt, FaComment } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import './newspagecard.css';
 
@@ -93,6 +93,11 @@ const Newspagecard = () => {
                   <span><FaCalendarAlt className="home-news-icon" /> {news.date}</span>
                 </div>
                 <p className="home-news-description">{news.description}</p>
+                <div className="home-news-actions">
+                  <FaThumbsUp className="home-news-action-icon" />
+                  <FaComment className="home-news-action-icon" />
+                  <FaShareAlt className="home-news-action-icon" />
+                </div>
               </div>
             </div>
           ))
