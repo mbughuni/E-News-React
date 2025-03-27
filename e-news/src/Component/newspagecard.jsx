@@ -69,7 +69,7 @@ const Newspagecard = () => {
             value={filterDate}
             onChange={(e) => setFilterDate(e.target.value)}
           />
-          <button className="home-news-reset-button" onClick={handleFilterReset}>Reset</button>
+          &nbsp;<button className="home-news-reset-button" onClick={handleFilterReset}>Reset</button>
         </div>
       </div>
 

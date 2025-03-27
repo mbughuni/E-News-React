@@ -4,11 +4,16 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: white; /* Force white background */
+  margin: 0; /* Remove default margin */
+  min-height: 100vh; /* Ensure full viewport height */
 }
 
 /* Registration Container */
 .register-container {
   margin-top: 20%;
+  width: 500px;
+  border: 1px solid rgb(235, 227, 227);
   width: 500px; /* Medium size for the form */
   border-radius: 10px;
   text-align: center;
@@ -16,6 +21,9 @@ body {
   border: 1px solid rgb(118, 114, 114);
   padding: 20px;
   margin-bottom: 10%;
+  border-radius: 10px;
+  /* Add box shadow below */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
 }
 
 /* Title */
