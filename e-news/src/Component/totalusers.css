@@ -1,0 +1,81 @@
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f8f8f8;
+    min-height: 100vh;
+    padding-top: 20px;
+  }
+  
+  .total-users {
+    width: 90%;
+    max-width: 1200px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+  }
+  
+  th {
+    background: #c44a26;
+    color: white;
+  }
+  
+  td img.user-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+  
+  .edit-button, .delete-button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 5px;
+  }
+  
+  .edit-button {
+    background: #007bff;
+    color: white;
+  }
+  
+  .delete-button {
+    background: #dc3545;
+    color: white;
+  }
+  
+  .go-back-button {
+    margin-top: 20px;
+    padding: 12px 20px;
+    background: #c44a26;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .go-back-button:hover {
+    background: #a63b1d;
+  }
+  
