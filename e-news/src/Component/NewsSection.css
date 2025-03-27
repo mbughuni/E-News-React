@@ -1,14 +1,18 @@
 /* General Styles */
 .news-container {
-  width: 100vw;
-  max-width: 100%;
+  max-width: 600px;
+    width: 90%;
+    margin: auto;
+    text-align: center;
   background-color: rgba(255, 255, 255, 0.064);
   color: black;
   box-sizing: border-box;
-  margin-top: -150px; /* Adjusted to move higher */
-  right:20%;
+  /* Adjusted to move higher */
+  transform: translateX(-260px); 
+  margin-top:180px;
   
- 
+  
+  
 }
 
 .main-heading {
@@ -32,7 +36,9 @@
   display: flex;
   gap: 1.5rem;
   justify-content: space-between;
-  width:100%;
+  width:1200px;
+  height:100px;
+  
   
   
 }
@@ -41,8 +47,8 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  width: 700px; /* Increased size */
-  height: 250px; /* More rectangular */
+  width: 500px; /* Increased size */
+  height: 160px; /* More rectangular */
   background-color: #f7fafc;
   border-radius:10px 10px 10px;
   transition: transform 0.2s;
@@ -110,3 +116,7 @@
     text-align: center;
   }
 } 
+.news-card-title{
+  justify-content:center;
+  margin-top:50px;
+}

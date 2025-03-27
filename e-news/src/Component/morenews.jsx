@@ -1,22 +1,23 @@
+// MoreNewsPage.jsx
 import { useState } from "react";
 import Modal from "react-modal";
-import "./morenews.css"; // Import external CSS
+import "./morenews.css"; // Updated CSS import
 
-const MoreNews = () => {
+const MoreNewsPage = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   return (
-    <div className="news-container">
+    <div className="more-news-container">
       {/* More News Button */}
       <button className="more-news-btn">More News</button>
 
       {/* Breaking News Section */}
-      <div className="news-content">
-        <div className="news-image-container">
+      <div className="more-news-content">
+        <div className="more-news-image-container">
           <img
             src="./assets/n3.jpg"
-            alt="Breaking:Major event unfolding"
-            className="news-image"
+            alt="Breaking: Major event unfolding"
+            className="more-news-image"
           />
           {/* Play Button */}
           <button className="play-btn" onClick={() => setModalIsOpen(true)}>▶</button>
@@ -79,4 +80,4 @@ const MoreNews = () => {
   );
 };
 
-export default MoreNews;
+export default MoreNewsPage;

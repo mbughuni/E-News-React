@@ -13,14 +13,14 @@ const Newspage = () => {
       </div>
 
       {/* News Section */}
-      <div className="news-section">
+      
         <Newspagecard />
-      </div>
+    
 
       {/* Write News Section */}
-      <div className="write-news-section">
+     
         <WriteNews />
-      </div>
+     
 
       {/* <Footer /> */}
     </div>
