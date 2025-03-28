@@ -1,0 +1,119 @@
+/* Remove any unwanted scrolling */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden; /* Hides both vertical and horizontal scrollbars */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Centered container for drafts */
+.drafts-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 900px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Wrapper for proper spacing */
+.drafts-wrapper {
+  width: 100%;
+}
+
+/* Title Styling */
+.drafts-wrapper h2 {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+/* Remove list styles */
+.drafts-wrapper ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Individual Draft Card */
+.draft-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  border: 1px solid #ddd;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Hover effect */
+.draft-card:hover {
+  background: #f1f1f1;
+}
+
+/* Content styling */
+.draft-content h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.draft-content p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Meta Info */
+.meta-info {
+  font-size: 13px;
+  color: #777;
+  margin-top: 5px;
+}
+
+/* Button container */
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* Button styling with modern orange shades */
+button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* Orange edit button */
+.edit-btn {
+  background: #FF9800;
+  color: white;
+}
+
+.edit-btn:hover {
+  background: #F57C00;
+}
+
+/* Orange publish button */
+.publish-btn {
+  background: #FF5722;
+  color: white;
+}
+
+.publish-btn:hover {
+  background: #E64A19;
+}
