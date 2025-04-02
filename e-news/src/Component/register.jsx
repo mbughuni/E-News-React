@@ -68,6 +68,7 @@ const Register = () => {
     <div>
       <Navbar />
       <div className="register-container">
+        <div className="register-box">
         <h2>REGISTRATION PAGE</h2>
         <form className="register-form" onSubmit={handleSubmit}>
           {/* Name Row */}
@@ -148,6 +149,8 @@ const Register = () => {
           <button onClick={() => navigate("/home")} className="go-back-btn">GO BACK</button>
         </div>
       </div>  
+        </div>
+        
     </div>
   );
 };
