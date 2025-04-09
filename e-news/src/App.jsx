@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate,  } from "react-router-dom"; 
+import { Routes, Route, Navigate, useLocation } from "react-router-dom"; 
 import Navbar from "./Component/navbar.jsx";
 import Home from "./Component/home.jsx";
 import MainLayout from "./Component/mainabout.jsx";
@@ -9,12 +9,17 @@ import Footer from "./Component/footer.jsx";
 import ProfileForm from "./Component/profile.jsx";
 import Login from "./Component/login.jsx";
 import Register from "./Component/register.jsx";
-// import AdminRoutes from "./Component/adminroutes";
+import AdminRoutes from "./Component/adminroutes"; // Uncomment this
 import ForgotPassword from "./Component/forgotpassword"; // Import the Forgot Password page
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function App() {
-  // const location = useLocation();
-  // const hideNavbarFooter = location.pathname.startsWith("/admin") || location.pathname === "/login" || location.pathname === "/register";
+  const location = useLocation();
+  
+  const hideNavbarFooter = location.pathname.startsWith("/admin") || 
+                           location.pathname === "/login" || 
+                           location.pathname === "/register";
 
   return (
     <div className="app-container">
@@ -28,19 +33,16 @@ function App() {
         <Route path="/contact" element={<ContactSection />} />
         <Route path="/article/:id" element={<SingleArticle />} />
         <Route path="/profile" element={<ProfileForm />} />
-        <Route path="/admin/*" element={<AdminRoutes />} /> {/* ✅ Admin panel ke liye */}
+        <Route path="/admin/*" element={<AdminRoutes />} /> 
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="*" element={<Navigate to="/" />} /> 
         <Route path="/forgot-password" element={<ForgotPassword />} /> 
-
+        <Route path="*" element={<Navigate to="/" />} /> 
       </Routes>
 
-      {/* {!hideNavbarFooter && } */}
-      <Footer />
+      {!hideNavbarFooter && <Footer />}
     </div>
   );
 }
-
 
 export default App;

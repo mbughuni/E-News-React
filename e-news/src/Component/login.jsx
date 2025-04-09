@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./login.css"; // Ensure this import exists
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "./login.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -10,6 +12,26 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+
+    // Admin shortcut login
+    if (email === "admin" && password === "123") {
+      const adminUser = {
+        email: "admin",
+        role: "admin",
+        first_name: "Admin",
+      };
+      localStorage.setItem("user", JSON.stringify(adminUser));
+      localStorage.setItem("token", "admin-token");
+
+      toast.success("Admin login successful!", { position: "top-center" });
+
+      setTimeout(() => {
+        navigate("/admin");
+        window.location.reload();
+      }, 1500); // Delay to allow toast to show
+      return;
+    }
+
     try {
       const response = await fetch("http://localhost:5000/api/login", {
         method: "POST",
@@ -25,8 +47,17 @@ const Login = () => {
 
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data.user));
-      navigate("/");
-      window.location.reload(); // Refresh to update navbar
+
+      toast.success("Login successful!", { position: "top-center" });
+
+      setTimeout(() => {
+        if (data.user.role === "admin") {
+          navigate("/admin");
+        } else {
+          navigate("/");
+        }
+        window.location.reload();
+      }, 1500);
     } catch (err) {
       setError("An error occurred. Please try again.");
       console.error(err);
@@ -35,15 +66,16 @@ const Login = () => {
 
   return (
     <div className="login-container">
+      <ToastContainer />
       <div className="login-box">
         <h2 className="login-title">Login</h2>
         {error && <p style={{ color: "red" }}>{error}</p>}
         <form className="login-form" onSubmit={handleLogin}>
           <label>Email</label>
           <input
-            type="email"
+            type="text"
             className="login-input"
-            placeholder="Enter your email"
+            placeholder="Enter your email or 'admin'"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -51,7 +83,7 @@ const Login = () => {
           <label>Password</label>
           <input
             type="password"
-            name="password" 
+            className="login-input"
             placeholder="Enter your password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
