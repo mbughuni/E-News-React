@@ -1,70 +1,121 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+
 import { useNavigate } from "react-router-dom";  // Import useNavigate
+import { useState } from "react";
 import AdminNavbar from './adminnavbar';
 import './AddUsers.css';
 
-const AddUsers = () => {
-  const navigate = useNavigate(); // Hook for navigation
+const Register = () => {
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    firstName: "",
+    middleName: "",
+    lastName: "",
+    contactNumber: "",
+    address: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    dob: "",
+    gender: "",
+    profilePicture: null,
+  });
+
+  const handleChange = (e) => {
+    const { name, value, files } = e.target;
+    setFormData({ ...formData, [name]: files ? files[0] : value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Registering User:", formData);
+  };
 
   return (
-    <div className="dashboard">
-      {/* Admin Navbar */}
-      <AdminNavbar />
+    <div>
+   <AdminNavbar></AdminNavbar>
+    <div className="register-container">
+      <h2>REGISTRATION PAGE</h2>
+      <form className="register-form" onSubmit={handleSubmit}>
+        {/* Name Row */}
+        <div className="three-column">
+          <div>
+            <label>First Name</label>
+            <input type="text" name="firstName" onChange={handleChange} required />
+          </div>
+          <div>
+            <label>Middle Name</label>
+            <input type="text" name="middleName" onChange={handleChange} />
+          </div>
+          <div>
+            <label>Last Name</label>
+            <input type="text" name="lastName" onChange={handleChange} required />
+          </div>
+        </div>
 
-      {/* Available Users Section */}
-      <div className="add-users">
-        <h1>Add Users</h1>
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Address</th>
-              <th>Phone</th>
-              <th>Email</th>
-              <th>Images</th>
-              <th>DOB</th>
-              <th>Password</th>
-              <th>Edit</th>
-              <th>Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Asraf</td>
-              <td>Gandhi Nagar</td>
-              <td>7781826301</td>
-              <td>mail692@rku.ac.in</td>
-              <td>
-                <img
-                  src="https://via.placeholder.com/100" 
-                  alt="User"
-                  className="user-image"
-                />
-              </td>
-              <td>30-12-2002</td>
-              <td>*******</td>
-              <td>
-                <button className="edit-button">
-                  <FontAwesomeIcon icon={faEdit} /> Edit
-                </button>
-              </td>
-              <td>
-                <button className="delete-button">
-                  <FontAwesomeIcon icon={faTrash} /> Delete
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        {/* Contact & Address Row */}
+        <div className="two-column">
+          <div>
+            <label>Contact Number</label>
+            <input type="tel" name="contactNumber" onChange={handleChange} required />
+          </div>
+          <div>
+            <label>Address</label>
+            <input type="text" name="address" onChange={handleChange} required />
+          </div>
+        </div>
 
-        {/* Updated GO BACK Button */}
-        <button className="go-back-button" onClick={() => navigate("/admin")}>
-          GO BACK
-        </button>
+        {/* Email Row */}
+        <div className="full-width">
+          <label>Email Address</label>
+          <input type="email" name="email" onChange={handleChange} required />
+        </div>
+
+        {/* Password & Confirm Password Row */}
+        <div className="two-column">
+          <div>
+            <label>Password</label>
+            <input type="password" name="password" onChange={handleChange} required />
+          </div>
+          <div>
+            <label>Confirm Password</label>
+            <input type="password" name="confirmPassword" onChange={handleChange} required />
+          </div>
+        </div>
+
+        {/* Date of Birth & Gender Row */}
+        <div className="two-column">
+          <div>
+            <label>Date of Birth</label>
+            <input type="date" name="dob" onChange={handleChange} required />
+          </div>
+          <div>
+            <label>Gender</label>
+            <select name="gender" onChange={handleChange} required>
+              <option value="">Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        {/* File Upload Row */}
+        <div className="full-width">
+          <label>Profile Picture</label>
+          <input type="file" name="profilePicture" className="file-upload" onChange={handleChange} />
+        </div>
+
+        {/* Register Button */}
+        <button type="submit" className="register-btn">Register</button>
+      </form>
+
+      {/* Updated Go Back Button */}
+      <div className="go-back">
+        <button onClick={() => navigate("/admindashboard")} className="go-back-btn">GO BACK</button>
       </div>
+    </div>  
     </div>
   );
 };
 
-export default AddUsers;
+export default Register;

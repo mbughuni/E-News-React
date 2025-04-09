@@ -20,25 +20,28 @@ function App() {
     <div className="app-container">
       {!hideNavbarFooter && <Navbar />}
 
-      <Routes>
-        <Route path="/" element={<Home />} /> 
-        <Route path="/home" element={<Home />} />
-        <Route path="/news" element={<Newspage />} />
-        <Route path="/about" element={<MainLayout />} />
-        <Route path="/contact" element={<ContactSection />} />
-        <Route path="/article/:id" element={<SingleArticle />} />
-        <Route path="/profile" element={<ProfileForm />} />
-        <Route path="/admin/*" element={<AdminRoutes />} /> {/* ✅ Admin panel ke liye */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="*" element={<Navigate to="/" />} /> 
-        <Route path="/forgot-password" element={<ForgotPassword />} /> 
-
-      </Routes>
+      {/* Wrap content inside a scrollable div */}
+      <div className="content-container">
+        <Routes>
+          <Route path="/" element={<Home />} /> 
+          <Route path="/home" element={<Home />} />
+          <Route path="/news" element={<Newspage />} />
+          <Route path="/about" element={<MainLayout />} />
+          <Route path="/contact" element={<ContactSection />} />
+          <Route path="/article/:id" element={<SingleArticle />} />
+          <Route path="/profile" element={<ProfileForm />} />
+          <Route path="/admin/*" element={<AdminRoutes />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </div>
 
       {!hideNavbarFooter && <Footer />}
     </div>
   );
 }
+
 
 export default App;
