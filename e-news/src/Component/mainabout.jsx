@@ -3,6 +3,7 @@ import AboutHeader from "./aboutheader";
 import ENews from "./about";
 import './mainlayout.css';
 import UserReviews from "./userreview.jsx";
+import TeamCard from "./team.jsx";
 
 const MainLayout = () => {
   return (
@@ -18,6 +19,11 @@ const MainLayout = () => {
       <section className="main-news">
         <ENews />
       </section>
+      <section className="member-section">
+      <TeamCard></TeamCard>
+        
+      </section>
+      
       <section className="reviews-section">
         <UserReviews />
         

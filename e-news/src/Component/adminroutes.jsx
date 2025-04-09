@@ -10,9 +10,9 @@ import AddUsers from "./AddUsers";
 import AdminSettings from "./adminsettings";
 import AdminProfile from "./adminprofile";
 import TotalUsers from "./totalusers";
+import Message from "./messages";
  
-import ManageAds from "./manageads";   
-import Drafts from "./drafts"; 
+
 
 const AdminRoutes = () => {
   return (
@@ -28,10 +28,10 @@ const AdminRoutes = () => {
         <Route path="settings" element={<AdminSettings />} />
         <Route path="profile" element={<AdminProfile />} />
         <Route path="users" element={<TotalUsers />} />
-        
+        <Route path="message" element={<Message></Message>} />
 
-        <Route path="manage-ads" element={<ManageAds />} />
-        <Route path="drafts" element={<Drafts />} />
+
+     
       </Route>
     </Routes>
   );

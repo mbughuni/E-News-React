@@ -6,7 +6,7 @@ import './newspagecard.css';
 const newsData = [
   {
     id: 1,
-    image: 'https://static01.nyt.com/images/2022/06/11/multimedia/11gun-protests-DC-04/11gun-protests-DC-04-videoSixteenByNine3000.jpg?year=2022&h=1689&w=3000',
+    image: 'https://www.middleeasteye.net/sites/default/files/images-story/Israel-palestine-war-attack-jabalia-mohamed-hajjar-mee-12-oct-2023.jpg',
     title: 'You will vainly look for fruit on it in autumn.',
     author: 'Admin',
     date: '2019-12-27',
@@ -14,7 +14,7 @@ const newsData = [
   },
   {
     id: 2,
-    image: 'https://static01.nyt.com/images/2022/06/11/multimedia/11gun-protests-DC-04/11gun-protests-DC-04-videoSixteenByNine3000.jpg?year=2022&h=1689&w=3000',
+    image: 'https://www.middleeasteye.net/sites/default/files/images-story/Israel-palestine-war-attack-jabalia-mohamed-hajjar-mee-12-oct-2023.jpg',
     title: "A man's worth has its season, like tomato.",
     author: 'Admin',
     date: '2019-12-27',

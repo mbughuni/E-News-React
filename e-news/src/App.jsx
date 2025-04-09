@@ -18,8 +18,8 @@ function App() {
 
   return (
     <div className="app-container">
-      {/* {!hideNavbarFooter && } */}
-      <Navbar />
+      {!hideNavbarFooter && <Navbar />}
+
       <Routes>
         <Route path="/" element={<Home />} /> 
         <Route path="/home" element={<Home />} />
@@ -28,7 +28,7 @@ function App() {
         <Route path="/contact" element={<ContactSection />} />
         <Route path="/article/:id" element={<SingleArticle />} />
         <Route path="/profile" element={<ProfileForm />} />
-        {/* <Route path="/admin/*" element={<AdminRoutes />} />  */}
+        <Route path="/admin/*" element={<AdminRoutes />} /> {/* ✅ Admin panel ke liye */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="*" element={<Navigate to="/" />} /> 
@@ -41,5 +41,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;

@@ -1,3 +1,11 @@
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  display: block; /* Fix: Remove `display: flex;` */
+  overflow-y: auto; /* Fix: Ensure scrolling works */
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
