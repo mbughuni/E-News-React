@@ -7,22 +7,21 @@ const Navbar = () => {
   const [activeLink, setActiveLink] = useState("Home");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [user, setUser] = useState(null);
 
-  const handleLinkClick = (link) => {
-    setActiveLink(link);
-    setIsMenuOpen(false);
-  };
-
-  // Close dropdown when clicking outside
   useEffect(() => {
-    const closeDropdown = (e) => {
-      if (!e.target.closest(".profile-section")) {
-        setIsDropdownOpen(false);
-      }
-    };
-    document.addEventListener("click", closeDropdown);
-    return () => document.removeEventListener("click", closeDropdown);
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
   }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    setUser(null);
+    setIsDropdownOpen(false);
+  };
 
   return (
     <nav className="navbar">
@@ -31,12 +30,12 @@ const Navbar = () => {
       </div>
 
       <ul className={`nav-list ${isMenuOpen ? "active" : ""}`}>
-        {['Home', 'News', 'About', 'Contact'].map((link) => (
+        {["Home", "News", "About", "Contact"].map((link) => (
           <li key={link} className="nav-item">
-            <Link 
-              to={`/${link}`} 
-              className={activeLink === link ? "active-link" : "nav-link"} 
-              onClick={() => handleLinkClick(link)}
+            <Link
+              to={`/${link}`}
+              className={activeLink === link ? "active-link" : "nav-link"}
+              onClick={() => setActiveLink(link)}
             >
               {link}
             </Link>
@@ -44,29 +43,50 @@ const Navbar = () => {
         ))}
       </ul>
 
-      {/* Profile Section */}
-      <div className="profile-section">
-        <User 
-          className="profile-icon" 
-          size={28} 
-          onClick={(e) => {
-            e.stopPropagation();
-            setIsDropdownOpen(!isDropdownOpen);
-          }} 
-        />
-        <div className={`dropdown-menu ${isDropdownOpen ? "show" : ""}`}>
-          <Link to="/profile" className="dropdown-item">Profile</Link>
+  {/* Profile Section */}
+<div className="profile-section">
+  {user ? (
+    <img
+      src={`http://localhost:5000/uploads/${user.profile_picture}`}
+      alt="Profile"
+      className="user-avatar clickable-avatar"
+      onClick={(e) => {
+        e.stopPropagation();
+        setIsDropdownOpen(!isDropdownOpen);
+      }}
+    />
+  ) : (
+    <User
+      className="profile-icon"
+      size={28}
+      onClick={(e) => {
+        e.stopPropagation();
+        setIsDropdownOpen(!isDropdownOpen);
+      }}
+    />
+  )}
+
+  <div className={`dropdown-menu ${isDropdownOpen ? "show" : ""}`}>
+    {user ? (
+      <>
+        <Link to="/profile" className="dropdown-item">Profile</Link>
+        {user.role === "admin" && (
           <Link to="/admin" className="dropdown-item">Admin</Link>
-          <Link to="/login" className="dropdown-item">Login</Link>
-          <Link to="/register" className="dropdown-item">Register</Link>
-        </div>
-      </div>
+        )}
+        <button onClick={handleLogout} className="dropdown-item">Logout</button>
+      </>
+    ) : (
+      <>
+        <Link to="/login" className="dropdown-item">Login</Link>
+        <Link to="/register" className="dropdown-item">Register</Link>
+      </>
+    )}
+  </div>
+</div>
+
 
       {/* Hamburger Menu */}
-      <div 
-        className="hamburger-menu" 
-        onClick={() => setIsMenuOpen(!isMenuOpen)}
-      >
+      <div className="hamburger-menu" onClick={() => setIsMenuOpen(!isMenuOpen)}>
         <span className="bar"></span>
         <span className="bar"></span>
         <span className="bar"></span>
