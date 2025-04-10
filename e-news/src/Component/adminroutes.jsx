@@ -10,15 +10,9 @@ import AddUsers from "./AddUsers";
 import AdminSettings from "./adminsettings";
 import AdminProfile from "./adminprofile";
 import TotalUsers from "./totalusers";
-<<<<<<< HEAD
- 
-import ManageAds from "./manageads";   
-import Drafts from "./drafts"; 
-=======
 import Message from "./messages";
  
 
->>>>>>> 765f0ed2e33cb82bba121388c12a6906226f4bd1
 
 const AdminRoutes = () => {
   return (
@@ -34,17 +28,10 @@ const AdminRoutes = () => {
         <Route path="settings" element={<AdminSettings />} />
         <Route path="profile" element={<AdminProfile />} />
         <Route path="users" element={<TotalUsers />} />
-<<<<<<< HEAD
-        
-
-        <Route path="manage-ads" element={<ManageAds />} />
-        <Route path="drafts" element={<Drafts />} />
-=======
         <Route path="message" element={<Message></Message>} />
 
 
      
->>>>>>> 765f0ed2e33cb82bba121388c12a6906226f4bd1
       </Route>
     </Routes>
   );
