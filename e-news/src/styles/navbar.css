@@ -147,3 +147,25 @@ body {
     right: 10px;
   }
 }
+.user-info {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.user-name {
+  margin-right: 8px;
+  font-weight: 500;
+  color: #fff; /* Adjust based on your navbar bg */
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.default-avatar {
+  color: #fff;
+}

@@ -1,3 +1,16 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-y: auto; /* Fix: Ensure scrolling */
+}
+
+.content-container {
+  flex-grow: 1;
+  overflow-y: auto; /* Fix: Allow scrolling */
+  padding-bottom: 50px; /* Prevents footer overlap */
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;

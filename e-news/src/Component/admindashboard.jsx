@@ -77,6 +77,7 @@ const AdminDashboard = () => {
             </Link>
           </div>
 
+<<<<<<< HEAD
           <div className="dashboard-card">
             <h2>Manage Ads</h2>
             <Link to="/admin/manage-ads">
@@ -90,6 +91,8 @@ const AdminDashboard = () => {
               <button className="dashboard-button">View Drafts</button>
             </Link>
           </div>
+=======
+>>>>>>> 765f0ed2e33cb82bba121388c12a6906226f4bd1
 
         </div>
       </div>

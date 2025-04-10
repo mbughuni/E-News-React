@@ -53,7 +53,7 @@ const AdminNavbar = () => {
             <div className={`dropdown-menu ${isDropdownOpen ? "show" : ""}`}>
               <Link to="/admin/profile" className="dropdown-item">Profile</Link>
               <Link to="/admin/settings" className="dropdown-item">Settings</Link>
-              <Link to="/logout" className="dropdown-item">Logout</Link>
+              <Link to="/logout" className="dropdown-item">user site</Link>
             </div>
           </div>
         )}

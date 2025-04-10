@@ -126,10 +126,17 @@ const Register = () => {
             <div>
               <label>Gender</label>
               <select name="gender" onChange={handleChange} required>
+<<<<<<< HEAD
                 <option value="">Select Gender</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
                 <option value="Other">Other</option>
+=======
+                <option value=""disabled>Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              
+>>>>>>> 765f0ed2e33cb82bba121388c12a6906226f4bd1
               </select>
             </div>
           </div>
