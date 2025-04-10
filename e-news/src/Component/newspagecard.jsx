@@ -1,44 +1,32 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FaUser, FaCalendarAlt, FaSearch, FaThumbsUp, FaShareAlt, FaComment } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import './newspagecard.css';
-
-const newsData = [
-  {
-    id: 1,
-    image: 'https://www.middleeasteye.net/sites/default/files/images-story/Israel-palestine-war-attack-jabalia-mohamed-hajjar-mee-12-oct-2023.jpg',
-    title: 'You will vainly look for fruit on it in autumn.',
-    author: 'Admin',
-    date: '2019-12-27',
-    description: 'Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus nisi. Praesent vitae...'
-  },
-  {
-    id: 2,
-    image: 'https://www.middleeasteye.net/sites/default/files/images-story/Israel-palestine-war-attack-jabalia-mohamed-hajjar-mee-12-oct-2023.jpg',
-    title: "A man's worth has its season, like tomato.",
-    author: 'Admin',
-    date: '2019-12-27',
-    description: 'Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus nisi. Praesent vitae...'
-  },
-  {
-    id: 3,
-    image: 'https://www.middleeasteye.net/sites/default/files/images-story/Israel-palestine-war-attack-jabalia-mohamed-hajjar-mee-12-oct-2023.jpg',
-    title: 'Good thoughts bear good fresh juicy fruit.',
-    author: 'Admin',
-    date: '2023-10-12',
-    description: 'Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus nisi. Praesent vitae...'
-  }
-];
+import axios from 'axios';
 
 const Newspagecard = () => {
+  const [newsData, setNewsData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterDate, setFilterDate] = useState('');
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        const res = await axios.get("http://localhost:5000/api/news");
+        setNewsData(res.data);
+      } catch (err) {
+        console.error("Failed to fetch news:", err);
+      }
+    };
+
+    fetchNews();
+  }, []);
+
   const filteredNews = newsData.filter((news) => {
     return (
       news.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
-      (filterDate === '' || news.date === filterDate)
+      (filterDate === '' || news.created_at.startsWith(filterDate))
     );
   });
 
@@ -86,13 +74,17 @@ const Newspagecard = () => {
         {filteredNews.length > 0 ? (
           filteredNews.map((news) => (
             <div key={news.id} className="home-news-card" onClick={() => handleCardClick(news.id)}>
-              <img src={news.image} alt={news.title} className="home-news-image" />
+              <img
+                src={news.image ? `http://localhost:5000/uploads/${news.image}` : 'https://via.placeholder.com/300x180'}
+                alt={news.title}
+                className="home-news-image"
+              />
               <div className="home-news-content">
                 <div className="home-news-meta">
                   <span><FaUser className="home-news-icon" /> {news.author}</span>
-                  <span><FaCalendarAlt className="home-news-icon" /> {news.date}</span>
+                  <span><FaCalendarAlt className="home-news-icon" /> {news.created_at?.split('T')[0]}</span>
                 </div>
-                <p className="home-news-description">{news.description}</p>
+                <p className="home-news-description">{news.content?.substring(0, 100)}...</p>
                 <div className="home-news-actions">
                   <FaThumbsUp className="home-news-action-icon" />
                   <FaComment className="home-news-action-icon" />

@@ -17,6 +17,7 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@mui/material": "^6.4.9",
     "@tailwindcss/vite": "^4.0.9",
+    "axios": "^1.8.4",
     "framer-motion": "^12.4.7",
     "lucide-react": "^0.476.0",
     "owl.carousel": "^2.3.4",
