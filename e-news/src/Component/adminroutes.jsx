@@ -10,6 +10,9 @@ import AddUsers from "./AddUsers";
 import AdminSettings from "./adminsettings";
 import AdminProfile from "./adminprofile";
 import TotalUsers from "./totalusers";
+ 
+import ManageAds from "./manageads";   
+import Drafts from "./drafts"; 
 
 const AdminRoutes = () => {
   return (
@@ -23,10 +26,12 @@ const AdminRoutes = () => {
         <Route path="available-news" element={<AvailableNews />} />
         <Route path="add-user" element={<AddUsers />} />
         <Route path="settings" element={<AdminSettings />} />
-        <Route path="profile" element={<AdminProfile />} /> {/* Link Profile Page */}
+        <Route path="profile" element={<AdminProfile />} />
         <Route path="users" element={<TotalUsers />} />
+        
 
-
+        <Route path="manage-ads" element={<ManageAds />} />
+        <Route path="drafts" element={<Drafts />} />
       </Route>
     </Routes>
   );

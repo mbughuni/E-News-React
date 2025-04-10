@@ -1,12 +1,13 @@
 import AdminNavbar from "./adminnavbar";
 import { Outlet } from "react-router-dom";
+import "./adminlayout.css"; // Import CSS for layout
 
 const AdminLayout = () => {
   return (
     <div className="admin-layout">
-      <AdminNavbar /> {/* Fixed Navbar for Admin */}
+      <AdminNavbar /> {/* Navbar Only (No Sidebar) */}
       <main className="admin-main">
-        <Outlet /> {/* Admin content will load here */}
+        <Outlet /> {/* Content Loads Here */}
       </main>
     </div>
   );
