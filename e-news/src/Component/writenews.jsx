@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AuthContext } from "./AuthContext"; // Make sure this path is correct
 import "./writenews.css";
 
 const WriteNews = () => {
+  const { user } = useContext(AuthContext); // Access the logged-in user
   const [newsData, setNewsData] = useState({
     title: "",
     content: "",
-    author: "",
     category: "Politics"
   });
+
   const [image, setImage] = useState(null);
   const [message, setMessage] = useState("");
 
@@ -23,10 +25,15 @@ const WriteNews = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!user) {
+      setMessage("❌ You must be logged in to post news.");
+      return;
+    }
+
     const formData = new FormData();
     formData.append("title", newsData.title);
     formData.append("content", newsData.content);
-    formData.append("author", newsData.author);
+    formData.append("author", user?.first_name || "Anonymous");
     formData.append("category", newsData.category);
     if (image) {
       formData.append("image", image);
@@ -42,8 +49,11 @@ const WriteNews = () => {
 
       if (res.ok) {
         setMessage("✅ News posted successfully!");
-        setNewsData({ title: "", content: "", author: "", category: "Politics" });
+        setNewsData({ title: "", content: "", category: "Politics" });
         setImage(null);
+
+        // Refresh the page to fetch updated news
+        window.location.reload(); // This will reload the page and reflect changes
       } else {
         setMessage("❌ Failed to post news: " + data.message);
       }
@@ -51,6 +61,15 @@ const WriteNews = () => {
       setMessage("❌ Server error: " + err.message);
     }
   };
+
+  if (!user) {
+    return (
+      <div className="write-news-container">
+        <h2 className="news-heading">Share your news with us!</h2>
+        <p className="news-subtext">⚠️ You must be logged in to write news.</p>
+      </div>
+    );
+  }
 
   return (
     <div className="write-news-container">
@@ -85,14 +104,11 @@ const WriteNews = () => {
 
         <div className="form-row">
           <div>
-            <label>Your Name</label>
+            <label>Author (Logged in as)</label>
             <input
               type="text"
-              name="author"
-              value={newsData.author}
-              onChange={handleChange}
-              placeholder="Enter your name"
-              required
+              value={user?.first_name}
+              readOnly
             />
           </div>
           <div>
@@ -107,6 +123,10 @@ const WriteNews = () => {
           <option value="Sports">Sports</option>
           <option value="Technology">Technology</option>
           <option value="Entertainment">Entertainment</option>
+          <option value="disaster & emergency">Disaster & Emergency</option>
+          <option value="crime and law">Crime and law</option>
+          <option value="agriculture">Agriculture</option>
+          <option value="Science & Innovation">Science & Innovation</option>
         </select>
 
         <button type="submit" className="post-btn">POST NEWS</button>

@@ -1,28 +1,49 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { FaUser, FaCalendarAlt, FaRegComment } from 'react-icons/fa';
+import { FaUser, FaCalendarAlt, FaRegComment, FaEdit, FaTrash } from 'react-icons/fa';
 import axios from 'axios';
 import './singlearticle.css';
+import { AuthContext } from './AuthContext'; // Ensure this path is correct
+import CommentForm from './commentForm.jsx'; // Import the new CommentForm component
 
 const SingleArticle = () => {
   const { id } = useParams();
+  const { user } = useContext(AuthContext);
   const [article, setArticle] = useState(null);
+  const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [editingComment, setEditingComment] = useState(null);
+
+  const fetchData = async () => {
+    try {
+      const articleRes = await axios.get(`http://localhost:5000/api/news/${id}`);
+      setArticle(articleRes.data);
+
+      const commentRes = await axios.get(`http://localhost:5000/api/comments/${id}`);
+      setComments(commentRes.data);
+    } catch (err) {
+      console.error("Fetch error:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchArticle = async () => {
-      try {
-        const res = await axios.get(`http://localhost:5000/api/news/${id}`);
-        setArticle(res.data);
-      } catch (err) {
-        console.error("Failed to fetch article:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchArticle();
+    fetchData();
   }, [id]);
+
+  const handleDelete = async (commentId) => {
+    try {
+      await axios.delete(`http://localhost:5000/api/comments/${commentId}`);
+      setComments((prev) => prev.filter((c) => c.id !== commentId));
+    } catch (err) {
+      console.error("Error deleting comment:", err);
+    }
+  };
+
+  const handleEdit = (comment) => {
+    setEditingComment(comment);
+  };
 
   if (loading) return <h2>Loading...</h2>;
   if (!article) return <h2>Article not found</h2>;
@@ -42,31 +63,49 @@ const SingleArticle = () => {
           />
           <div className="article-meta">
             <span className="author"><FaUser /> {article.author}</span>
-            <span className="date"><FaCalendarAlt /> {new Date(article.date).toLocaleDateString()}</span>
+            <span className="date"><FaCalendarAlt /> {new Date(article.created_at).toLocaleDateString()}</span>
           </div>
 
           <div className="article-body">
             <h1 className="article-title">{article.title}</h1>
             <p className="article-description">{article.description}</p>
-            <p className="article-full-content">{article.fullContent || "More content will be added soon..."}</p>
+            <p className="article-full-content">{article.content}</p>
           </div>
 
           <div className="comments-section">
             <h3 className="comments-title">
-              <FaRegComment /> 0 Comments
+              <FaRegComment /> {comments.length} Comment{comments.length !== 1 && 's'}
             </h3>
 
-            <div className="comment-form">
-              <h3>Leave a Comment</h3>
-              <form>
-                <div className="form-group">
-                  <textarea placeholder="Write your comment here..." rows="5" className="comment-textarea" />
+            {user ? (
+              <CommentForm
+                newsId={id}
+                comments={comments}
+                setComments={setComments}
+                editingComment={editingComment}
+                setEditingComment={setEditingComment}
+                fetchData={fetchData}
+              />
+            ) : (
+              <p className="login-warning">You must be logged in to post a comment.</p>
+            )}
+
+            <div className="comment-list">
+              {comments.map((comment) => (
+                <div key={comment.id} className="comment">
+                  <strong>{comment.name}</strong>
+                  <p>{comment.content}</p>
+                  <span className="comment-time">
+                    {new Date(comment.created_at).toLocaleString()}
+                  </span>
+                  {user && user.username === comment.name && (
+                    <div className="comment-actions">
+                      <FaEdit onClick={() => handleEdit(comment)} title="Edit" />
+                      <FaTrash onClick={() => handleDelete(comment.id)} title="Delete" />
+                    </div>
+                  )}
                 </div>
-                <div className="form-group">
-                  <input type="text" placeholder="Your Name" className="comment-input" />
-                </div>
-                <button type="submit" className="submit-comment">Post Comment</button>
-              </form>
+              ))}
             </div>
           </div>
         </div>

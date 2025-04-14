@@ -6,6 +6,7 @@ require("dotenv").config();
 
 const authRoutes = require("./routes/authRoutes");
 const newsRoutes = require("./routes/newsRoutes");
+const commentRoutes = require("./routes/commentRoutes"); 
 
 const app = express();
 const PORT = 5000;
@@ -19,6 +20,7 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 // Routes
 app.use("/api", authRoutes);
 app.use("/api/news", newsRoutes);
+app.use("/api/comments", commentRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
