@@ -13,7 +13,7 @@ const ProfileForm = () => {
     phone: "",
     dob: "",
   });
-
+  const [originalProfile, setOriginalProfile] = useState({});
   const user = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
@@ -21,17 +21,19 @@ const ProfileForm = () => {
       if (!user?.email) return;
 
       try {
-        const response = await fetch(`http://localhost:5000/api/users/${user.email}`);
+        const response = await fetch(`http://localhost:5000/api/profile/${user.email}`);
         const data = await response.json();
         if (response.ok) {
-          setProfile({
+          const updatedProfile = {
             firstName: data.first_name,
             middleName: data.middle_name,
             lastName: data.last_name,
             email: data.email,
             phone: data.contact_number,
             dob: data.dob,
-          });
+          };
+          setProfile(updatedProfile);
+          setOriginalProfile(updatedProfile);
         } else {
           console.error("Failed to fetch user profile:", data.message);
         }
@@ -48,15 +50,39 @@ const ProfileForm = () => {
     setProfile({ ...profile, [name]: value });
   };
 
-  const handleSave = () => {
-    setIsEditing(false);
-    console.log("Profile saved:", profile);
-    // TODO: POST or PUT updated data to backend if needed
+  const handleSave = async () => {
+    try {
+      const response = await fetch(`http://localhost:5000/api/profile/update/${user.email}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          first_name: profile.firstName,
+          middle_name: profile.middleName,
+          last_name: profile.lastName,
+          email: profile.email,
+          contact_number: profile.phone,
+          dob: profile.dob,
+        }),
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        setIsEditing(false);
+        setOriginalProfile(profile);
+        console.log("Profile updated:", result.message);
+      } else {
+        console.error("Failed to update profile:", result.message);
+      }
+    } catch (error) {
+      console.error("Error updating profile:", error);
+    }
   };
 
   const handleCancel = () => {
+    setProfile(originalProfile); // Reset to last saved state
     setIsEditing(false);
-    window.location.reload(); // Refreshes to reset fields from backend
   };
 
   return (
@@ -68,9 +94,11 @@ const ProfileForm = () => {
           <div className="profile-content">
             <div className="image-section">
               <img src="/assets/A3.png" alt="Profile" />
-              <button className="edit-button" onClick={() => setIsEditing(true)}>
-                Edit
-              </button>
+              {!isEditing && (
+                <button className="edit-button" onClick={() => setIsEditing(true)}>
+                  Edit
+                </button>
+              )}
             </div>
 
             <div className="details-container">
@@ -120,7 +148,6 @@ const ProfileForm = () => {
           </div>
         </div>
       </div>
-      {/* <Footer /> */}
     </div>
   );
 };

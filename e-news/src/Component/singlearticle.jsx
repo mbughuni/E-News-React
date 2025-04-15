@@ -79,19 +79,6 @@ const SingleArticle = () => {
               <FaRegComment /> {comments.length} Comment{comments.length !== 1 && 's'}
             </h3>
             <br /><br />
-            {user ? (
-              <CommentForm
-                newsId={id}
-                comments={comments}
-                setComments={setComments}
-                editingComment={editingComment}
-                setEditingComment={setEditingComment}
-                fetchData={fetchData}
-              />
-            ) : (
-              <p className="login-warning">You must be logged in to post a comment.</p>
-            )}
-
             <div className="comment-list">
               {comments.map((comment) => (
                 <div key={comment.id} className="comment">
@@ -116,6 +103,18 @@ const SingleArticle = () => {
                 </div>
               ))}
             </div>
+            {user ? (
+              <CommentForm
+                newsId={id}
+                comments={comments}
+                setComments={setComments}
+                editingComment={editingComment}
+                setEditingComment={setEditingComment}
+                fetchData={fetchData}
+              />
+            ) : (
+              <p className="login-warning">You must be logged in to post a comment.</p>
+            )}
           </div>
         </div>
 

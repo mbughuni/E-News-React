@@ -4,6 +4,7 @@ const multer = require("multer");
 const pool = require("../db");
 const { registerUser } = require("../controllers/userController");
 
+
 // File upload config
 const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, "uploads/"),
