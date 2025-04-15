@@ -33,6 +33,7 @@ const SingleArticle = () => {
   }, [id]);
 
   const handleDelete = async (commentId) => {
+    if (!window.confirm("Are you sure you want to delete this comment?")) return;
     try {
       await axios.delete(`http://localhost:5000/api/comments/${commentId}`);
       setComments((prev) => prev.filter((c) => c.id !== commentId));
@@ -72,11 +73,12 @@ const SingleArticle = () => {
             <p className="article-full-content">{article.content}</p>
           </div>
 
+          <br /><br />
           <div className="comments-section">
             <h3 className="comments-title">
               <FaRegComment /> {comments.length} Comment{comments.length !== 1 && 's'}
             </h3>
-
+            <br /><br />
             {user ? (
               <CommentForm
                 newsId={id}
@@ -93,15 +95,22 @@ const SingleArticle = () => {
             <div className="comment-list">
               {comments.map((comment) => (
                 <div key={comment.id} className="comment">
-                  <strong>{comment.name}</strong>
+                  <div className="comment-header">
+                    <strong>{comment.name}</strong>
+                    <span className="comment-time">
+                      {new Date(comment.created_at).toLocaleString()}
+                    </span>
+                  </div>
                   <p>{comment.content}</p>
-                  <span className="comment-time">
-                    {new Date(comment.created_at).toLocaleString()}
-                  </span>
-                  {user && user.username === comment.name && (
+
+                  {user && user.first_name === comment.name && (
                     <div className="comment-actions">
-                      <FaEdit onClick={() => handleEdit(comment)} title="Edit" />
-                      <FaTrash onClick={() => handleDelete(comment.id)} title="Delete" />
+                      {/* <button className="edit-btn" onClick={() => handleEdit(comment)}>
+                        <FaEdit /> Edit
+                      </button> */}
+                      <button className="delete-btn" onClick={() => handleDelete(comment.id)}>
+                        <FaTrash /> Delete
+                      </button>
                     </div>
                   )}
                 </div>

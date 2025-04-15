@@ -106,3 +106,24 @@
   display: flex;
   align-items: center;
 }
+.edit-delete-buttons {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.edit-delete-buttons button {
+  background-color: #ff6b00;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s ease;
+}
+
+.edit-delete-buttons button:hover {
+  background-color: #e85d00;
+}

@@ -44,5 +44,27 @@ const getCommentCount = async (req, res) => {
     res.status(500).json({ message: "Failed to fetch comment count" });
   }
 };
+// Delete comment by ID
+const deleteComment = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const result = await pool.query("DELETE FROM comments WHERE id = $1", [id]);
 
-module.exports = { addComment, getCommentsByNewsId, getCommentCount };
+    if (result.rowCount === 0) {
+      return res.status(404).json({ message: "Comment not found" });
+    }
+
+    res.status(200).json({ message: "Comment deleted successfully" });
+  } catch (err) {
+    console.error("Error deleting comment:", err.message);
+    res.status(500).json({ message: "Failed to delete comment" });
+  }
+};
+
+
+module.exports = { 
+  addComment, 
+  getCommentsByNewsId,
+   getCommentCount,
+   deleteComment,
+ };

@@ -10,7 +10,7 @@ import { AuthContext } from "./AuthContext"; // Adjust path as needed
 const UserReviews = () => {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { user } = useContext(AuthContext); // Access the user from AuthContext
+  const { user } = useContext(AuthContext);
   const [userReview, setUserReview] = useState(null);
 
   const fetchReviews = async () => {
@@ -19,8 +19,10 @@ const UserReviews = () => {
       const response = await axios.get("http://localhost:5000/api/reviews/all");
       if (Array.isArray(response.data)) {
         setReviews(response.data);
-        const userRev = response.data.find((review) => review.email === user.email);
-        setUserReview(userRev);  // Set the user's review if it exists
+        const userRev = user
+          ? response.data.find((review) => review.email === user.email)
+          : null;
+        setUserReview(userRev);
       } else {
         setReviews([]);
       }
@@ -36,9 +38,9 @@ const UserReviews = () => {
     if (!window.confirm("Are you sure you want to delete this review?")) return;
     try {
       await axios.delete(`http://localhost:5000/api/reviews/delete/${id}`, {
-        data: { email: user.email, image }, // Use email from the user context
+        data: { email: user.email, image },
       });
-      fetchReviews(); // Refresh list
+      fetchReviews();
     } catch (error) {
       console.error("Failed to delete review:", error);
     }
@@ -47,10 +49,6 @@ const UserReviews = () => {
   useEffect(() => {
     fetchReviews();
   }, []);
-
-  if (!user) {
-    return <p>Please log in to view reviews.</p>; // Handle if user is not logged in
-  }
 
   return (
     <div className="testimonial-section">
@@ -85,9 +83,13 @@ const UserReviews = () => {
               <SwiperSlide key={index} className="single-testimonial-slider">
                 <div className="client-avater">
                   <img
-                    src={review.image ? `/uploads/${review.image}` : "assets/default-user.png"}
+                    src={
+                      review.image
+                        ? `http://localhost:5000/uploads/${review.image}`
+                        : "/assets/default-user.png"
+                    }
                     alt={review.name}
-                    onError={(e) => (e.target.src = "assets/default-user.png")}
+                    onError={(e) => (e.target.src = "/assets/default-user.png")}
                   />
                 </div>
                 <div className="client-meta">
@@ -100,8 +102,8 @@ const UserReviews = () => {
                     <i className="fas fa-quote-right"></i>
                   </div>
 
-                  {/* Conditional delete/edit buttons */}
-                  {review.email === user.email && (
+                  {/* Show buttons only if user is owner */}
+                  {user && review.name === user.name && (
                     <div className="edit-delete-buttons">
                       <button onClick={() => deleteReview(review.id, review.image)}>
                         🗑️ Delete
@@ -116,9 +118,9 @@ const UserReviews = () => {
             ))}
           </Swiper>
         )}
-        
-        {/* Allow adding review if the user doesn't have one */}
-        {userReview === null && (
+
+        {/* Add review button only for logged in users with no existing review */}
+        {user && userReview === null && (
           <div className="add-review">
             <button onClick={() => alert("Add review form coming soon!")}>Add Review</button>
           </div>

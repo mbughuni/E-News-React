@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { useAuth } from "./AuthContext"; 
+import { useAuth } from "./AuthContext";
 import { useNavigate } from "react-router-dom";
 import "./ReviewForm.css";
 
-const ReviewFormPage = () => {
+const ReviewFormPage = ({ reviewToEdit }) => {
   const { user } = useAuth();
   const navigate = useNavigate();
 
@@ -16,12 +16,14 @@ const ReviewFormPage = () => {
   useEffect(() => {
     if (!user) {
       setMessage("⚠️ You must be logged in to submit a review.");
-      // Optionally redirect:
-      // navigate("/login");
     } else {
-      setName(user.first_name); // Auto-fill name from user data
+      setName(user.first_name || user.name); // Adjust if your user object uses `name` instead
+      if (reviewToEdit) {
+        setReview(reviewToEdit.review);
+        setProfession(reviewToEdit.profession);
+      }
     }
-  }, [user, navigate]);
+  }, [user, reviewToEdit]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,15 +37,23 @@ const ReviewFormPage = () => {
     formData.append("review", review);
     formData.append("name", name);
     formData.append("profession", profession);
+    formData.append("user_id", user?.id);      // 🔑 Send user ID
+    formData.append("email", user?.email);     // 🔑 Send user email (optional backup)
+
     if (image) {
       formData.append("image", image);
     }
 
     try {
-      const res = await fetch("http://localhost:5000/api/reviews/add", {
-        method: "POST",
-        body: formData,
-      });
+      const res = await fetch(
+        reviewToEdit
+          ? `http://localhost:5000/api/reviews/update/${reviewToEdit.id}`
+          : "http://localhost:5000/api/reviews/add",
+        {
+          method: reviewToEdit ? "PUT" : "POST",
+          body: formData,
+        }
+      );
 
       const data = await res.json();
       if (res.ok) {
@@ -51,6 +61,9 @@ const ReviewFormPage = () => {
         setReview("");
         setProfession("");
         setImage(null);
+        if (!reviewToEdit) {
+          navigate("/"); // Redirect after submission
+        }
       } else {
         setMessage("❌ Failed to submit review: " + data.message);
       }
@@ -62,7 +75,7 @@ const ReviewFormPage = () => {
   return (
     <div className="form-review-page-container">
       <h2>
-        Share Your <span className="highlight">Review</span>
+        {reviewToEdit ? "Update Your" : "Share Your"} <span className="highlight">Review</span>
       </h2>
       {message && <p className="form-message">{message}</p>}
 
@@ -115,7 +128,7 @@ const ReviewFormPage = () => {
           </div>
 
           <button className="submit-button" type="submit">
-            Submit Review
+            {reviewToEdit ? "Update Review" : "Submit Review"}
           </button>
         </form>
       )}
