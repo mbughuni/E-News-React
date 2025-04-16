@@ -13,10 +13,12 @@ const UserReviews = () => {
   const { user } = useContext(AuthContext);
   const [userReview, setUserReview] = useState(null);
 
+  // Fetch all reviews from the updated API
   const fetchReviews = async () => {
     try {
       setLoading(true);
-      const response = await axios.get("http://localhost:5000/api/reviews/all");
+      const response = await axios.get("http://localhost:5000/api/reviews");
+
       if (Array.isArray(response.data)) {
         setReviews(response.data);
         const userRev = user
@@ -34,11 +36,12 @@ const UserReviews = () => {
     }
   };
 
+  // Delete review function updated for new API
   const deleteReview = async (id, image) => {
     if (!window.confirm("Are you sure you want to delete this review?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/reviews/delete/${id}`, {
-        data: { email: user.email, image },
+      await axios.delete(`http://localhost:5000/api/reviews/delete`, {
+        data: { id, email: user.email, image },
       });
       fetchReviews();
     } catch (error) {

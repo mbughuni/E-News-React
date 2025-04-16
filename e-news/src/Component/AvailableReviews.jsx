@@ -23,10 +23,15 @@ const AvailableReviews = () => {
     }
   };
 
-  const handleDeleteReview = async (id) => {
+  // Updated delete function to match new backend
+  const handleDeleteReview = async (id, image) => {
     if (window.confirm("Are you sure you want to delete this review?")) {
       try {
-        await axios.delete(`http://localhost:5000/api/reviews/${id}`);
+        // Include email in the request for the admin context
+        const email = "admin@admin.com"; // Replace with logged-in admin's email
+        await axios.delete("http://localhost:5000/api/reviews", {
+          data: { id, image, email },
+        });
         setReviews((prevReviews) => prevReviews.filter((review) => review.id !== id));
       } catch (err) {
         console.error("Error deleting review:", err);
@@ -87,7 +92,7 @@ const AvailableReviews = () => {
                     </button>
                   </td>
                   <td>
-                    <button className="delete-button" onClick={() => handleDeleteReview(review.id)}>
+                    <button className="delete-button" onClick={() => handleDeleteReview(review.id, review.image)}>
                       <FontAwesomeIcon icon={faTrash} /> Delete
                     </button>
                   </td>

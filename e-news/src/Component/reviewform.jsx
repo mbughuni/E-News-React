@@ -17,7 +17,7 @@ const ReviewFormPage = ({ reviewToEdit }) => {
     if (!user) {
       setMessage("⚠️ You must be logged in to submit a review.");
     } else {
-      setName(user.first_name || user.name); // Adjust if your user object uses `name` instead
+      setName(user.first_name || user.name);
       if (reviewToEdit) {
         setReview(reviewToEdit.review);
         setProfession(reviewToEdit.profession);
@@ -37,8 +37,8 @@ const ReviewFormPage = ({ reviewToEdit }) => {
     formData.append("review", review);
     formData.append("name", name);
     formData.append("profession", profession);
-    formData.append("user_id", user?.id);      // 🔑 Send user ID
-    formData.append("email", user?.email);     // 🔑 Send user email (optional backup)
+    formData.append("user_id", user?.id);
+    formData.append("email", user?.email);
 
     if (image) {
       formData.append("image", image);
@@ -47,8 +47,8 @@ const ReviewFormPage = ({ reviewToEdit }) => {
     try {
       const res = await fetch(
         reviewToEdit
-          ? `http://localhost:5000/api/reviews/update/${reviewToEdit.id}`
-          : "http://localhost:5000/api/reviews/add",
+          ? `http://localhost:5000/api/reviews/${reviewToEdit.id}`
+          : "http://localhost:5000/api/reviews",
         {
           method: reviewToEdit ? "PUT" : "POST",
           body: formData,
@@ -62,7 +62,7 @@ const ReviewFormPage = ({ reviewToEdit }) => {
         setProfession("");
         setImage(null);
         if (!reviewToEdit) {
-          navigate("/"); // Redirect after submission
+          navigate("/");
         }
       } else {
         setMessage("❌ Failed to submit review: " + data.message);
@@ -75,7 +75,8 @@ const ReviewFormPage = ({ reviewToEdit }) => {
   return (
     <div className="form-review-page-container">
       <h2>
-        {reviewToEdit ? "Update Your" : "Share Your"} <span className="highlight">Review</span>
+        {reviewToEdit ? "Update Your" : "Share Your"}{" "}
+        <span className="highlight">Review</span>
       </h2>
       {message && <p className="form-message">{message}</p>}
 
