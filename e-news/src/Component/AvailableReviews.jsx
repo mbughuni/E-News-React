@@ -64,7 +64,7 @@ const AvailableReviews = () => {
               <th>Image</th>
               <th>Review</th>
               <th>Profession</th>
-              <th>Edit</th>
+             
               <th>Delete</th>
             </tr>
           </thead>
@@ -86,11 +86,7 @@ const AvailableReviews = () => {
                   </td>
                   <td>{review.review}</td>
                   <td>{review.profession}</td>
-                  <td>
-                    <button className="edit-button" onClick={() => handleEditReview(review.id)}>
-                      <FontAwesomeIcon icon={faEdit} /> Edit
-                    </button>
-                  </td>
+                 
                   <td>
                     <button className="delete-button" onClick={() => handleDeleteReview(review.id, review.image)}>
                       <FontAwesomeIcon icon={faTrash} /> Delete

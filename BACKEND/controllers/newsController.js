@@ -32,6 +32,26 @@ const getNewsById = async (req, res) => {
     res.status(500).json({ message: "Failed to fetch news article" });
   }
 };
+// Get all news posted by a specific user
+const getNewsByUserId = async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    const result = await pool.query(
+      "SELECT * FROM news WHERE user_id = $1 ORDER BY created_at DESC",
+      [userId]
+    );
+
+    if (result.rowCount === 0) {
+      return res.status(404).json({ message: "No news found for this user" });
+    }
+
+    res.status(200).json(result.rows);
+  } catch (err) {
+    console.error("Error fetching user news:", err.message);
+    res.status(500).json({ message: "Failed to fetch user news" });
+  }
+};
 
 // Toggle like for a news article (like/unlike)
 const toggleLike = async (req, res) => {
@@ -86,4 +106,7 @@ const toggleLike = async (req, res) => {
   }
 };
 
-module.exports = { addNews, getNewsById, toggleLike };
+module.exports = {
+   addNews, getNewsById, toggleLike,
+   getNewsByUserId
+   };

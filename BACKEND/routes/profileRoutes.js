@@ -1,8 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const { getProfile, updateProfile } = require("../controllers/profileController");
+const {
+  getCompleteProfile,
+  updateProfile,
+} = require("../controllers/profileController");
 
-router.get("/:email", getProfile);
-router.put("/update/:email", updateProfile);
+// Get full profile + news by email
+router.get("/email/:email", getCompleteProfile);
+
+// Update profile by email
+router.put("/email/:email", updateProfile);
 
 module.exports = router;

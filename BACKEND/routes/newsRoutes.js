@@ -1,10 +1,14 @@
 const express = require("express");
 const multer = require("multer");
 const path = require("path");
-const { addNews, getNewsById, toggleLike } = require("../controllers/newsController");
-const pool = require("../db");
+const {
+  addNews,
+  getNewsById,
+  toggleLike,
+  getNewsByUserId // ✅ Import this
+} = require("../controllers/newsController");
 const { toggleLikeForNews } = require("../controllers/likeController"); // adjust path if needed
-
+const pool = require("../db");
 
 const router = express.Router();
 
@@ -22,7 +26,18 @@ const upload = multer({ storage });
  * @desc Add a new news article
  */
 router.post("/add", upload.single("image"), addNews);
+
+/**
+ * @route POST /api/news/:id/like
+ * @desc Toggle like for a news article (like/unlike)
+ */
 router.post("/:id/like", toggleLikeForNews);
+
+/**
+ * @route GET /api/news/user/:userId
+ * @desc Get all news by a specific user
+ */
+router.get("/user/:userId", getNewsByUserId); // ✅ This was missing
 
 /**
  * @route GET /api/news
@@ -43,11 +58,5 @@ router.get("/", async (req, res) => {
  * @desc Get a single news article by ID
  */
 router.get("/:id", getNewsById);
-
-/**
- * @route POST /api/news/:id/like
- * @desc Toggle like for a news article (like/unlike)
- */
-
 
 module.exports = router;

@@ -41,7 +41,7 @@ const AvailableUsers = () => {
               <th>Profile Picture</th>
               <th>DOB</th>
               <th>Role</th>
-              <th>Edit</th>
+           
               <th>Delete</th>
             </tr>
           </thead>
@@ -65,11 +65,7 @@ const AvailableUsers = () => {
                   </td>
                   <td>{user.dob}</td>
                   <td>{user.role}</td>
-                  <td>
-                    <button className="edit-button">
-                      <i className="fas fa-edit"></i> Edit
-                    </button>
-                  </td>
+               
                   <td>
                     <button className="delete-button">
                       <i className="fas fa-trash"></i> Delete

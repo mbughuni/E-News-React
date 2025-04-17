@@ -191,3 +191,21 @@ button:hover {
 .cancel-button:hover {
   background-color: #c82333;
 }
+.author-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.author-image {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.author-name {
+  font-weight: bold;
+  font-size: 14px;
+}

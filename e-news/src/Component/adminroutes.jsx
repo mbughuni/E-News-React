@@ -28,7 +28,7 @@ const AdminRoutes = () => {
         <Route path="settings" element={<AdminSettings />} />
         <Route path="profile" element={<AdminProfile />} />
         <Route path="users" element={<TotalUsers />} />
-        <Route path="message" element={<Message></Message>} />
+        <Route path="messages" element={<Message></Message>} />
 
 
      
