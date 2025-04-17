@@ -12,6 +12,7 @@ import Register from "./Component/register.jsx";
 import AdminRoutes from "./Component/adminroutes";
 import ForgotPassword from "./Component/forgotpassword"; // Import the Forgot Password page
 import 'react-toastify/dist/ReactToastify.css';
+import EditReviewPage from "./Component/editReviewPage.jsx";
 
 
 function App() {
@@ -33,11 +34,13 @@ function App() {
         <Route path="/contact" element={<ContactSection />} />
         <Route path="/article/:id" element={<SingleArticle />} />
         <Route path="/profile" element={<ProfileForm />} />
-        <Route path="/admin/*" element={<AdminRoutes />} /> {/* ✅ Admin panel ke liye */}
+        <Route path="/admin/*" element={<AdminRoutes />} /> 
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPassword />} /> 
         <Route path="*" element={<Navigate to="/" />} /> 
+        <Route path="/admin/reviews/edit/:id" element={<EditReviewPage />} />
+
       </Routes>
 
       {/* {!hideNavbarFooter && } */}

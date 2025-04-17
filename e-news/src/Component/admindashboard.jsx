@@ -39,8 +39,8 @@ const AdminDashboard = () => {
 
           {/* Total Users Card */}
           <div className="dashboard-card">
-            <h2>Total Users</h2>
-            <Link to="/admin/users">
+            <h2>available Users</h2>
+            <Link to="/admin/available-users">
               <button className="dashboard-button">View Users</button>
             </Link>
           </div>
