@@ -71,17 +71,18 @@ body {
 /* Dropdown Menu */
 .dropdown-menu {
   position: absolute;
-  top: 50px;
+  top: 60px;
   right: 0;
   background: white;
   border-radius: 8px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 10px;
-  width: 150px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+  padding: 10px 0;
+  width: 160px;
   opacity: 0;
   visibility: hidden;
   transform: translateY(-10px);
-  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+  transition: all 0.3s ease;
+  z-index: 1001;
 }
 
 .dropdown-menu.show {
@@ -92,18 +93,18 @@ body {
 
 .dropdown-item {
   display: block;
-  padding: 10px;
-  color: black;
+  padding: 10px 20px;
+  color: #222;
   text-decoration: none;
   font-size: 16px;
   transition: background 0.2s;
 }
 
 .dropdown-item:hover {
-  background: lightgray;
+  background: #f0f0f0;
 }
 
-/* Hamburger Menu */
+/* Hamburger Menu (for mobile) */
 .hamburger-menu {
   display: none;
   flex-direction: column;
@@ -140,13 +141,16 @@ body {
   }
 
   .nav-item {
-    padding: 10px;
+    padding: 10px 0;
   }
 
   .dropdown-menu {
-    right: 10px;
+    right: 15px;
+    top: 55px;
   }
 }
+
+/* User Info */
 .user-info {
   display: flex;
   align-items: center;
@@ -156,7 +160,7 @@ body {
 .user-name {
   margin-right: 8px;
   font-weight: 500;
-  color: #fff; /* Adjust based on your navbar bg */
+  color: #fff;
 }
 
 .user-avatar {
