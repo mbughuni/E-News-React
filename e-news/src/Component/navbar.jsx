@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { User } from "lucide-react";
 import "../styles/navbar.css";
@@ -8,12 +8,26 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [user, setUser] = useState(null);
+  const dropdownRef = useRef(null);
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     }
+  }, []);
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, []);
 
   const handleLogout = () => {
@@ -43,47 +57,46 @@ const Navbar = () => {
         ))}
       </ul>
 
-  {/* Profile Section */}
-<div className="profile-section">
-  {user ? (
-    <img
-      src={`http://localhost:5000/uploads/${user.profile_picture}`}
-      alt="Profile"
-      className="user-avatar clickable-avatar"
-      onClick={(e) => {
-        e.stopPropagation();
-        setIsDropdownOpen(!isDropdownOpen);
-      }}
-    />
-  ) : (
-    <User
-      className="profile-icon"
-      size={28}
-      onClick={(e) => {
-        e.stopPropagation();
-        setIsDropdownOpen(!isDropdownOpen);
-      }}
-    />
-  )}
-
-  <div className={`dropdown-menu ${isDropdownOpen ? "show" : ""}`}>
-    {user ? (
-      <>
-        <Link to="/profile" className="dropdown-item">Profile</Link>
-        {user.role === "admin" && (
-          <Link to="/admin" className="dropdown-item">Admin</Link>
+      {/* Profile Section */}
+      <div className="profile-section" ref={dropdownRef}>
+        {user ? (
+          <img
+            src={`http://localhost:5000/uploads/${user.profile_picture}`}
+            alt="Profile"
+            className="user-avatar clickable-avatar"
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsDropdownOpen(!isDropdownOpen);
+            }}
+          />
+        ) : (
+          <User
+            className="profile-icon"
+            size={28}
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsDropdownOpen(!isDropdownOpen);
+            }}
+          />
         )}
-        <button onClick={handleLogout} className="dropdown-item">Logout</button>
-      </>
-    ) : (
-      <>
-        <Link to="/login" className="dropdown-item">Login</Link>
-        <Link to="/register" className="dropdown-item">Register</Link>
-      </>
-    )}
-  </div>
-</div>
 
+        <div className={`dropdown-menu ${isDropdownOpen ? "show" : ""}`}>
+          {user ? (
+            <>
+              <Link to="/profile" className="dropdown-item">Profile</Link>
+              {user.role === "admin" && (
+                <Link to="/admin" className="dropdown-item">Admin</Link>
+              )}
+              <button onClick={handleLogout} className="dropdown-item">Logout</button>
+            </>
+          ) : (
+            <>
+              <Link to="/login" className="dropdown-item">Login</Link>
+              <Link to="/register" className="dropdown-item">Register</Link>
+            </>
+          )}
+        </div>
+      </div>
 
       {/* Hamburger Menu */}
       <div className="hamburger-menu" onClick={() => setIsMenuOpen(!isMenuOpen)}>
