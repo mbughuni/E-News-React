@@ -1,65 +1,91 @@
+import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
-import AdminNavbar from "./adminnavbar"; // Import AdminNavbar component
+import AdminNavbar from "./adminnavbar";
 import "./AvailableNews.css";
 
 const AvailableNews = () => {
-  const navigate = useNavigate(); // Hook for navigation
+  const [newsData, setNewsData] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        const response = await fetch("/api/available");
+        if (!response.ok) throw new Error("Failed to fetch news");
+        const data = await response.json();
+        setNewsData(data);
+      } catch (error) {
+        console.error("Error fetching news:", error);
+      }
+    };
+
+    fetchNews();
+  }, []);
+
+  const handleDelete = async (id) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this news item?");
+    if (!confirmDelete) return;
+
+    try {
+      const response = await fetch(`/api/news/${id}`, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) throw new Error("Failed to delete news item");
+
+      // Update frontend state
+      setNewsData((prevNews) => prevNews.filter((news) => news.id !== id));
+    } catch (error) {
+      console.error("Error deleting news:", error);
+      alert("Failed to delete news. Try again.");
+    }
+  };
 
   return (
     <div className="dashboard">
-      {/* Admin Navbar */}
       <AdminNavbar />
-
-      {/* Available News Section */}
       <div className="available-news">
         <h1>Available News</h1>
-
         <table>
           <thead>
             <tr>
-              <th>Name</th>
+              <th>Author</th>
               <th>Title</th>
               <th>Phone</th>
               <th>Email</th>
-              <th>Images</th>
+              <th>Image</th>
               <th>Category</th>
               <th>Description</th>
-              <th>Edit</th>
               <th>Delete</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Asraf</td>
-              <td>PM change</td>
-              <td>7781826301</td>
-              <td>mail692@rku.ac.in</td>
-              <td>
-                <img
-                  src="https://via.placeholder.com/100"
-                  alt="News Image"
-                  className="news-image"
-                />
-              </td>
-              <td>Politics</td>
-              <td>Asraf......</td>
-              <td>
-                <button className="edit-button">
-                  <FontAwesomeIcon icon={faEdit} /> Edit
-                </button>
-              </td>
-              <td>
-                <button className="delete-button">
-                  <FontAwesomeIcon icon={faTrash} /> Delete
-                </button>
-              </td>
-            </tr>
+            {newsData.map((news, index) => (
+              <tr key={index}>
+                <td>{news.author}</td>
+                <td>{news.title}</td>
+                <td>{news.phone}</td>
+                <td>{news.email}</td>
+                <td>
+                  <img
+                    src={news.image || "https://via.placeholder.com/100"}
+                    alt="News"
+                    className="news-image"
+                  />
+                </td>
+                <td>{news.category}</td>
+                <td>{news.description}</td>
+                <td>
+                  <button className="delete-button" onClick={() => handleDelete(news.id)}>
+                    <FontAwesomeIcon icon={faTrash} /> Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
-
-        {/* Go Back Button */}
         <button className="go-back-button" onClick={() => navigate(-1)}>
           GO BACK
         </button>

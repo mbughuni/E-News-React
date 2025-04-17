@@ -1,73 +1,114 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom"; // ✅ Import useNavigate
-import axios from "axios";
-import "./AvailableReviews.css";
-import AdminNavbar from "./AdminNavbar"; // ✅ Make sure this is imported correctly
+import { useState, useContext, useEffect } from 'react';
+import axios from 'axios';
+import '../styles/contact.css';
+import Navbar from '../Component/navbar';
+import ContactHeader from './contactheader';
+import { FaMapMarkerAlt } from 'react-icons/fa';
+import { AuthContext } from './AuthContext'; // Import the context properly
 
-const Message = () => {
-  const [messages, setMessages] = useState([]);
-  const navigate = useNavigate(); // Hook for navigation
+const ContactSection = () => {
+  const { user } = useContext(AuthContext); // Get current logged-in user
 
   useEffect(() => {
-    // Fetch messages from the backend
-    const fetchMessages = async () => {
-      try {
-        const response = await axios.get("http://localhost:5000/api/messages/contact_messages");
-        setMessages(response.data); // ✅ Correct endpoint
-      } catch (error) {
-        console.error("Error fetching messages:", error);
-      }
-    };
+    console.log('Current User:', user); // Debugging log
+  }, [user]);
 
-    fetchMessages();
-  }, []);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: ''
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!user) {
+      alert('You must be logged in to send a message.');
+      return;
+    }
+
+    try {
+      await axios.post('http://localhost:5000/api/contact', {
+        ...formData,
+        userId: user.id, // Optionally send user ID
+      });
+      alert("Message sent successfully!");
+      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+    } catch (err) {
+      console.error("Failed to send message", err);
+      alert("Failed to send message. Please try again.");
+    }
+  };
 
   return (
-    <div className="dashboard">
-      {/* Admin Navbar */}
-      <AdminNavbar />
+    <div>
+      <Navbar />
+      <ContactHeader />
+      <div className="contact-section">
+        <div className="contact-header">
+          <h1>Have any questions?</h1>
+          <p>If you have any questions or need assistance, feel free to reach out to us. We are here to help!</p>
+        </div>
 
-      {/* Available Messages Section */}
-      <div className="available-reviews">
-        <h1>Available Messages</h1>
+        <form className="contact-content" onSubmit={handleSubmit}>
+          <div className="contact-form">
+            <div className="form-row">
+              <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Enter your name" className="form-input" />
+              <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Enter your email" className="form-input" />
+            </div>
+            <div className="form-row">
+              <input type="tel" name="phone" value={formData.phone} onChange={handleChange} placeholder="Enter your phone" className="form-input" />
+              <input type="text" name="subject" value={formData.subject} onChange={handleChange} placeholder="Enter your subject" className="form-input" />
+            </div>
+            <textarea name="message" value={formData.message} onChange={handleChange} placeholder="Message" className="form-textarea"></textarea>
 
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Phone</th>
-              <th>Email</th>
-              <th>Subject</th>
-              <th>Message</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {messages.length > 0 ? (
-              messages.map((message) => (
-                <tr key={message.id}>
-                  <td>{message.name}</td>
-                  <td>{message.phone}</td>
-                  <td>{message.email}</td>
-                  <td>{message.subject}</td>
-                  <td>{message.message}</td>
-                  <td>
-                    <button className="delete-button">
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="6">No messages available.</td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+            {/* Send Message Button */}
+            <button type="submit" className="send-button" disabled={!user}>
+              {user ? "Send Message" : "Login to Send"}
+            </button>
+          </div>
+
+          {/* Contact Details */}
+          <div className="contact-details">
+            <div className="details-section">
+              <h2 className="details-title">Office Location</h2>
+              <p className="details-text">123 Main Street, City, State, ZIP Code</p>
+            </div>
+            <div className="details-section">
+              <h2 className="details-title">Contact Information</h2>
+              <p className="details-text">Email: email@example.com</p>
+              <p className="details-text">Phone: 456-7890</p>
+            </div>
+          </div>
+        </form>
+
+        <div className="location-container">
+          <div className="location-content">
+            <div className="location-icon-text">
+              <FaMapMarkerAlt className="location-icon" />
+              <p className="location-text">Find our location</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="map-container">
+          <iframe
+            src="https://www.google.com/maps/embed?... (your iframe src)"
+            width="100%"
+            height="400"
+            style={{ border: 0 }}
+            allowFullScreen=""
+            loading="lazy"
+          ></iframe>
+        </div>
       </div>
     </div>
   );
 };
 
-export default Message;
+export default ContactSection;

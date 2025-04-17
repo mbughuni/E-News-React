@@ -63,8 +63,13 @@ const SingleArticle = () => {
             className="article-image"
           />
           <div className="article-meta">
-            <span className="author"><FaUser /> {article.author}</span>
-            <span className="date"><FaCalendarAlt /> {new Date(article.created_at).toLocaleDateString()}</span>
+            <span className="author">
+              <FaUser /> {article.author}
+            </span>
+            <span className="date">
+              <FaCalendarAlt />{" "}
+              {new Date(article.created_at).toLocaleDateString()}
+            </span>
           </div>
 
           <div className="article-body">
@@ -73,12 +78,15 @@ const SingleArticle = () => {
             <p className="article-full-content">{article.content}</p>
           </div>
 
-          <br /><br />
+          <br />
+          <br />
           <div className="comments-section">
             <h3 className="comments-title">
-              <FaRegComment /> {comments.length} Comment{comments.length !== 1 && 's'}
+              <FaRegComment /> {comments.length} Comment
+              {comments.length !== 1 && "s"}
             </h3>
-            <br /><br />
+            <br />
+            <br />
             <div className="comment-list">
               {comments.map((comment) => (
                 <div key={comment.id} className="comment">
@@ -95,7 +103,10 @@ const SingleArticle = () => {
                       {/* <button className="edit-btn" onClick={() => handleEdit(comment)}>
                         <FaEdit /> Edit
                       </button> */}
-                      <button className="delete-btn" onClick={() => handleDelete(comment.id)}>
+                      <button
+                        className="delete-btn"
+                        onClick={() => handleDelete(comment.id)}
+                      >
                         <FaTrash /> Delete
                       </button>
                     </div>
@@ -113,7 +124,9 @@ const SingleArticle = () => {
                 fetchData={fetchData}
               />
             ) : (
-              <p className="login-warning">You must be logged in to post a comment.</p>
+              <p className="login-warning">
+                You must be <strong>logged in</strong> to post a comment.
+              </p>
             )}
           </div>
         </div>

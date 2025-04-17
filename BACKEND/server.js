@@ -19,28 +19,34 @@ app.use(express.urlencoded({ extended: true }));
 // ✅ Serve static files (like image uploads)
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-// ✅ Import all route files (moved messageRoutes import to the top)
+
+// ✅ Import all route files
 const authRoutes = require("./routes/authRoutes");
 const newsRoutes = require("./routes/newsRoutes");
 const commentRoutes = require("./routes/commentRoutes");
-const profileRoutes = require("./routes/profileRoutes");
 const userReviewRoutes = require("./routes/userReviewRoutes");
 const adminReviewRoutes = require("./routes/adminReviewRoutes");
 const adminUserRoutes = require("./routes/adminUserRoutes");
 const contactRoutes = require("./routes/contactRoutes");
-const messageRoutes = require("./routes/messagesRoutes");  // Import the message routes
+const messageRoutes = require("./routes/messagesRoutes"); 
+const avnewsRoutes = require("./routes/availableNewRoutes");  // Ensure this import is correct
+const profileRoutes = require('./routes/profileRoutes');
+const userUpdateRoutes = require('./routes/userUpdateRoutes'); // Adjust path
 
-// ✅ Register route prefixes
+// Make sure to parse JSON
+app.use("/api/users", userUpdateRoutes);
+
 app.use("/api", authRoutes);
-app.use("/api/news", newsRoutes);
+app.use("/api/news", newsRoutes);  // newsRoutes for regular news operations (create, update, delete)
 app.use("/api/comments", commentRoutes);
-app.use("/api/profile", profileRoutes); // <-- Important one for profile
+
 app.use("/api/reviews", userReviewRoutes);
 app.use("/api/admin/reviews", adminReviewRoutes);
 app.use("/api/admin/users", adminUserRoutes);
 app.use("/api/contact", contactRoutes);
 app.use("/api/messages", messageRoutes);  // Register message routes
-
+app.use("/api/available-news", avnewsRoutes);  // Change this line to handle available news separately
+app.use('/api/profile', profileRoutes);
 // ✅ Catch-all error handler
 app.use((err, req, res, next) => {
   console.error("Unexpected Error:", err.stack);

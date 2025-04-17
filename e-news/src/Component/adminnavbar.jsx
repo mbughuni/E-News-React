@@ -1,26 +1,44 @@
-import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { User, Menu } from "lucide-react";
 import "./adminnavbar.css";
 
 const AdminNavbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [user, setUser] = useState(null);
+  const dropdownRef = useRef(null);
   const location = useLocation();
+  const navigate = useNavigate();
 
-  // Check if current page is admin panel
   const isAdmin = location.pathname.startsWith("/admin");
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
 
   // Close dropdown when clicking outside
   useEffect(() => {
-    const closeDropdown = (e) => {
-      if (!e.target.closest(".profile-section")) {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsDropdownOpen(false);
       }
-    };
-    document.addEventListener("click", closeDropdown);
-    return () => document.removeEventListener("click", closeDropdown);
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    setUser(null);
+    setIsDropdownOpen(false);
+    navigate("/login");
+  };
 
   return (
     <nav className="admin-navbar">
@@ -28,7 +46,6 @@ const AdminNavbar = () => {
         <img src="/assets/A3.png" alt="Logo" className="logo" />
       </div>
 
-      {/* Navigation Links (Only for Admin) */}
       {isAdmin && (
         <ul className={`nav-links ${isMenuOpen ? "active" : ""}`}>
           <li><Link to="/admin">Dashboard</Link></li>
@@ -38,10 +55,9 @@ const AdminNavbar = () => {
         </ul>
       )}
 
-      {/* Right Section (Profile) */}
       <div className="navbar-right">
-        {isAdmin && (
-          <div className="profile-section">
+        {user?.role === "admin" && (
+          <div className="profile-section" ref={dropdownRef}>
             <User
               className="profile-icon"
               size={28}
@@ -51,14 +67,12 @@ const AdminNavbar = () => {
               }}
             />
             <div className={`dropdown-menu ${isDropdownOpen ? "show" : ""}`}>
-              <Link to="/admin/profile" className="dropdown-item">Profile</Link>
-              <Link to="/admin/settings" className="dropdown-item">Settings</Link>
-              <Link to="/logout" className="dropdown-item">user site</Link>
+              <Link to="/" className="dropdown-item">User Site</Link>
+              <button onClick={handleLogout} className="dropdown-item">Logout</button>
             </div>
           </div>
         )}
 
-        {/* Hamburger Menu */}
         <div className="hamburger-menu" onClick={() => setIsMenuOpen(!isMenuOpen)}>
           <Menu size={28} />
         </div>

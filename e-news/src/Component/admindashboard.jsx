@@ -18,7 +18,7 @@ const AdminDashboard = () => {
           {/* Welcome Card */}
           <div className="dashboard-card">
             <h2>Welcome!</h2>
-            <button className="dashboard-button">MD ASRAF ALI</button>
+            <button className="dashboard-button">Admin</button>
           </div>
 
           {/* Messages Card */}

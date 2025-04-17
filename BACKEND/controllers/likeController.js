@@ -1,6 +1,7 @@
 // likeController.js
 const pool = require("../db");
 
+
 // Toggle like for a news article (like/unlike)
 const toggleLikeForNews = async (req, res) => {
   const newsId = req.params.id;

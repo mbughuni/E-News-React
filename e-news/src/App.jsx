@@ -13,6 +13,7 @@ import AdminRoutes from "./Component/adminroutes";
 import ForgotPassword from "./Component/forgotpassword"; // Import the Forgot Password page
 import 'react-toastify/dist/ReactToastify.css';
 import EditReviewPage from "./Component/editReviewPage.jsx";
+import UpdateProfile from "./Component/UpdateProfile.jsx";
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
         <Route path="/forgot-password" element={<ForgotPassword />} /> 
         <Route path="*" element={<Navigate to="/" />} /> 
         <Route path="/admin/reviews/edit/:id" element={<EditReviewPage />} />
+        <Route path="/edit-profile" element={<UpdateProfile />} />
 
       </Routes>
 

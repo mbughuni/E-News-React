@@ -1,65 +1,82 @@
+import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
-import AdminNavbar from "./adminnavbar"; // Import AdminNavbar component
+import axios from "axios";
+import AdminNavbar from "./adminnavbar";
 import "./AddedNews.css";
 
 const AddedNews = () => {
-  const navigate = useNavigate(); // Hook for navigation
+  const navigate = useNavigate();
+  const [newsList, setNewsList] = useState([]);
+
+  // Fetch news from backend
+  const fetchNews = async () => {
+    try {
+      const res = await axios.get("http://localhost:5000/api/admin/news/all");
+      console.log("Fetched news:", res.data);
+      setNewsList(res.data);
+    } catch (err) {
+      console.error("Failed to fetch news:", err);
+    }
+  };
+
+  useEffect(() => {
+    fetchNews();
+  }, []);
 
   return (
     <div className="dashboard">
-      {/* Admin Navbar */}
-      <AdminNavbar /> 
+      <AdminNavbar />
 
-      {/* Added News Section */}
       <div className="added-news">
         <h1>Added News By Admin</h1>
-
         <table>
           <thead>
             <tr>
-              <th>Name</th>
+              <th>Author</th>
               <th>Title</th>
-              <th>Phone</th>
-              <th>Email</th>
-              <th>Images</th>
+              <th>Content</th>
               <th>Category</th>
-              <th>Description</th>
-              <th>Edit</th>
+              <th>Image</th>
+              <th>Created At</th>
+              <th>Likes</th>
+              <th>Email</th>
               <th>Delete</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Asraf</td>
-              <td>PM change</td>
-              <td>7781826301</td>
-              <td>mail692@rku.ac.in</td>
-              <td>
-                <img
-                  src="https://via.placeholder.com/100"
-                  alt="News Image"
-                  className="news-image"
-                />
-              </td>
-              <td>Politics</td>
-              <td>Asraf......</td>
-              <td>
-                <button className="edit-button">
-                  <FontAwesomeIcon icon={faEdit} /> Edit
-                </button>
-              </td>
-              <td>
-                <button className="delete-button">
-                  <FontAwesomeIcon icon={faTrash} /> Delete
-                </button>
-              </td>
-            </tr>
+            {newsList.length === 0 ? (
+              <tr><td colSpan="9">No news available</td></tr>
+            ) : (
+              newsList.map((news) => (
+                <tr key={news._id}>
+                  <td>{news.author}</td>
+                  <td>{news.title}</td>
+                  <td>{news.content}</td>
+                  <td>{news.category}</td>
+                  <td>
+                    <img
+                      src={`http://localhost:5000/uploads/${news.image || "default-news.png"}`}
+                      alt="News"
+                      className="news-image"
+                      onError={(e) => e.target.src = "/assets/default-news.png"}
+                    />
+                  </td>
+                  <td>{new Date(news.created_at).toLocaleDateString()}</td>
+                  <td>{news.like_count}</td>
+                  <td>{news.email}</td>
+                  <td>
+                    <button className="delete-button">
+                      <FontAwesomeIcon icon={faTrash} /> Delete
+                    </button>
+                  </td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
 
-        {/* Go Back Button */}
         <button className="go-back-button" onClick={() => navigate(-1)}>
           GO BACK
         </button>
