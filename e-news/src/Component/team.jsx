@@ -4,7 +4,7 @@ import "./teamcard.css"; // Import CSS for styling
 const teamMembers = [
   {
     id: 1,
-    name: "John Doe",
+    name: "asraf",
     role: "Project Manager",
     image: "https://images.pexels.com/photos/4584170/pexels-photo-4584170.jpeg?auto=compress&cs=tinysrgb&w=600",
     linkedin: "#",
@@ -13,7 +13,7 @@ const teamMembers = [
   },
   {
     id: 2,
-    name: "Jane Smith",
+    name: "mussa",
     role: "Lead Developer",
     image: "https://images.pexels.com/photos/8727381/pexels-photo-8727381.jpeg?auto=compress&cs=tinysrgb&w=600",
     linkedin: "#",
@@ -22,7 +22,7 @@ const teamMembers = [
   },
   {
     id: 3,
-    name: "Alice Johnson",
+    name: "Baljit",
     role: "UI/UX Designer",
     image: "https://images.pexels.com/photos/8172822/pexels-photo-8172822.jpeg?auto=compress&cs=tinysrgb&w=600",
     linkedin: "#",

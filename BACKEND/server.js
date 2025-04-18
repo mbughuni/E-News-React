@@ -31,10 +31,11 @@ const contactRoutes = require("./routes/contactRoutes");
 const messageRoutes = require("./routes/messagesRoutes"); 
 const avnewsRoutes = require("./routes/availableNewRoutes");  // Ensure this import is correct
 const profileRoutes = require('./routes/profileRoutes');
-const userUpdateRoutes = require('./routes/userUpdateRoutes'); // Adjust path
+// Import
+const userUpdateRoutes = require('./routes/userUpdateRoutes');
 
-// Make sure to parse JSON
-app.use("/api/users", userUpdateRoutes);
+// Mount at the correct path
+app.use("/api/user/update", userUpdateRoutes);
 
 app.use("/api", authRoutes);
 app.use("/api/news", newsRoutes);  // newsRoutes for regular news operations (create, update, delete)

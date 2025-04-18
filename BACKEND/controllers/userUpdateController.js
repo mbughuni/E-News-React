@@ -1,15 +1,38 @@
-// controllers/userUpdateController.js
+const pool = require('../db');
 
-const pool = require('../db'); // ✅ PostgreSQL pool connection
+const updateUserByEmail = async (req, res) => {
+  const userEmail = req.params.email;
+  const {
+    first_name,
+    middle_name,
+    last_name,
+    contact_number,
+    dob
+  } = req.body;
 
-const updateUser = async (req, res) => {
-  const userId = req.params.id;
-  const { name, email, profession } = req.body;
+  const profilePicture = req.file ? req.file.filename : null;
 
   try {
     const result = await pool.query(
-      "UPDATE users SET name = $1, email = $2, profession = $3 WHERE id = $4 RETURNING *",
-      [name, email, profession, userId]
+      `UPDATE users 
+       SET 
+         first_name = $1,
+         middle_name = $2,
+         last_name = $3,
+         contact_number = $4,
+         dob = $5,
+         profile_picture = COALESCE($6, profile_picture)
+       WHERE email = $7 
+       RETURNING *`,
+      [
+        first_name,
+        middle_name,
+        last_name,
+        contact_number,
+        dob,
+        profilePicture,
+        userEmail
+      ]
     );
 
     if (result.rows.length === 0) {
@@ -23,4 +46,4 @@ const updateUser = async (req, res) => {
   }
 };
 
-module.exports = { updateUser };
+module.exports = { updateUserByEmail };

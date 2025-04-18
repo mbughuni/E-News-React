@@ -8,6 +8,7 @@
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-top:100px;
   }
   
   .profile-form label {
@@ -42,4 +43,6 @@
   .profile-form button:hover {
     background-color: #0056b3;
   }
-  
+  .button{
+    color:orange;
+  }
