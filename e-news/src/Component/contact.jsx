@@ -9,17 +9,27 @@ import { AuthContext } from './AuthContext'; // Import the context properly
 const ContactSection = () => {
   const { user } = useContext(AuthContext); // Get current logged-in user
 
-  useEffect(() => {
-    console.log('Current User:', user); // Debugging log
-  }, [user]);
-
+  // Set the form data to pre-fill the fields if the user is logged in
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
+    name: user?.name || '', // Set to user name if available
+    email: user?.email || '', // Set to user email if available
+    phone: user?.phone || '', // Set to user phone if available
     subject: '',
     message: ''
   });
+
+  useEffect(() => {
+    // If user data changes, update the form data accordingly
+    if (user) {
+      setFormData({
+        name: user.name || '',
+        email: user.email || '',
+        phone: user.phone || '',
+        subject: '',
+        message: ''
+      });
+    }
+  }, [user]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -58,14 +68,48 @@ const ContactSection = () => {
         <form className="contact-content" onSubmit={handleSubmit}>
           <div className="contact-form">
             <div className="form-row">
-              <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Enter your name" className="form-input" />
-              <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Enter your email" className="form-input" />
+              <input 
+                type="text" 
+                name="name" 
+                value={formData.name} 
+                onChange={handleChange} 
+                placeholder="Enter your name" 
+                className="form-input" 
+              />
+              <input 
+                type="email" 
+                name="email" 
+                value={formData.email} 
+                onChange={handleChange} 
+                placeholder="Enter your email" 
+                className="form-input" 
+              />
             </div>
             <div className="form-row">
-              <input type="tel" name="phone" value={formData.phone} onChange={handleChange} placeholder="Enter your phone" className="form-input" />
-              <input type="text" name="subject" value={formData.subject} onChange={handleChange} placeholder="Enter your subject" className="form-input" />
+              <input 
+                type="tel" 
+                name="phone" 
+                value={formData.phone} 
+                onChange={handleChange} 
+                placeholder="Enter your phone" 
+                className="form-input" 
+              />
+              <input 
+                type="text" 
+                name="subject" 
+                value={formData.subject} 
+                onChange={handleChange} 
+                placeholder="Enter your subject" 
+                className="form-input" 
+              />
             </div>
-            <textarea name="message" value={formData.message} onChange={handleChange} placeholder="Message" className="form-textarea"></textarea>
+            <textarea 
+              name="message" 
+              value={formData.message} 
+              onChange={handleChange} 
+              placeholder="Message" 
+              className="form-textarea"
+            ></textarea>
 
             {/* Send Message Button */}
             <button type="submit" className="send-button" disabled={!user}>

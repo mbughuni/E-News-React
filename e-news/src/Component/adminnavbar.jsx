@@ -49,8 +49,8 @@ const AdminNavbar = () => {
       {isAdmin && (
         <ul className={`nav-links ${isMenuOpen ? "active" : ""}`}>
           <li><Link to="/admin">Dashboard</Link></li>
-          <li><Link to="/admin/news">News</Link></li>
-          <li><Link to="/admin/users">Users</Link></li>
+          <li><Link to="/user-news">News</Link></li>
+          <li><Link to="/admin/available-users">Users</Link></li>
           <li><Link to="/admin/messages">Messages</Link></li>
         </ul>
       )}

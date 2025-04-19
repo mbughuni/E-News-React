@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { User } from "lucide-react";
 import "../styles/navbar.css";
+import { useNavigate } from "react-router-dom"; 
 
 const Navbar = () => {
   const [activeLink, setActiveLink] = useState("Home");
@@ -9,6 +10,7 @@ const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [user, setUser] = useState(null);
   const dropdownRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -35,6 +37,7 @@ const Navbar = () => {
     localStorage.removeItem("token");
     setUser(null);
     setIsDropdownOpen(false);
+    navigate("/login"); 
   };
 
   return (

@@ -10,10 +10,12 @@ import ProfileForm from "./Component/profile.jsx";
 import Login from "./Component/login.jsx";
 import Register from "./Component/register.jsx";
 import AdminRoutes from "./Component/adminroutes";
-import ForgotPassword from "./Component/forgotpassword"; // Import the Forgot Password page
+import ForgotPassword from "./Component/forgotpassword"; 
 import 'react-toastify/dist/ReactToastify.css';
 import EditReviewPage from "./Component/editReviewPage.jsx";
 import UpdateProfile from "./Component/UpdateProfile.jsx";
+import UserNews from "./Component/useraddedNews.jsx";
+import EditNewsPage from "./Component/EditNewsPage.jsx";
 
 
 function App() {
@@ -39,9 +41,12 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPassword />} /> 
-        <Route path="*" element={<Navigate to="/" />} /> 
+        <Route path="*" element={<Navigate to="/" />} />
         <Route path="/admin/reviews/edit/:id" element={<EditReviewPage />} />
         <Route path="/edit-profile" element={<UpdateProfile />} />
+        <Route path="/user-news" element={<UserNews />} />
+        <Route path="/edit-news/:id" element={<EditNewsPage />} />
+
 
       </Routes>
 

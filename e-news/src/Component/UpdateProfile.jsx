@@ -2,10 +2,12 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "./AuthContext";
 import axios from "axios";
 import Navbar from "./navbar";
+import { useNavigate } from "react-router-dom";
 import "../styles/updateprofile.css";
 
 const ProfileUpdateForm = () => {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     first_name: "",
@@ -23,7 +25,9 @@ const ProfileUpdateForm = () => {
       if (!user?.email) return;
 
       try {
-        const response = await axios.get(`http://localhost:5000/api/profile/${user.email}`);
+        const response = await axios.get(
+          `http://localhost:5000/api/profile/${user.email}`
+        );
         const data = response.data;
 
         setFormData((prev) => ({
@@ -163,8 +167,15 @@ const ProfileUpdateForm = () => {
           />
         )}
 
-        <button type="submit" className="btn btn-secondary">
+        <button type="submit" className="btnn">
           Update Profile
+        </button>
+        <button
+          type="button"
+          className="btnn go-back-btn"
+          onClick={() => navigate(-1)} // or navigate("/profile") for a specific page
+        >
+          Go Back
         </button>
       </form>
     </div>

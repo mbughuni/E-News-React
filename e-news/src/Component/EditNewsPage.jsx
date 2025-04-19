@@ -1,9 +1,13 @@
-import { useState, useContext } from "react";
-import { AuthContext } from "./AuthContext"; // Make sure this path is correct
+import { useEffect, useState, useContext } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { AuthContext } from "./AuthContext";
 import "./writenews.css";
 
-const WriteNews = () => {
-  const { user } = useContext(AuthContext); // Access the logged-in user
+const EditNewsPage = () => {
+  const { user } = useContext(AuthContext);
+  const { id } = useParams();
+  const navigate = useNavigate();
+
   const [newsData, setNewsData] = useState({
     title: "",
     content: "",
@@ -12,6 +16,27 @@ const WriteNews = () => {
 
   const [image, setImage] = useState(null);
   const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        const res = await fetch(`/api/news/${id}`);
+        const data = await res.json();
+        if (res.ok) {
+          setNewsData({
+            title: data.title,
+            content: data.content,
+            category: data.category,
+          });
+        } else {
+          setMessage("❌ Failed to fetch news.");
+        }
+      } catch (err) {
+        setMessage("❌ Error: " + err.message);
+      }
+    };
+    fetchNews();
+  }, [id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,39 +50,27 @@ const WriteNews = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!user) {
-      setMessage("❌ You must be logged in to post news.");
-      return;
-    }
-
     const formData = new FormData();
     formData.append("title", newsData.title);
     formData.append("content", newsData.content);
     formData.append("author", user?.first_name || "Anonymous");
     formData.append("category", newsData.category);
-    formData.append("email", user?.email || "");
-    formData.append("user_id", user?.id); 
     if (image) {
       formData.append("image", image);
     }
 
     try {
-      const res = await fetch("http://localhost:5000/api/news/add", {
-        method: "POST",
+      const res = await fetch(`/api/news/edit/${id}`, {
+        method: "PUT",
         body: formData,
       });
 
       const data = await res.json();
-
       if (res.ok) {
-        setMessage("✅ News posted successfully!");
-        setNewsData({ title: "", content: "", category: "Politics" });
-        setImage(null);
-
-        // Refresh the page to fetch updated news
-        window.location.reload(); // This will reload the page and reflect changes
+        setMessage("✅ News updated successfully!");
+        setTimeout(() => navigate("/usernews"), 1500);
       } else {
-        setMessage("❌ Failed to post news: " + data.message);
+        setMessage("❌ Failed to update news: " + data.message);
       }
     } catch (err) {
       setMessage("❌ Server error: " + err.message);
@@ -67,8 +80,8 @@ const WriteNews = () => {
   if (!user) {
     return (
       <div className="write-news-container">
-        <h2 className="news-heading">Share your news with us!</h2>
-        <p className="news-subtext">⚠️ You must be logged in to write news.</p>
+        <h2 className="news-heading">Edit News</h2>
+        <p className="news-subtext">⚠️ You must be logged in to edit news.</p>
       </div>
     );
   }
@@ -76,11 +89,9 @@ const WriteNews = () => {
   return (
     <div className="write-news-container">
       <h2 className="news-heading">
-        <span className="highlight">Write Your</span> News
+        <span className="highlight">Edit Your</span> News
       </h2>
-      <p className="news-subtext">
-        Share your thoughts and updates with the world.
-      </p>
+      <p className="news-subtext">Update your article below.</p>
 
       {message && <p className="form-message">{message}</p>}
 
@@ -91,7 +102,6 @@ const WriteNews = () => {
           name="title"
           value={newsData.title}
           onChange={handleChange}
-          placeholder="Enter news title"
           required
         />
 
@@ -100,21 +110,16 @@ const WriteNews = () => {
           name="content"
           value={newsData.content}
           onChange={handleChange}
-          placeholder="Write your news here..."
           required
         ></textarea>
 
         <div className="form-row">
           <div>
             <label>Author (Logged in as)</label>
-            <input
-              type="text"
-              value={user?.first_name}
-              readOnly
-            />
+            <input type="text" value={user?.first_name} readOnly />
           </div>
           <div>
-            <label>Upload Image</label>
+            <label>Upload New Image (Optional)</label>
             <input type="file" onChange={handleImageChange} />
           </div>
         </div>
@@ -131,10 +136,10 @@ const WriteNews = () => {
           <option value="Science & Innovation">Science & Innovation</option>
         </select>
 
-        <button type="submit" className="post-btn">POST NEWS</button>
+        <button type="submit" className="post-btn">UPDATE NEWS</button>
       </form>
     </div>
   );
 };
 
-export default WriteNews;
+export default EditNewsPage;

@@ -29,10 +29,14 @@ const adminReviewRoutes = require("./routes/adminReviewRoutes");
 const adminUserRoutes = require("./routes/adminUserRoutes");
 const contactRoutes = require("./routes/contactRoutes");
 const messageRoutes = require("./routes/messagesRoutes"); 
-const avnewsRoutes = require("./routes/availableNewRoutes");  // Ensure this import is correct
+const availableNewsRoutes = require('./routes/availableNewsRoutes'); // Ensure this import is correct
 const profileRoutes = require('./routes/profileRoutes');
+const adminAvailableNewsRoutes = require('./routes/adminAvailableNewsRoutes');
+const userNewsRoutes = require("./routes/userNewsRoutes");
+
 // Import
-const userUpdateRoutes = require('./routes/userUpdateRoutes');
+const userUpdateRoutes = require('./routes/userUpdateRoutes'); // Serve uploaded images
+app.use("/api/news/edit", require("./routes/editNewsRoutes"));
 
 // Mount at the correct path
 app.use("/api/user/update", userUpdateRoutes);
@@ -43,10 +47,13 @@ app.use("/api/comments", commentRoutes);
 
 app.use("/api/reviews", userReviewRoutes);
 app.use("/api/admin/reviews", adminReviewRoutes);
-app.use("/api/admin/users", adminUserRoutes);
+app.use("/api/admin/users", require("./routes/adminUserRoutes"));
 app.use("/api/contact", contactRoutes);
 app.use("/api/messages", messageRoutes);  // Register message routes
-app.use("/api/available-news", avnewsRoutes);  // Change this line to handle available news separately
+app.use("/api", userNewsRoutes);
+app.use('/api', availableNewsRoutes);
+ // Change this line to handle available news separately
+ app.use('/api', adminAvailableNewsRoutes);
 app.use('/api/profile', profileRoutes);
 // ✅ Catch-all error handler
 app.use((err, req, res, next) => {

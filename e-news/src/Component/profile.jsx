@@ -63,7 +63,7 @@ const ProfileForm = () => {
             </div>
 
             <div className="navigation-buttons">
-              <Link to="/news" className="nav-button">
+              <Link to="/user-news" className="nav-button">
                 <i className="fas fa-newspaper"></i>
                 <span>News</span>
               </Link>

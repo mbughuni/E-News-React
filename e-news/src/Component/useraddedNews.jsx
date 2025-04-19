@@ -1,36 +1,44 @@
 import { useEffect, useState } from "react";
+import { useAuth } from "./AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
-import AdminNavbar from "./AdminNavbar";
-import "./AvailableNews.css";
+import Navbar from "./navbar.jsx";
+import './AvailableNews.css'; // Reuse styles
 
-const AvailableNews = () => {
+const UserNews = () => {
+  const { user } = useAuth();
   const [newsData, setNewsData] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchNews = async () => {
+    const fetchUserNews = async () => {
+      if (!user?.email) return;
+
       try {
-        const response = await fetch("/api/available/admin");
-        if (!response.ok)
-          throw new Error(`HTTP error! status: ${response.status}`);
+        const response = await fetch("/api/news/user", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: user.email }),
+        });
+
+        if (!response.ok) throw new Error("Failed to fetch user news");
+
         const data = await response.json();
-        console.log("Fetched news data:", data);
         setNewsData(data);
       } catch (error) {
-        console.error("Error fetching news:", error);
+        console.error("Error:", error);
       } finally {
         setLoading(false);
       }
     };
-    fetchNews();
-  }, []);
+
+    fetchUserNews();
+  }, [user]);
 
   const handleDelete = async (id) => {
-    if (!window.confirm("Are you sure you want to delete this news item?"))
-      return;
+    if (!window.confirm("Are you sure you want to delete this news item?")) return;
     try {
       const response = await fetch(`/api/news/${id}`, { method: "DELETE" });
       if (!response.ok) throw new Error(`Delete failed: ${response.status}`);
@@ -41,11 +49,15 @@ const AvailableNews = () => {
     }
   };
 
+  const handleEdit = (id) => {
+    navigate(`/edit-news/${id}`);
+  };
+
   return (
     <div className="dashboard">
-      <AdminNavbar />
+      <Navbar />
       <div className="available-news">
-        <h1>Added News By Admin</h1>
+        <h1>Your Added News</h1>
 
         {loading ? (
           <p>Loading...</p>
@@ -61,6 +73,7 @@ const AvailableNews = () => {
                 <th>Category</th>
                 <th>Created At</th>
                 <th>Delete</th>
+                <th>Edit</th>
               </tr>
             </thead>
             <tbody>
@@ -84,11 +97,13 @@ const AvailableNews = () => {
                   <td>{news.category}</td>
                   <td>{new Date(news.created_at).toLocaleString()}</td>
                   <td>
-                    <button
-                      className="delete-button"
-                      onClick={() => handleDelete(news.id)}
-                    >
+                    <button className="delete-button" onClick={() => handleDelete(news.id)}>
                       <FontAwesomeIcon icon={faTrash} /> Delete
+                    </button>
+                  </td>
+                  <td>
+                    <button className="edit-button" onClick={() => handleEdit(news.id)}>
+                      <FontAwesomeIcon icon={faEdit} /> Edit
                     </button>
                   </td>
                 </tr>
@@ -107,4 +122,4 @@ const AvailableNews = () => {
   );
 };
 
-export default AvailableNews;
+export default UserNews;

@@ -3,14 +3,16 @@ const pool = require("../db");
 // Add a new news article
 const addNews = async (req, res) => {
   try {
-    const { title, content, author, category } = req.body;
+    const { title, content, author, category, email,user_id } = req.body;
+
     const image = req.file ? req.file.filename : null;
 
     const result = await pool.query(
-      "INSERT INTO news (title, content, author, category, image) VALUES ($1, $2, $3, $4, $5) RETURNING *",
-      [title, content, author, category, image]
+      "INSERT INTO news (title, content, author, category, image, email, user_id) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *",
+      [title, content, author, category, image, email, user_id]
     );
-
+    
+    
     res.status(201).json(result.rows[0]);
   } catch (err) {
     console.error("Error adding news:", err.message);

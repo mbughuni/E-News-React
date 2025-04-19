@@ -1,31 +1,35 @@
-// controllers/availableNewsController.js
-const db = require("../db"); // adjust based on your DB setup
+const pool = require('../db');
 
-const getAllNews = async (req, res) => {
+const getAvailableNews = async (req, res) => {
   try {
-    const [rows] = await db.query("SELECT * FROM news");
-    res.json(rows);
+    const result = await pool.query(
+      'SELECT * FROM news ORDER BY created_at DESC'
+    );
+    res.status(200).json(result.rows);
   } catch (error) {
-    console.error("Error fetching news:", error);
-    res.status(500).json({ error: "Internal Server Error" });
+    console.error('Error fetching available news:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 };
 
 const deleteNews = async (req, res) => {
   const { id } = req.params;
   try {
-    const [result] = await db.query("DELETE FROM news WHERE id = ?", [id]);
-    if (result.affectedRows === 0) {
-      return res.status(404).json({ error: "News item not found" });
+    const result = await pool.query(
+      'DELETE FROM news WHERE id = $1',
+      [id]
+    );
+    if (result.rowCount === 0) {
+      return res.status(404).json({ error: 'News not found' });
     }
-    res.json({ message: "News item deleted successfully" });
+    res.json({ message: 'News deleted successfully' });
   } catch (error) {
-    console.error("Error deleting news:", error);
-    res.status(500).json({ error: "Internal Server Error" });
+    console.error('Error deleting news:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 };
 
 module.exports = {
-  getAllNews,
+  getAvailableNews,
   deleteNews,
 };

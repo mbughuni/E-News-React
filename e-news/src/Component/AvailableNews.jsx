@@ -2,44 +2,42 @@ import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
-import AdminNavbar from "./adminnavbar";
+import AdminNavbar from "./AdminNavbar";
 import "./AvailableNews.css";
 
 const AvailableNews = () => {
   const [newsData, setNewsData] = useState([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchNews = async () => {
       try {
         const response = await fetch("/api/available");
-        if (!response.ok) throw new Error("Failed to fetch news");
+        if (!response.ok)
+          throw new Error(`HTTP error! status: ${response.status}`);
         const data = await response.json();
+        console.log("Fetched news data:", data);
         setNewsData(data);
       } catch (error) {
         console.error("Error fetching news:", error);
+      } finally {
+        setLoading(false);
       }
     };
-
     fetchNews();
   }, []);
 
   const handleDelete = async (id) => {
-    const confirmDelete = window.confirm("Are you sure you want to delete this news item?");
-    if (!confirmDelete) return;
-
+    if (!window.confirm("Are you sure you want to delete this news item?"))
+      return;
     try {
-      const response = await fetch(`/api/news/${id}`, {
-        method: "DELETE",
-      });
-
-      if (!response.ok) throw new Error("Failed to delete news item");
-
-      // Update frontend state
-      setNewsData((prevNews) => prevNews.filter((news) => news.id !== id));
+      const response = await fetch(`/api/news/${id}`, { method: "DELETE" });
+      if (!response.ok) throw new Error(`Delete failed: ${response.status}`);
+      setNewsData((prev) => prev.filter((item) => item.id !== id));
     } catch (error) {
       console.error("Error deleting news:", error);
-      alert("Failed to delete news. Try again.");
+      alert("Failed to delete.");
     }
   };
 
@@ -48,44 +46,59 @@ const AvailableNews = () => {
       <AdminNavbar />
       <div className="available-news">
         <h1>Available News</h1>
-        <table>
-          <thead>
-            <tr>
-              <th>Author</th>
-              <th>Title</th>
-              <th>Phone</th>
-              <th>Email</th>
-              <th>Image</th>
-              <th>Category</th>
-              <th>Description</th>
-              <th>Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            {newsData.map((news, index) => (
-              <tr key={index}>
-                <td>{news.author}</td>
-                <td>{news.title}</td>
-                <td>{news.phone}</td>
-                <td>{news.email}</td>
-                <td>
-                  <img
-                    src={news.image || "https://via.placeholder.com/100"}
-                    alt="News"
-                    className="news-image"
-                  />
-                </td>
-                <td>{news.category}</td>
-                <td>{news.description}</td>
-                <td>
-                  <button className="delete-button" onClick={() => handleDelete(news.id)}>
-                    <FontAwesomeIcon icon={faTrash} /> Delete
-                  </button>
-                </td>
+
+        {loading ? (
+          <p>Loading...</p>
+        ) : newsData.length > 0 ? (
+          <table>
+            <thead>
+              <tr>
+                <th>Author</th>
+                <th>Title</th>
+                <th>Content</th>
+                <th>Email</th>
+                <th>Image</th>
+                <th>Category</th>
+                <th>Created At</th>
+                <th>Delete</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {newsData.map((news) => (
+                <tr key={news.id}>
+                  <td>{news.author}</td>
+                  <td>{news.title}</td>
+                  <td>{news.content}</td>
+                  <td>{news.email}</td>
+                  <td>
+                    <img
+                      src={
+                        news.image
+                          ? `http://localhost:5000/uploads/${news.image}`
+                          : "https://via.placeholder.com/100"
+                      }
+                      alt="News"
+                      className="news-image"
+                    />
+                  </td>
+                  <td>{news.category}</td>
+                  <td>{new Date(news.created_at).toLocaleString()}</td>
+                  <td>
+                    <button
+                      className="delete-button"
+                      onClick={() => handleDelete(news.id)}
+                    >
+                      <FontAwesomeIcon icon={faTrash} /> Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <p>No news available.</p>
+        )}
+
         <button className="go-back-button" onClick={() => navigate(-1)}>
           GO BACK
         </button>

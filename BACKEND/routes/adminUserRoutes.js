@@ -6,6 +6,7 @@ const adminUserController = require('../controllers/adminUserController');
 router.get('/users/all', adminUserController.getAllUsers);
 
 // Route to delete a user
-router.delete('/delete/:id', adminUserController.deleteUser);
+router.delete("/delete/:id", adminUserController.deleteUser);
+
 
 module.exports = router;
