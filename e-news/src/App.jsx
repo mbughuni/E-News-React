@@ -19,12 +19,6 @@ import EditNewsPage from "./Component/EditNewsPage.jsx";
 
 
 function App() {
-  // const location = useLocation();
-  
-  // const hideNavbarFooter = location.pathname.startsWith("/admin") || 
-  //                          location.pathname === "/login" || 
-  //                          location.pathname === "/register";
-
   return (
     <div className="app-container">
       {/* {!hideNavbarFooter && } */}

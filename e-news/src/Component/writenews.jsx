@@ -75,7 +75,7 @@ const WriteNews = () => {
 
   return (
     <div className="write-news-container">
-      <h2 className="news-heading">
+      <h2 className="write-news-heading">
         <span className="highlight">Write Your</span> News
       </h2>
       <p className="news-subtext">

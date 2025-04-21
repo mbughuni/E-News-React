@@ -10,22 +10,20 @@ import {
 import { useNavigate } from "react-router-dom";
 import "./newspagecard.css";
 import axios from "axios";
-import { AuthContext } from "./AuthContext"; // Adjust if your context path differs
+import { AuthContext } from "./AuthContext";
 
 const Newspagecard = () => {
   const [newsData, setNewsData] = useState([]);
-  const [commentCounts, setCommentCounts] = useState({}); // Store comment counts here, mapping newsID => count
+  const [commentCounts, setCommentCounts] = useState({});
   const [searchTerm, setSearchTerm] = useState("");
   const [filterDate, setFilterDate] = useState("");
-  const { user } = useContext(AuthContext); // Assuming you're using AuthContext for login
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  // Fetch all news articles when component mounts
   useEffect(() => {
     fetchNews();
   }, []);
 
-  // When newsData is updated, fetch the comment counts for each news article
   useEffect(() => {
     if (newsData.length > 0) {
       fetchCommentCounts();
@@ -43,9 +41,10 @@ const Newspagecard = () => {
 
   const fetchCommentCounts = async () => {
     try {
-      // Create an array of promises to fetch each news article's comment count
       const promises = newsData.map(async (news) => {
-        const res = await axios.get(`http://localhost:5000/api/comments/count/${news.id}`);
+        const res = await axios.get(
+          `http://localhost:5000/api/comments/count/${news.id}`
+        );
         return { [news.id]: parseInt(res.data.count, 10) };
       });
       const commentCountsArray = await Promise.all(promises);
@@ -125,7 +124,10 @@ const Newspagecard = () => {
             onChange={(e) => setFilterDate(e.target.value)}
           />
           &nbsp;
-          <button className="home-news-reset-button" onClick={handleFilterReset}>
+          <button
+            className="home-news-reset-button"
+            onClick={handleFilterReset}
+          >
             Reset
           </button>
         </div>
@@ -170,17 +172,26 @@ const Newspagecard = () => {
                   {news.content?.substring(0, 100)}...
                 </p>
                 <div className="home-news-actions">
-                  <div className="action-item like-wrapper" onClick={() => handleLike(news.id)}>
+                  <div
+                    className="action-item like-wrapper"
+                    onClick={() => handleLike(news.id)}
+                  >
                     <FaThumbsUp
                       className="home-news-action-icon"
                       color={news.userLiked ? "#007bff" : "#333"}
                     />
                     <div className="like-count-text">{news.like_count}</div>
                   </div>
-                  <div className="action-item" onClick={() => handleCardClick(news.id)}>
-                    <FaComment className="home-news-action-icon" />{" "}
-                    {commentCounts[news.id] || 0}
+                  <div
+                    className="action-item comment-wrapper"
+                    onClick={() => handleCardClick(news.id)}
+                  >
+                    <FaComment className="home-news-action-icon" />
+                    <div className="comment-count-text">
+                      {commentCounts[news.id] || 0}
+                    </div>
                   </div>
+
                   <div className="action-item">
                     <FaShareAlt className="home-news-action-icon" />
                   </div>

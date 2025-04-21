@@ -1,4 +1,3 @@
-// MoreNewsPage.jsx
 import { useState } from "react";
 import Modal from "react-modal";
 import "./morenews.css"; // Updated CSS import
@@ -79,5 +78,4 @@ const MoreNewsPage = () => {
     </div>
   );
 };
-
 export default MoreNewsPage;

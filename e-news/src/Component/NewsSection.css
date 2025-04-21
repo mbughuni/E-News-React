@@ -1,122 +1,79 @@
-/* General Styles */
 .news-container {
   max-width: 600px;
-    width: 90%;
-    margin: auto;
-    text-align: center;
+  width: 90%;
+  margin: auto;
+  text-align: center;
   background-color: rgba(255, 255, 255, 0.064);
   color: black;
   box-sizing: border-box;
-  /* Adjusted to move higher */
   transform: translateX(-260px); 
-  margin-top:180px;
-  
-  
-  
+  margin-top: 180px;
 }
 
-.main-heading {
+.news-heading {
   display: flex;
   align-items: center;
   gap: 0.75rem;
   color: #2d3748;
   margin-bottom: 2rem;
   font-size: 1.8rem;
-  margin-top:-110px;
-
+  margin-top: -110px;
 }
 
-.heading-icon {
+.news-heading-icon {
   font-size: 2rem;
   color: orange;
 }
 
-/* Features Section */
-.features-grid {
+.news-features-grid {
   display: flex;
   gap: 1.5rem;
   justify-content: space-between;
-  width:1200px;
-  height:100px;
-  
-  
-  
+  width: 1200px;
+  height: 100px;
 }
 
-.feature-item {
+.news-feature-item {
   display: flex;
   align-items: center;
   gap: 1rem;
-  width: 500px; /* Increased size */
-  height: 160px; /* More rectangular */
+  width: 500px;
+  height: 160px;
   background-color: #f7fafc;
-  border-radius:10px 10px 10px;
+  border-radius: 10px;
   transition: transform 0.2s;
   box-sizing: border-box;
-  
 }
 
-.feature-item:hover {
+.news-feature-item:hover {
   transform: translateY(-5px);
 }
 
-.feature-icon {
-  font-size: 2rem; /* Adjusted for bigger size */
+.news-feature-icon {
+  font-size: 2rem;
   color: orange;
   min-width: 50px;
 }
 
-/* Update Section */
-.update-section {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  padding: 1.5rem;
-  background-color: orange;
-  border-radius: 1rem;
-  color: white;
-  justify-content: space-between;
-}
-
-.update-icon {
-  font-size: 1.5rem;
-}
-
-.update-text {
-  margin: 0;
-  font-size: 1.2rem;
-  flex-grow: 1;
-}
-
-/* Responsive Design */
 @media (max-width: 1024px) {
-  .features-grid {
+  .news-features-grid {
     flex-wrap: wrap;
     justify-content: center;
   }
 
-  .feature-item {
+  .news-feature-item {
     flex: 1 1 calc(45% - 1.5rem);
     max-width: calc(45% - 1.5rem);
   }
 }
 
 @media (max-width: 768px) {
-  .features-grid {
+  .news-features-grid {
     flex-direction: column;
   }
 
-  .feature-item {
+  .news-feature-item {
     flex: 1 1 100%;
     max-width: 100%;
   }
-
-  .update-section {
-    flex-direction: column;
-    text-align: center;
-  }
-} 
-.news-card-title{
-  justify-content:center;
-  margin-top:50px;
 }

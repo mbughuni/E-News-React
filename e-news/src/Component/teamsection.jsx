@@ -4,18 +4,18 @@ import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
 
 const teamMembers = [
   {
-    name: "Jimmy Doe",
-    role: "Farmer",
+    name: "mbughuni Mussa",
+    role: "developer",
     image: "./assets/team-1.jpg", // Replace with actual image URL
   },
   {
-    name: "Marry Doe",
-    role: "Farmer",
+    name: "MD asraf",
+    role: "developer",
     image: "./assets/team-2.jpg", //
   },
   {
-    name: "Simon Joe",
-    role: "Farmer",
+    name: "Baljit thakur",
+    role: "Developer",
     image: "./assets/team-3.jpg",
   },
 ];
