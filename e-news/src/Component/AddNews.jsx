@@ -1,8 +1,9 @@
 import { useState, useContext } from "react";
-import { AuthContext } from "./AuthContext"; // Make sure this path is correct
+import { AuthContext } from "./AuthContext"; 
 
 import AdminNavbar from "./adminnavbar";
 import "./writenews.css";
+import { useNavigate } from "react-router-dom";
 
 const WriteNews = () => {
   const { user } = useContext(AuthContext); // Access the logged-in user
@@ -11,6 +12,7 @@ const WriteNews = () => {
     content: "",
     category: "Politics"
   });
+  const navigate = useNavigate();
 
   const [image, setImage] = useState(null);
   const [message, setMessage] = useState("");
@@ -76,7 +78,7 @@ const WriteNews = () => {
   return (
     <div className="write-news-container">
        <AdminNavbar />
-      <h2 className="news-heading">
+      <h2 className="write-news-heading">
         <span className="highlight">Write Your</span> News
       </h2>
       <p className="news-subtext">
@@ -134,6 +136,9 @@ const WriteNews = () => {
 
         <button type="submit" className="post-btn">POST NEWS</button>
       </form>
+      <button className="go-back-button" onClick={() => navigate(-1)}>
+          GO BACK
+        </button>
     </div>
   );
 };

@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import AdminNavbar from "./adminnavbar";
 import "./AvailableUsers.css";
-
+import { useNavigate } from "react-router-dom";
 const AvailableUsers = () => {
   const [users, setUsers] = useState([]);
+    const navigate = useNavigate();
 
   // Fetch users from backend
   const fetchUsers = async () => {
@@ -102,8 +103,8 @@ const AvailableUsers = () => {
         </table>
       </div>
       <div className="go-back">
-        <button className="go-back-button" onClick={() => navigate(-1)}>
-          Go Back
+      <button className="go-back-button" onClick={() => navigate(-1)}>
+          GO BACK
         </button>
       </div>
     </div>

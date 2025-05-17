@@ -8,9 +8,9 @@ const Carousel = () => {
   const [direction, setDirection] = useState("right");
 
   const slides = [
-    { id: 1, url: "/assets/marathon.jpg", subtitle: "Top Stories", title: "Racing Towards Glory: The Spirit of the Marathon", btnPrimary: { text: "Live Updates", link: "shop.html" }, btnSecondary: { text: "Read More", link: "contact.jsp" } },
-    { id: 2, url: "/assets/vr.jpg", subtitle: "Breaking News", title: "latest update on apple vision pro!", btnPrimary: { text: "News Collection", link: "news.jsp" }, btnSecondary: { text: "Contact Us", link: "contact.jsp" } },
-    { id: 3, url: "/assets/fire.jpg", subtitle: "You Can Share", title: "fire outbreak in los angeles", btnPrimary: { text: "Write News", link: "shop.html" }, btnSecondary: { text: "Contact Us", link: "contact.jsp" } },
+    { id: 1, url: "/assets/marathon.jpg", subtitle: "Top Stories", title: "Racing Towards Glory: The Spirit of the Marathon", btnPrimary: { text: "Live Updates", link: "news" }, btnSecondary: { text: "Read More", link: "news" } },
+    { id: 2, url: "/assets/vr.jpg", subtitle: "Breaking News", title: "latest update on apple vision pro!", btnPrimary: { text: "News Collection", link: "news.jsp" }, btnSecondary: { text: "Contact Us", link: "contact" } },
+    { id: 3, url: "/assets/fire.jpg", subtitle: "You Can Share", title: "fire outbreak in los angeles", btnPrimary: { text: "Write News", link: "news" }, btnSecondary: { text: "Contact Us", link: "contact.jsp" } },
   ];
 
   const nextSlide = () => {

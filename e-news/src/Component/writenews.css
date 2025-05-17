@@ -63,6 +63,7 @@ body {
   textarea {
     height: 100px;
     resize: none;
+    color:black;
   }
   
   .form-row {
